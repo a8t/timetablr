@@ -1,8 +1,11 @@
+* {box-sizing: border-box;}
+
 .App {
+  
   text-align: center;
   height: 100vh;
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 200px 1fr;
   grid-template-rows: 1fr;
   grid-template-areas: "search calendar" 
   
