@@ -5,16 +5,41 @@ class Calendar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      timesToRender: []
+      meetingSectionIDs: [543543, 575, 87]
     }
   }
 
-  addItems(){
-    
+  fetchSectionData() {
+    fetch(url).then(response => response.json).then(jsonResponse)
+    // meeting section id fetch
+    // return meeting section's course code, instructor, course_times
+
+  }
+
+  sectionDataToEntry(entryJSON) {
+    return entryJSON.courseTimes.map(eachTime => {
+      const styleObj = {
+        "background": "lightgreen",
+        "z-index": 3,
+        "border-radius": "8px",
+        "margin": "2px",
+        "padding": "5px",
+        'grid-row-start': 'time' + eachMeetingTime.start / 3600,
+        'grid-row-end': 'time' + eachMeetingTime.end / 3600,
+        'grid-column': eachMeetingTime.day.toLowerCase()
+      }
+      
+      return <Entry style={styleObj} courseCode={entryJSON.courseCode} instructors={entryJSON.instructors} />}
+    )
+
   }
   
   render () {
-    
+
+    const sectionIDs = this.state.meetingSectionIDs
+    const sectionsData = sectionIDs.map(eachID => fetchSectionData(eachID))
+    const entries = sectionsData.map(eachSectionData => sectionDataToEntry(eachSectionData))
+
     return (
       <div id="calendars">
         <div id='calendarFall'>
