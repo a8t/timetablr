@@ -12,9 +12,15 @@
 }
 
 #calendars {
-  grid-area: calendar
+  grid-area: calendar;
+  margin: 10px;
 }
 
 #search {
-  grid-area: search
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 10px;
+  position: fixed;
+  height: 100%;
+  width: 200px;
 }
