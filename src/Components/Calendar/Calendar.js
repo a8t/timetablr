@@ -18,11 +18,9 @@ class Calendar extends Component {
     meetingSectionIDs.forEach(eachID => 
       fetch(`https://tbd-scheduler-v1.herokuapp.com/meeting_sections/search?section=${eachID}`)
       .then(response => response.json())
-      .then(jsonResponse => {console.log(jsonResponse); 
-        this.setState({
+      .then(jsonResponse => this.setState({
         sectionsToRenderData: [...this.state.sectionsToRenderData, jsonResponse]
-      })})
-
+      }))
     )
   }
 
@@ -45,9 +43,8 @@ class Calendar extends Component {
   render () {
 
     const sectionsData = this.state.sectionsToRenderData
-    const fallEntries = sectionsData.map(eachSectionData => this.sectionDataToEntry(eachSectionData))
-    const winterEntries = sectionsData.map(eachSectionData => this.sectionDataToEntry(eachSectionData))
-
+    const fallEntries = sectionsData.filter(eachSectiondata => eachSectiondata.term.split(" ").includes("Fall")).map(eachSectionData => this.sectionDataToEntry(eachSectionData))
+    const winterEntries = sectionsData.filter(eachSectiondata => eachSectiondata.term.split(" ").includes("Winter")).map(eachSectionData => this.sectionDataToEntry(eachSectionData))
 
     return (
       <div id="calendars">
