@@ -5,7 +5,6 @@ const Entry = props => {
   return (
     <div style={props.style}> 
       <p>{props.courseCode}</p>
-
     </div>
   )
 }

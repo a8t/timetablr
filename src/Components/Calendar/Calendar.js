@@ -6,7 +6,7 @@ class Calendar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      sectionsToRenderData: []
+      dataOfSectionsToRender: []
     }
   }
 
@@ -22,7 +22,7 @@ class Calendar extends Component {
       .then(jsonResponse => 
         {console.log(jsonResponse)
           this.setState({
-        sectionsToRenderData: [...this.state.sectionsToRenderData, jsonResponse]
+            dataOfSectionsToRender: [...this.state.dataOfSectionsToRender, jsonResponse]
       })})
     )
   }
@@ -42,15 +42,22 @@ class Calendar extends Component {
         gridRowEnd: 'time' + timeToMilitaryTime(eachTime.end),
         gridColumn: eachTime.day.toLowerCase()
       }
-      return <Entry style={styleObj} courseCode={entryJSON.courseCode} instructors={entryJSON.instructors ? entryJSON.instructors : ""} timeStart={eachTime.start / 3600 % 12} timeEnd={eachTime.end / 3600 % 12} key={entryJSON.courseCode + eachTime.day + eachTime.start}/> }
+      return (
+        <Entry 
+          style={styleObj} 
+          courseCode={entryJSON.courseCode} 
+          instructors={entryJSON.instructors ? entryJSON.instructors : ""} 
+          timeStart={eachTime.start / 3600 % 12} 
+          timeEnd={eachTime.end / 3600 % 12} 
+          key={entryJSON.courseCode + eachTime.day + eachTime.start}/>) }
     )
   }
   
   render () {
 
-    const sectionsData = this.state.sectionsToRenderData
-    const fallEntries = sectionsData.filter(eachSectiondata => eachSectiondata.term === "2017 Fall").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
-    const winterEntries = sectionsData.filter(eachSectiondata => eachSectiondata.term === "2018 Winter").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
+    const sectionsDataArray = this.state.dataOfSectionsToRender
+    const fallEntries = sectionsDataArray.filter(eachSectiondata => eachSectiondata.term === "2017 Fall").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
+    const winterEntries = sectionsDataArray.filter(eachSectiondata => eachSectiondata.term === "2018 Winter").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
 
     return (
       <div id="calendars">
