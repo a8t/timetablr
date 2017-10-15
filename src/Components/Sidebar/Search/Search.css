@@ -5,7 +5,8 @@
 }
 
 .searchResults {
+  margin-top: 10px;
   overflow: scroll;
-  height: 80%;
+  height: 90%;
 
 }
