@@ -11,13 +11,13 @@
     padding: 10px;
     width: auto;
     height: auto;
-    
+    background-color: lightcyan;
     display: grid;
     --colWidth: 110px;
-    --rowheight: 30px;
+    --rowheight: 3vh;
     grid-template-columns: [start] var(--colWidth) [monday] var(--colWidth) [tuesday] var(--colWidth) [wednesday] var(--colWidth) [thursday] var(--colWidth) [friday] var(--colWidth) [end];  
     grid-template-rows: 
-        [start] 1fr 
+        [start]    var(--rowheight)
         [time8]    var(--rowheight)
         [time830]  var(--rowheight)
         [time9]    var(--rowheight)
@@ -60,6 +60,7 @@
     grid-row: start / end;
     text-align:center;
     color: #333;
+    font-weight: bold;
 }
 
 .timeslot {
