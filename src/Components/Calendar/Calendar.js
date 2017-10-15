@@ -33,8 +33,9 @@ class Calendar extends Component {
     return entryJSON.courseTimes.map(eachTime => {
       const styleObj = {
         background: "lightgreen",
+        boxShadow: "0px 4px 10px 1px rgba(118,122,128,1)",
         zIndex: "3",
-        borderRadius: "8px",
+        borderRadius: "2px",
         margin: "2px",
         padding: "5px",
         gridRowStart: 'time' + timeToMilitaryTime(eachTime.start),
@@ -48,8 +49,8 @@ class Calendar extends Component {
   render () {
 
     const sectionsData = this.state.sectionsToRenderData
-    const fallEntries = sectionsData.filter(eachSectiondata => eachSectiondata.term.split(" ").includes("Fall")).map(eachSectionData => this.sectionDataToEntry(eachSectionData))
-    const winterEntries = sectionsData.filter(eachSectiondata => eachSectiondata.term.split(" ").includes("Winter")).map(eachSectionData => this.sectionDataToEntry(eachSectionData))
+    const fallEntries = sectionsData.filter(eachSectiondata => eachSectiondata.term === "2017 Fall").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
+    const winterEntries = sectionsData.filter(eachSectiondata => eachSectiondata.term === "2018 Winter").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
 
     return (
       <div id="calendars">
