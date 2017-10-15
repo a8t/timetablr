@@ -15,28 +15,33 @@ class Calendar extends Component {
   }
 
   fetchAllData(meetingSectionIDs) {
+    
     meetingSectionIDs.forEach(eachID => 
       fetch(`https://tbd-scheduler-v1.herokuapp.com/meeting_sections/search?section=${eachID}`)
       .then(response => response.json())
-      .then(jsonResponse => this.setState({
+      .then(jsonResponse => 
+        {console.log(jsonResponse)
+          this.setState({
         sectionsToRenderData: [...this.state.sectionsToRenderData, jsonResponse]
-      }))
+      })})
     )
   }
 
   sectionDataToEntry(entryJSON) {
+    const timeToMilitaryTime = secondsTime =>  Number.isInteger(secondsTime / 3600) ? secondsTime / 3600 : Math.floor(secondsTime / 3600) + "30"
+
     return entryJSON.courseTimes.map(eachTime => {
       const styleObj = {
-        "background": "lightgreen",
-        "z-index": 3,
-        "border-radius": "8px",
-        "margin": "2px",
-        "padding": "5px",
-        'grid-row-start': 'time' + eachTime.start / 3600,
-        'grid-row-end': 'time' + eachTime.end / 3600,
-        'grid-column': eachTime.day.toLowerCase()
+        background: "lightgreen",
+        zIndex: "3",
+        borderRadius: "8px",
+        margin: "2px",
+        padding: "5px",
+        gridRowStart: 'time' + timeToMilitaryTime(eachTime.start),
+        gridRowEnd: 'time' + timeToMilitaryTime(eachTime.end),
+        gridColumn: eachTime.day.toLowerCase()
       }
-      return <Entry style={styleObj} courseCode={entryJSON.courseCode} instructors={entryJSON.instructors ? entryJSON.instructors : ""} />}
+      return <Entry style={styleObj} courseCode={entryJSON.courseCode} instructors={entryJSON.instructors ? entryJSON.instructors : ""} timeStart={eachTime.start / 3600 % 12} timeEnd={eachTime.end / 3600 % 12} key={entryJSON.courseCode + eachTime.day + eachTime.start}/> }
     )
   }
   
@@ -102,3 +107,4 @@ class Calendar extends Component {
 }
 
 export default Calendar
+

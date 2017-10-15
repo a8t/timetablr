@@ -1,8 +1,8 @@
 #calendars {
-  display: flex;
-  flex-flow: wrap;
-  justify-content: space-around;
-  align-items: center;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #calendarFall,
@@ -10,42 +10,45 @@
     font-family:sans-serif;
     padding: 10px;
     width: auto;
-    height: 800px;
+    height: auto;
+    
     display: grid;
-    grid-template-columns: [start] 100px [monday] 100px [tuesday] 100px [wednesday] 100px [thursday] 100px [friday] 100px [end];  
+    --colWidth: 110px;
+    --rowheight: 30px;
+    grid-template-columns: [start] var(--colWidth) [monday] var(--colWidth) [tuesday] var(--colWidth) [wednesday] var(--colWidth) [thursday] var(--colWidth) [friday] var(--colWidth) [end];  
     grid-template-rows: 
-      [start] 1fr 
-      [time8] 1fr 
-      [time830] 1fr 
-      [time9] 1fr 
-      [time930] 1fr 
-      [time10] 1fr 
-      [time1030] 1fr 
-      [time11] 1fr 
-      [time1130] 1fr 
-      [time12] 1fr 
-      [time1230] 1fr 
-      [time13] 1fr 
-      [time1330] 1fr 
-      [time14] 1fr 
-      [time1430] 1fr 
-      [time15] 1fr 
-      [time1530] 1fr 
-      [time16] 1fr 
-      [time1630] 1fr 
-      [time17] 1fr 
-      [time1730] 1fr 
-      [time18] 1fr 
-      [time1830] 1fr 
-      [time19] 1fr 
-      [time1930] 1fr 
-      [time20] 1fr 
-      [time2030] 1fr 
-      [time21] 1fr 
-      [time2130] 1fr 
-      [time22] 1fr  
-      [time2230] 1fr 
-      [end]  
+        [start] 1fr 
+        [time8]    var(--rowheight)
+        [time830]  var(--rowheight)
+        [time9]    var(--rowheight)
+        [time930]  var(--rowheight)
+        [time10]   var(--rowheight)
+        [time1030] var(--rowheight)
+        [time11]   var(--rowheight)
+        [time1130] var(--rowheight)
+        [time12]   var(--rowheight)
+        [time1230] var(--rowheight)
+        [time13]   var(--rowheight)
+        [time1330] var(--rowheight)
+        [time14]   var(--rowheight)
+        [time1430] var(--rowheight)
+        [time15]   var(--rowheight)
+        [time1530] var(--rowheight)
+        [time16]   var(--rowheight)
+        [time1630] var(--rowheight)
+        [time17]   var(--rowheight)
+        [time1730] var(--rowheight)
+        [time18]   var(--rowheight)
+        [time1830] var(--rowheight)
+        [time19]   var(--rowheight)
+        [time1930] var(--rowheight)
+        [time20]   var(--rowheight)
+        [time2030] var(--rowheight)
+        [time21]   var(--rowheight)
+        [time2130] var(--rowheight)
+        [time22]   var(--rowheight)
+        [time2230] var(--rowheight)
+        [end]  
 }
 
 .weekday {
