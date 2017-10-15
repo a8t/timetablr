@@ -1,0 +1,11 @@
+#search {
+  background-color: white;
+  color: #333;
+  font-weight: bold;
+}
+
+.searchResults {
+  overflow: scroll;
+  height: 80%;
+
+}
