@@ -35,7 +35,7 @@ class Search extends Component {
       clearTimeout(this.timer)
       this.timer = setTimeout(() => {
         this.fetchCourseData(searchTerm)
-      }, 500);
+      }, 100);
     }
   }
 

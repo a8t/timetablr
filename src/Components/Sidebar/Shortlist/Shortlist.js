@@ -1,22 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Shortlist extends Component {
+const Shortlist = props => {
 
-  constructor(props){
-    super(props)
-  }
+  const shortlistResults = props.shortlist.map(eachResult => <div>{eachResult.code}: {eachResult.name}</div>)
 
-  render() {
-    const props = this.props
-    const shortlistResults = this.props.shortlist.map(eachResult => <div>{eachResult.code}: {eachResult.name}</div>)
+  return (
+    <div>
+      {shortlistResults}
+    </div>
+  )
 
-
-    return (
-      <div>
-        {shortlistResults}
-      </div>
-    )
-  }
 }
 
 export default Shortlist;

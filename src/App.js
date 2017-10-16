@@ -21,7 +21,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.shortlist);
     return (
       <div className="App">
         <Sidebar addToShortList={this.addToShortList} shortlist={this.state.shortlist}/>

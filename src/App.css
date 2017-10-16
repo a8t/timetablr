@@ -3,7 +3,7 @@
 .App {
   background-color: lightskyblue;
   text-align: center;
-  height: 100vh;
+  height: auto;
   display: grid;
   grid-template-columns: 300px 1fr;
   grid-template-rows: 1fr;
