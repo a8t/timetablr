@@ -28,7 +28,9 @@ class Sidebar extends Component {
     return (
       <div id='sidebar'>
         <Search addToShortList={this.addToShortList}/>
-        <Shortlist shortlist={this.state.shortlist}/>
+        <Shortlist addMeetingSectionID={this.props.addMeetingSectionID}
+          removeMeetingSectionID={this.props.removeMeetingSectionID}
+          shortlist={this.state.shortlist}/>
       </div>
     );
   }

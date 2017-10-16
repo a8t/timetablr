@@ -18,6 +18,10 @@ class Calendar extends Component {
     this.fetchAllData(this.props.meetingSectionIDs)
   }
 
+  componentWillReceiveProps(){
+    this.fetchAllData(this.props.meetingSectionIDs)
+  }
+
   fetchAllData(meetingSectionIDs) {
     meetingSectionIDs.forEach(eachID =>
       fetch(`https://tbd-scheduler-v1.herokuapp.com/meeting_sections/search?section=${eachID}`)
@@ -59,6 +63,7 @@ class Calendar extends Component {
     const sectionsDataArray = this.state.dataOfSectionsToRender
     const fallEntries = sectionsDataArray.filter(eachSectiondata => eachSectiondata.term === "2017 Fall").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
     const winterEntries = sectionsDataArray.filter(eachSectiondata => eachSectiondata.term === "2018 Winter").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
+
 
     return (
       <div id="calendars">

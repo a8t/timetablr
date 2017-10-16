@@ -7,16 +7,34 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      meetingSectionIDs: [3, 4, 2346, 13000],
+      meetingSectionIDs: [],
     }
+    this.addMeetingSectionID = this.addMeetingSectionID.bind(this)
+    this.removeMeetingSectionID = this.removeMeetingSectionID.bind(this)
   }
 
+  addMeetingSectionID(newMeetingID) {
+    this.setState({
+      meetingSectionIDs: [...this.state.meetingSectionIDs, newMeetingID]
+    })
 
+  }
+
+  removeMeetingSectionID(meetingIDToRemove) {
+
+    this.setState((prevState) => {
+      const index = prevState.meetingSectionIDs.indexOf(meetingIDToRemove)
+      prevState.meetingSectionIDs.splice(index,1)
+
+      return {meetingSectionIDs: prevState.meetingSectionIDs}
+    })
+  }
 
   render() {
+    console.log(this.state.meetingSectionIDs);
     return (
       <div className="App">
-        <Sidebar />
+        <Sidebar addMeetingSectionID={this.addMeetingSectionID} removeMeetingSectionID={this.removeMeetingSectionID} />
         <Calendar meetingSectionIDs={this.state.meetingSectionIDs}/>
       </div>
     );

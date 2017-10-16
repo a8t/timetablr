@@ -1,11 +1,8 @@
 .searchResult {
   background-color: lightblue;
   margin: 5px;
-  height: 100px;
+  height: 200px;
   border-radius: 3px;
   padding: 10px 0;
 
-  p {
-    padding: 0;
-  }
 }
