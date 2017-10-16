@@ -7,7 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      meetingSectionIDs: [],
+      meetingSectionIDs: [4, 69, 96],
     }
     this.addMeetingSectionID = this.addMeetingSectionID.bind(this)
     this.removeMeetingSectionID = this.removeMeetingSectionID.bind(this)
@@ -21,7 +21,6 @@ class App extends Component {
   }
 
   removeMeetingSectionID(meetingIDToRemove) {
-
     this.setState((prevState) => {
       const index = prevState.meetingSectionIDs.indexOf(meetingIDToRemove)
       prevState.meetingSectionIDs.splice(index,1)
@@ -31,7 +30,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.meetingSectionIDs);
+    console.log(this.state.meetingSectionIDs)
     return (
       <div className="App">
         <Sidebar addMeetingSectionID={this.addMeetingSectionID} removeMeetingSectionID={this.removeMeetingSectionID} />
