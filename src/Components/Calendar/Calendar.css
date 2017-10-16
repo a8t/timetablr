@@ -18,6 +18,7 @@
     grid-template-columns: [start] var(--colWidth) [monday] var(--colWidth) [tuesday] var(--colWidth) [wednesday] var(--colWidth) [thursday] var(--colWidth) [friday] var(--colWidth) [end];
     grid-template-rows:
         [start]    var(--rowheight)
+        [time]     var(--rowheight)
         [time8]    var(--rowheight)
         [time830]  var(--rowheight)
         [time9]    var(--rowheight)
@@ -58,7 +59,7 @@
 /*monday - friday text*/
 .weekday {
     border-right: 1px solid #BDBDBD;
-    grid-row: start / end;
+    grid-row: time / end;
     text-align:center;
     color: #111;
     font-weight: bold;

@@ -13,9 +13,15 @@ class Sidebar extends Component {
   }
 
   addToShortList(newEntry) {
-    this.setState({
-      shortlist: [...this.state.shortlist, newEntry]
-    })
+    this.fetchCourseData(newEntry.id)
+  }
+
+  fetchCourseData(courseID) {
+      fetch(`https://tbd-scheduler-v1.herokuapp.com/courses/get_data?course_id=${courseID}`)
+      .then(response => response.json())
+      .then(jsonResponse => this.setState({
+        shortlist: [...this.state.shortlist, jsonResponse]
+      }))
   }
 
   render () {

@@ -1,0 +1,10 @@
+.shortlistEntry {
+  background-color: lightgray;
+  margin: 5px 0;
+  padding: 10px 0;
+  border-radius: 3px;
+}
+
+.showCourseInformation {
+  padding: 10px;
+}

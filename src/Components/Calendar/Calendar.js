@@ -70,6 +70,7 @@ class Calendar extends Component {
           <div className="weekday"           style={{gridColumn: "wednesday / span 1"}}>wednesday</div>
           <div className="weekday"           style={{gridColumn: "thursday  / span 1"}}>thursday</div>
           <div className="weekday"           style={{gridColumn: "friday    / span 1"}}>friday</div>
+          <div className="time"              style={{gridRow: "time     / span 2"}}></div>
           <div className="timeslot"          style={{gridRow: "time8    / span 2"}}>8am</div>
           <div className="timeslot halfHour" style={{gridRow: "time830  / span 1"}}></div>
           <div className="timeslot"          style={{gridRow: "time9    / span 2"}}>9am</div>
