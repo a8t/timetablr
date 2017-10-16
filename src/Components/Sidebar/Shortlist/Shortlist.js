@@ -1,11 +1,14 @@
 import React from 'react';
+import './Shortlist.css'
+import ShortlistEntry from './ShortlistEntry/ShortlistEntry.js'
 
 const Shortlist = props => {
 
-  const shortlistResults = props.shortlist.map(eachResult => <div>{eachResult.code}: {eachResult.name}</div>)
+  const shortlistResults = props.shortlist.map(eachResult => <ShortlistEntry code={eachResult.code} name={eachResult.name}/>)
 
   return (
-    <div>
+    <div id="shortlist">
+      <p>shortlist</p>
       {shortlistResults}
     </div>
   )

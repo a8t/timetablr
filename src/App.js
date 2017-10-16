@@ -8,22 +8,15 @@ class App extends Component {
     super(props)
     this.state = {
       meetingSectionIDs: [3, 4, 2346, 13000],
-      shortlist: []
     }
-    this.addToShortList = this.addToShortList.bind(this)
   }
 
-  addToShortList(newEntry) {
-    this.setState({
-      shortlist: [...this.state.shortlist, newEntry]
-    })
-  }
 
 
   render() {
     return (
       <div className="App">
-        <Sidebar addToShortList={this.addToShortList} shortlist={this.state.shortlist}/>
+        <Sidebar />
         <Calendar meetingSectionIDs={this.state.meetingSectionIDs}/>
       </div>
     );
