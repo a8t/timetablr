@@ -7,9 +7,10 @@ class Search extends Component {
     super(props);
     this.state = {
       searchTerm: '',
-      searchResults: []
+      searchResults: [],
     }
     this.timer = ''
+    this.hovered = false
   }
 
   componentWillUpdate(){
@@ -40,13 +41,30 @@ class Search extends Component {
     }
   }
 
+  // hide search results when click outside of search bar
   hideSearchBar() {
-    document.querySelector('.searchResults').style.height = '0px'
+    if (!this.hovered) {
+      this.refs.searchResults.style.display = 'none'
+    } else {
+      this.timer = setTimeout(() => {
+        this.refs.searchResults.style.display = 'none'
+      }, 200);
+    }
   }
 
+  // show search results when click inside of search bar
   showSearchBar(){
-    document.querySelector('.searchResults').style.height = ''
-    document.querySelector('.searchResults').style.maxHeight = '500px'
+    this.refs.searchResults.style.display = 'block'
+  }
+
+  // when user mouse on search result
+  mouseOnSearchResult() {
+    this.hovered = true
+  }
+
+  // when user mouse out search result
+  mouseOutSearchResult() {
+    this.hovered = false
   }
 
   render () {
@@ -56,14 +74,19 @@ class Search extends Component {
 
     return(
       <div id="search">
-        <input className="searchBar" type="text"
+        <input className="searchBar"
+          ref="searchBar"
+          type="text"
           value={this.state.search}
           onBlur={() => this.hideSearchBar()}
           onFocus={() => this.showSearchBar()}
           onChange={this.updateSearch.bind(this)}
           placeholder="Search course"/>
-        <div className='searchResults' >
-          {searchResults}
+        <div className='searchResults'
+          ref="searchResults"
+          onMouseOn={() => this.mouseOnSearchResult()}
+          onMouseOut={() => this.mouseOutSearchResult()}>
+            {searchResults}
         </div>
       </div>
     )
