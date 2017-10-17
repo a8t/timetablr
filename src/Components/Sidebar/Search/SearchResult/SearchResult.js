@@ -5,7 +5,7 @@ import './SearchResult.css'
 const SearchResult = props => {
 
   return (
-    <div className='searchResult' key={props.key}>
+    <div className='searchResult'>
       <div className='course'>
         <p className='courseCode'>
             {props.courseCode}:

@@ -23,15 +23,13 @@ class ShortlistEntry extends Component {
         key={eachMSD.id} 
         className="meetingSection" 
         style={{margin: "2px"}} 
-        onMouseOver={(e) => { e.preventDefault(); e.stopPropagation(); this.props.addMeetingSectionID(eachMSD.id) }} 
-        onClick={(e) => { e.preventDefault(); e.stopPropagation(); this.props.addMeetingSectionID(eachMSD.id) }}  
-        onMouseOut={(e) => { e.preventDefault(); e.stopPropagation(); this.props.removeMeetingSectionID(eachMSD.id)} }
+        onClick={(e) => { e.preventDefault(); e.stopPropagation(); this.props.addMeetingSectionData({...eachMSD, term: this.props.term, courseCode: this.props.code}) }}  
       >
         {eachMSD.code}
       </button>)
 
     return (
-      <div onClick={() => this.toggleCourseInformation(this.props)} className="shortlistEntry">
+      <div onClick={() => this.toggleCourseInformation()} className="shortlistEntry">
         <p className="shortlistEntryCode">
           {this.props.code}:
         </p>

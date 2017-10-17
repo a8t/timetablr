@@ -12,8 +12,10 @@ const Shortlist = props => {
       description={eachResult.description} 
       ms_data={eachResult.ms_data} 
       term={eachResult.term} 
-      addMeetingSectionID={props.addMeetingSectionID} 
-      removeMeetingSectionData={props.removeMeetingSectionData}/>)
+      addMeetingSectionData={props.addMeetingSectionData} 
+      removeMeetingSectionData={props.removeMeetingSectionData}
+    />
+  )
 
   return (
     <div id="shortlist">

@@ -10,31 +10,23 @@ class Calendar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      dataOfSectionsToRender: []
+      meetingSectionData: []
     }
   }
 
-  componentDidMount(){
-    this.fetchAllData(this.props.meetingSectionIDs)
-  }
-
-  componentWillReceiveProps(){
-    this.fetchAllData(this.props.meetingSectionIDs)
-  }
-
-  fetchAllData(meetingSectionIDs) {
-    meetingSectionIDs.forEach(eachID =>
-      fetch(`https://tbd-scheduler-v1.herokuapp.com/meeting_sections/search?section=${eachID}`)
-      .then(response => response.json())
-      .then(jsonResponse => this.setState({dataOfSectionsToRender: [...this.state.dataOfSectionsToRender, jsonResponse]}))
-    )
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      meetingSectionData: nextProps.meetingSectionData
+    })
   }
 
   sectionDataToEntry(entryJSON) {
 
     const color = colors[Math.floor(Math.random() * colors.length)]
+    console.log(entryJSON);
+    
 
-    return entryJSON.courseTimes.map(eachTime => {
+    return entryJSON.course_times.map(eachTime => {
       const styleObj = {
         background: "lightblue",
         boxShadow: "0px 4px 10px 1px rgba(118,122,128,.5 )",
@@ -60,13 +52,10 @@ class Calendar extends Component {
 
   render () {
 
-    const sectionsDataArray = this.state.dataOfSectionsToRender
-    const fallEntries = sectionsDataArray.filter(eachSectiondata => eachSectiondata.term === "2017 Fall").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
-    const winterEntries = sectionsDataArray.filter(eachSectiondata => eachSectiondata.term === "2018 Winter").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
-    console.log(this.props.meetingSectionIDs);
+    const sectionsDataArray = this.state.meetingSectionData
+    const fallEntries = sectionsDataArray.filter(eachSectionData => eachSectionData.term === "2017 Fall").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
+    const winterEntries = sectionsDataArray.filter(eachSectionData => eachSectionData.term === "2018 Winter").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
     console.log(sectionsDataArray);
-    
-        
 
     return (
       <div id="calendars">

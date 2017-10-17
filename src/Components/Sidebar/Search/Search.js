@@ -41,7 +41,15 @@ class Search extends Component {
 
   render () {
 
-    const searchResults = this.state.searchResults.map(eachResult => <SearchResult courseID={eachResult.id} key={eachResult.code} courseCode={eachResult.code} courseName={eachResult.name} addToShortList={this.props.addToShortList}/>)
+    const searchResults = this.state.searchResults.map(eachResult => 
+      <SearchResult 
+        key={eachResult.code} 
+        courseID={eachResult.id} 
+        courseCode={eachResult.code} 
+        courseName={eachResult.name} 
+        addToShortList={this.props.addToShortList}
+      />
+    )
 
 
     return(
@@ -49,7 +57,8 @@ class Search extends Component {
         <input className="searchBar" type="text"
           value={this.state.search}
           onChange={this.updateSearch.bind(this)}
-          placeholder="Search course"/>
+          placeholder="Search course"
+        />
         <div className='searchResults'>
           {searchResults}
         </div>
