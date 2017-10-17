@@ -36,13 +36,8 @@ class Calendar extends Component {
 
     return entryJSON.courseTimes.map(eachTime => {
       const styleObj = {
-<<<<<<< HEAD
         background: "lightblue",
-        boxShadow: "0px 4px 10px 1px rgba(118,122,128,1)",
-=======
-        background: color,
         boxShadow: "0px 4px 10px 1px rgba(118,122,128,.5 )",
->>>>>>> master
         zIndex: "3",
         borderRadius: "2px",
         margin: "2px",
