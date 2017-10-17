@@ -63,6 +63,7 @@
     text-align:center;
     color: #111;
     font-weight: bold;
+    z-index: 2;
 }
 
 /*8am - 10pm text*/

@@ -1,10 +1,27 @@
 .shortlistEntry {
-  background-color: lightgray;
-  margin: 5px 0;
-  padding: 10px 0;
+  margin: 10px;
+  padding: 10px;
   border-radius: 3px;
+  border: solid #3F51B5 2px;
+  border-left: solid #3F51B5 8px;
+  text-align: left;
+  font-weight: bold;
 }
 
 .showCourseInformation {
-  padding: 10px;
+  padding: 5px;
+}
+
+.shortlistEntryCode {
+  margin: 0;
+  font-size: 18px;
+}
+
+.shortlistEntryName {
+  margin: 0;
+  font-size: 14px;
+}
+
+.shortlistEntryDesc {
+  font-weight: normal;
 }

@@ -17,18 +17,25 @@ class ShortlistEntry extends Component {
   }
 
   render (){
-    const msData = this.props.ms_data.map(eachMSD => <button key={eachMSD.id} style={{margin: "2px"}} onMouseOver={() => {
+
+    const msData = this.props.ms_data.map(eachMSD => <button key={eachMSD.id} className="meetingSection" style={{margin: "2px"}} onMouseOver={() => {
       this.props.addMeetingSectionID(eachMSD.id)}} onMouseOut={() => this.props.removeMeetingSectionID(eachMSD.id)} >{eachMSD.code}</button>)
 
     return (
       <div onClick={() => this.toggleCourseInformation(this.props)} className="shortlistEntry">
-        {this.props.code}: {this.props.name}
-        <div className='showCourseInformation'
-          style={  {display: this.state.displayInfo ? 'block' : 'none',
-          overflow: 'scroll'}}>
-            <p>{this.props.description}</p>
+        <p className="shortlistEntryCode">
+          {this.props.code}:
+        </p>
+        <p className="shortlistEntryName">
+          {this.props.name}
+        </p>
+        <div className='showCourseInformation' style={{ display: this.state.displayInfo ? 'block' : 'none', overflow: 'scroll'}}>
+          <p className="shortlistEntryDesc">
+            {this.props.description}
+          </p>
             {msData}
         </div>
+
       </div>
     )
   }

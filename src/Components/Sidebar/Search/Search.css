@@ -2,10 +2,17 @@
   background-color: white;
   color: #333;
   font-weight: bold;
+  border-top: solid #303f9f 20px;
+  height: 50%
 }
 
 .searchResults {
-  margin-top: 10px;
   overflow: scroll;
-  height: 90%;
+}
+
+.searchBar {
+  width: 75%;
+  height: 38px;
+  margin-top: 10px;
+  font-size: inherit;
 }

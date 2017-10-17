@@ -1,4 +1,6 @@
-* {box-sizing: border-box;}
+* {
+  box-sizing: border-box;
+}
 
 .App {
   background-color: lightskyblue;
@@ -23,18 +25,14 @@
 #sidebar{
   grid-area: sidebar;
   background-color: #eee;
-  border-radius: 4px;
-  margin: 10px;
-  height: 99vh;
+  /*border-radius: 4px;*/
+  margin: 0;
+  height: 600px;
   width: 300px;
   -webkit-box-shadow: 0px 10px 42px 2px rgba(118,122,128,1);
   -moz-box-shadow: 0px 10px 42px 2px rgba(118,122,128,1);
   box-shadow: 0px 10px 42px 2px rgba(118,122,128,1);
   overflow: scroll;
-}
-
-#search {
-  height: 300px;
 }
 
 /*#shortlist {
