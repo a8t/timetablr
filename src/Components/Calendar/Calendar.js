@@ -37,7 +37,7 @@ class Calendar extends Component {
     return entryJSON.courseTimes.map(eachTime => {
       const styleObj = {
         background: color,
-        boxShadow: "0px 4px 10px 1px rgba(118,122,128,1)",
+        boxShadow: "0px 4px 10px 1px rgba(118,122,128,.5 )",
         zIndex: "3",
         borderRadius: "2px",
         margin: "2px",
@@ -69,12 +69,12 @@ class Calendar extends Component {
       <div id="calendars">
         <div id='calendarFall'>
           {fallEntries}
-          <div className="weekday"           style={{gridColumn: "start     / span 1"}}></div>
-          <div className="weekday"           style={{gridColumn: "monday    / span 1"}}>monday</div>
-          <div className="weekday"           style={{gridColumn: "tuesday   / span 1"}}>tuesday</div>
-          <div className="weekday"           style={{gridColumn: "wednesday / span 1"}}>wednesday</div>
-          <div className="weekday"           style={{gridColumn: "thursday  / span 1"}}>thursday</div>
-          <div className="weekday"           style={{gridColumn: "friday    / span 1"}}>friday</div>
+          <div className="weekday line"           style={{gridColumn: "start     / span 1"}}></div>
+          <div className="weekday line"           style={{gridColumn: "monday    / span 1"}}>MO</div>
+          <div className="weekday line"           style={{gridColumn: "tuesday   / span 1"}}>TU</div>
+          <div className="weekday line"           style={{gridColumn: "wednesday / span 1"}}>WE</div>
+          <div className="weekday line"           style={{gridColumn: "thursday  / span 1"}}>TH</div>
+          <div className="weekday"           style={{gridColumn: "friday    / span 1"}}>FR</div>
           <div className="time"              style={{gridRow: "time     / span 2"}}></div>
           <div className="timeslot"          style={{gridRow: "time8    / span 2"}}>8am</div>
           <div className="timeslot halfHour" style={{gridRow: "time830  / span 1"}}></div>
@@ -109,12 +109,12 @@ class Calendar extends Component {
         </div>
         <div id='calendarWinter'>
           {winterEntries}
-          <div className="weekday"           style={{gridColumn: "start     / span 1"}}></div>
-          <div className="weekday"           style={{gridColumn: "monday    / span 1"}}>monday</div>
-          <div className="weekday"           style={{gridColumn: "tuesday   / span 1"}}>tuesday</div>
-          <div className="weekday"           style={{gridColumn: "wednesday / span 1"}}>wednesday</div>
-          <div className="weekday"           style={{gridColumn: "thursday  / span 1"}}>thursday</div>
-          <div className="weekday"           style={{gridColumn: "friday    / span 1"}}>friday</div>
+          <div className="weekday line"           style={{gridColumn: "start     / span 1"}}></div>
+          <div className="weekday line"           style={{gridColumn: "monday    / span 1"}}>MO</div>
+          <div className="weekday line"           style={{gridColumn: "tuesday   / span 1"}}>TU</div>
+          <div className="weekday line"           style={{gridColumn: "wednesday / span 1"}}>WE</div>
+          <div className="weekday line"           style={{gridColumn: "thursday  / span 1"}}>TH</div>
+          <div className="weekday"           style={{gridColumn: "friday    / span 1"}}>FR</div>
           <div className="timeslot"          style={{gridRow: "time8    / span 2"}}>8am</div>
           <div className="timeslot halfHour" style={{gridRow: "time830  / span 1"}}></div>
           <div className="timeslot"          style={{gridRow: "time9    / span 2"}}>9am</div>
