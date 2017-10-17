@@ -69,14 +69,8 @@ class Search extends Component {
           onBlur={() => this.hideSearchBar()}
           onFocus={() => this.showSearchBar()}
           onChange={this.updateSearch.bind(this)}
-<<<<<<< HEAD
-          placeholder="Search course"
-        />
-        <div className='searchResults'>
-=======
           placeholder="Search course"/>
         <div className='searchResults' >
->>>>>>> 1add3eee9ea886465739798025c9d3957a7cb7d1
           {searchResults}
         </div>
       </div>
