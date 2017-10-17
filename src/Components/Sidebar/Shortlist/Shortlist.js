@@ -4,7 +4,16 @@ import ShortlistEntry from './ShortlistEntry/ShortlistEntry.js'
 
 const Shortlist = props => {
 
-  const shortlistResults = props.shortlist.map(eachResult => <ShortlistEntry key={eachResult.code} code={eachResult.code} name={eachResult.name} description={eachResult.description} ms_data={eachResult.ms_data} term={eachResult.term} addMeetingSectionID={props.addMeetingSectionID} removeMeetingSectionID={props.removeMeetingSectionID}/>)
+  const shortlistResults = props.shortlist.map(eachResult => 
+    <ShortlistEntry 
+      key={eachResult.code} 
+      code={eachResult.code} 
+      name={eachResult.name} 
+      description={eachResult.description} 
+      ms_data={eachResult.ms_data} 
+      term={eachResult.term} 
+      addMeetingSectionID={props.addMeetingSectionID} 
+      removeMeetingSectionData={props.removeMeetingSectionData}/>)
 
   return (
     <div id="shortlist">

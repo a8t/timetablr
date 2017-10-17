@@ -36,7 +36,7 @@ class Calendar extends Component {
 
     return entryJSON.courseTimes.map(eachTime => {
       const styleObj = {
-        background: color,
+        background: "lightblue",
         boxShadow: "0px 4px 10px 1px rgba(118,122,128,1)",
         zIndex: "3",
         borderRadius: "2px",
@@ -63,7 +63,10 @@ class Calendar extends Component {
     const sectionsDataArray = this.state.dataOfSectionsToRender
     const fallEntries = sectionsDataArray.filter(eachSectiondata => eachSectiondata.term === "2017 Fall").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
     const winterEntries = sectionsDataArray.filter(eachSectiondata => eachSectiondata.term === "2018 Winter").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
-
+    console.log(this.props.meetingSectionIDs);
+    console.log(sectionsDataArray);
+    
+        
 
     return (
       <div id="calendars">
