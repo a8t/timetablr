@@ -36,7 +36,17 @@ class Search extends Component {
       this.timer = setTimeout(() => {
         this.fetchCourseData(searchTerm)
       }, 100);
+
     }
+  }
+
+  hideSearchBar() {
+    document.querySelector('.searchResults').style.height = '0px'
+  }
+
+  showSearchBar(){
+    document.querySelector('.searchResults').style.height = ''
+    document.querySelector('.searchResults').style.maxHeight = '500px'
   }
 
   render () {
@@ -56,10 +66,17 @@ class Search extends Component {
       <div id="search">
         <input className="searchBar" type="text"
           value={this.state.search}
+          onBlur={() => this.hideSearchBar()}
+          onFocus={() => this.showSearchBar()}
           onChange={this.updateSearch.bind(this)}
+<<<<<<< HEAD
           placeholder="Search course"
         />
         <div className='searchResults'>
+=======
+          placeholder="Search course"/>
+        <div className='searchResults' >
+>>>>>>> 1add3eee9ea886465739798025c9d3957a7cb7d1
           {searchResults}
         </div>
       </div>

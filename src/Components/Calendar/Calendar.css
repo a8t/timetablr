@@ -12,6 +12,7 @@
     width: auto;
     height: auto;
     background-color: white;
+    border-radius: 10px;
     display: grid;
     --colWidth: 110px;
     --rowheight: 30px;
