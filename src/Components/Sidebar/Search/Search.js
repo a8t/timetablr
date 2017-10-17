@@ -46,7 +46,7 @@ class Search extends Component {
 
     return(
       <div id="search">
-        <input type="text"
+        <input className="searchBar" type="text"
           value={this.state.search}
           onChange={this.updateSearch.bind(this)}
           placeholder="Search course"/>

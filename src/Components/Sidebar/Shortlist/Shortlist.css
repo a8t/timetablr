@@ -1,4 +1,9 @@
 #shortlist {
-  border-top: solid #BDBDBD 1px;
+  border-top: solid #3F51B5 2px;
   color: #111;
+}
+
+#shortlist > p {
+  margin: 0;
+  padding: 10px 0;
 }

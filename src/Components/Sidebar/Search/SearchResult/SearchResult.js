@@ -6,7 +6,14 @@ const SearchResult = props => {
 
   return (
     <div className='searchResult' key={props.key}>
-      <p>{props.courseCode}</p> <p>{props.courseName}</p>
+      <div className='course'>
+        <p className='courseCode'>
+            {props.courseCode}:
+        </p>
+        <p className='courseName'>
+          {props.courseName}
+        </p>
+      </div>
       <button
         onClick={() => props.addToShortList({
           code: props.courseCode,
