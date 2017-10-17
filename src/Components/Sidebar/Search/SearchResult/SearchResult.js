@@ -10,16 +10,16 @@ const SearchResult = props => {
         <p className='courseCode'>
             {props.courseCode}:
         </p>
+        <button
+          onClick={() => props.addToShortList({
+            code: props.courseCode,
+            name: props.courseName,
+            id:   props.courseID
+          })}>+</button>
         <p className='courseName'>
           {props.courseName}
         </p>
       </div>
-      <button
-        onClick={() => props.addToShortList({
-          code: props.courseCode,
-          name: props.courseName,
-          id:   props.courseID
-        })}>+</button>
     </div>
   )
 }
