@@ -11,9 +11,10 @@ class Search extends Component {
     }
     this.timer = ''
     this.hovered = false
+    this.closeTimer = ''
   }
 
-  componentWillUpdate(){
+  componentDidUpdate(){
     this.performSearch(this.state.searchTerm)
   }
 
@@ -33,38 +34,44 @@ class Search extends Component {
 
   performSearch(searchTerm){
     if (searchTerm.length > 1) {
+      console.log('INSIDE PERFORMSEA');
       clearTimeout(this.timer)
       this.timer = setTimeout(() => {
         this.fetchCourseData(searchTerm)
       }, 100);
-
     }
   }
 
   // hide search results when click outside of search bar
   hideSearchBar() {
+    console.log("inside hide search bar");
     if (!this.hovered) {
       this.refs.searchResults.style.display = 'none'
+      console.log("inside if");
     } else {
-      this.timer = setTimeout(() => {
+      this.closeTimer = setTimeout(() => {
+        console.log("delay delay");
         this.refs.searchResults.style.display = 'none'
       }, 200);
+      console.log("inside else");
     }
   }
 
   // show search results when click inside of search bar
-  showSearchBar(){
+  showSearchBar() {
     this.refs.searchResults.style.display = 'block'
   }
 
   // when user mouse on search result
   mouseOnSearchResult() {
     this.hovered = true
+    console.log(this.hovered);
   }
 
   // when user mouse out search result
   mouseOutSearchResult() {
     this.hovered = false
+    console.log(this.hovered);
   }
 
   render () {
@@ -84,8 +91,8 @@ class Search extends Component {
           placeholder="Search course"/>
         <div className='searchResults'
           ref="searchResults"
-          onMouseOn={() => this.mouseOnSearchResult()}
-          onMouseOut={() => this.mouseOutSearchResult()}>
+          onMouseEnter={() => this.mouseOnSearchResult()}
+          onMouseLeave={() => this.mouseOutSearchResult()}>
             {searchResults}
         </div>
       </div>

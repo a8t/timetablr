@@ -14,6 +14,7 @@ class Sidebar extends Component {
 
   addToShortList(newEntry) {
     this.fetchCourseData(newEntry.id)
+    console.log("inside add to shortlist");
   }
 
   fetchCourseData(courseID) {
