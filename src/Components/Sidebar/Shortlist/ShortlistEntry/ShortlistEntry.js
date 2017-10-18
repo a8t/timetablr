@@ -33,7 +33,7 @@ class ShortlistEntry extends Component {
     return (
       <div onClick={() => this.toggleCourseInformation()} className="shortlistEntry">
         <p className="shortlistEntryCode">
-          {this.props.code}:
+          {this.props.code}
         </p>
         <p className="shortlistEntryName">
           {this.props.name}
