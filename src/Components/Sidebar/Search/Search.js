@@ -14,15 +14,22 @@ class Search extends Component {
     this.closeTimer = ''
   }
 
-  componentDidUpdate(){
-    this.performSearch(this.state.searchTerm)
-  }
-
   updateSearch(event) {
     this.setState({
       searchTerm: event.target.value.substr(0, 50)
     })
+
+    const a = event.target.value
+
+    if (a.length > 1) {
+      console.log('INSIDE PERFORMSEA');
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.fetchCourseData(a)
+      }, 100);
+    }
   }
+
 
   fetchCourseData(course) {
     fetch(`https://tbd-scheduler-v1.herokuapp.com/courses/search?course=${course}`)
@@ -30,16 +37,6 @@ class Search extends Component {
     .then(jsonResponse =>
       {this.setState({searchResults: jsonResponse.slice(0, 10)})}
         )
-  }
-
-  performSearch(searchTerm){
-    if (searchTerm.length > 1) {
-      console.log('INSIDE PERFORMSEA');
-      clearTimeout(this.timer)
-      this.timer = setTimeout(() => {
-        this.fetchCourseData(searchTerm)
-      }, 100);
-    }
   }
 
   // hide search results when click outside of search bar
