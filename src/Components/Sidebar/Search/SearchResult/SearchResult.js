@@ -5,17 +5,17 @@ import './SearchResult.css'
 const SearchResult = props => {
 
   return (
-    <div className='searchResult'>
+    <div className='searchResult' onClick={() => props.addToShortList({
+      code: props.courseCode,
+      name: props.courseName,
+      id: props.courseID
+    })}>
       <div className='course'>
         <p className='courseCode'>
             {props.courseCode}:
         </p>
-        <button
-          onClick={() => props.addToShortList({
-            code: props.courseCode,
-            name: props.courseName,
-            id:   props.courseID
-          })}>+</button>
+        <button onClick={e => e.preventDefault}
+          >+</button>
         <p className='courseName'>
           {props.courseName}
         </p>

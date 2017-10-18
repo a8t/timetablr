@@ -22,7 +22,7 @@ class Calendar extends Component {
 
   sectionDataToEntry(entryJSON) {
 
-    const color = colors[Math.floor(Math.random() * colors.length)]
+    // const color = colors[Math.floor(Math.random() * colors.length)]
     console.log(entryJSON);
     
 

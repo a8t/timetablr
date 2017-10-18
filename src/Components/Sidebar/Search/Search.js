@@ -22,7 +22,6 @@ class Search extends Component {
     const a = event.target.value
 
     if (a.length > 1) {
-      console.log('INSIDE PERFORMSEA');
       clearTimeout(this.timer)
       this.timer = setTimeout(() => {
         this.fetchCourseData(a)
@@ -41,16 +40,12 @@ class Search extends Component {
 
   // hide search results when click outside of search bar
   hideSearchBar() {
-    console.log("inside hide search bar");
     if (!this.hovered) {
       this.refs.searchResults.style.display = 'none'
-      console.log("inside if");
     } else {
       this.closeTimer = setTimeout(() => {
-        console.log("delay delay");
         this.refs.searchResults.style.display = 'none'
       }, 200);
-      console.log("inside else");
     }
   }
 
@@ -62,18 +57,16 @@ class Search extends Component {
   // when user mouse on search result
   mouseOnSearchResult() {
     this.hovered = true
-    console.log(this.hovered);
   }
 
   // when user mouse out search result
   mouseOutSearchResult() {
     this.hovered = false
-    console.log(this.hovered);
   }
 
   render () {
 
-    const searchResults = this.state.searchResults.map(eachResult => 
+    const searchResults = this.state.searchResults.filter(eachResult => !this.props.shortlistCodes.includes(eachResult.code+eachResult.term)).map(eachResult => 
       <SearchResult 
         key={eachResult.code} 
         courseID={eachResult.id} 

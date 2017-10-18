@@ -13,18 +13,16 @@ class App extends Component {
   }
 
   addMeetingSectionData(newMeetingData) {
-    console.log(this.state.meetingSectionData, newMeetingData);
-    
-    if (this.state.meetingSectionData.reduce((n, val) => n + (val === newMeetingData), 0) < 1) {
+    if (this.state.meetingSectionData.reduce((n, val) => n + (val.code === newMeetingData.code && val.courseCode === newMeetingData.courseCode), 0) < 2) {
       this.setState({
         meetingSectionData: [...this.state.meetingSectionData, newMeetingData]
       })
     }
   }
   
-  removeMeetingSectionData(meetingIDToRemove) {
+  removeMeetingSectionData(meetingDataToRemove) {
     this.setState((prevState) => {
-      const index = prevState.meetingSectionData.indexOf(meetingIDToRemove)
+      const index = prevState.meetingSectionData.indexOf(meetingDataToRemove)
       prevState.meetingSectionData.splice(index,1)
 
       return {meetingSectionData: prevState.meetingSectionData}

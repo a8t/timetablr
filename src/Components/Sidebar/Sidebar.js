@@ -28,7 +28,10 @@ class Sidebar extends Component {
   render () {
     return (
       <div id='sidebar'>
-        <Search addToShortList={this.addToShortList}/>
+        <Search 
+          addToShortList={this.addToShortList}
+          shortlistCodes={this.state.shortlist.map(each => each.code+each.term)}
+        />
         <Shortlist 
           addMeetingSectionData={this.props.addMeetingSectionData}
           removeMeetingSectionData={this.props.removeMeetingSectionData}
