@@ -7,6 +7,7 @@
 }
 
 .searchResults {
+  position: relative;
   margin: 0 auto;
   overflow: scroll;
   border: solid #e1e1e1 1px;
@@ -14,10 +15,8 @@
   max-height: 500px;
   transition: height .5s linear;
   background-color: white;
+  z-index: 2;
 }
-
-
-
 
 .searchBar {
   width: 80%;
