@@ -33,7 +33,7 @@ class ShortlistEntry extends Component {
     return (
       <div onClick={() => this.toggleCourseInformation()} className="shortlistEntry">
         <button 
-          class="remove"
+          className="remove"
           onClick={(e) => {
             e.stopPropagation()
             this.props.removeFromShortlist({
