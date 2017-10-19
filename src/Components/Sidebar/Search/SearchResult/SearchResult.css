@@ -1,10 +1,16 @@
+
+
 .searchResult {
   margin: 10px;
-  height: auto;
   border-radius: 3px;
   background-color: white;
-  /*border: solid #303c6c 2px;
-  border-left: solid #303c6c 8px;*/
+  width: 95%
+
+}
+
+.searchResult:hover{
+  border-right: 2px solid green;
+  background-color: lightgreen;
 }
 
 .searchResult > button {

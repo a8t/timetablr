@@ -3,19 +3,15 @@
   color: #333;
   font-weight: bold;
   border-top: solid #df744a 30px;
-  height: auto;
-  position: relative;
 }
 
 .searchResults {
   position: absolute;
   left: 30px;
-  top: 45px;
+  top: 75px;
   margin: 0 auto;
-  overflow: scroll;
-  border: solid #e1e1e1 1px;
   width: 80%;
-  max-height: 500px;
+  border: solid #e1e1e1 1px;
   transition: height .5s linear;
   background-color: white;
   z-index: 2;
