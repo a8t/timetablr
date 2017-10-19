@@ -37,6 +37,8 @@
 }
 
 .remove:hover {
+  color: red;
+  background-color: pink;
   border: 2px solid red;
   box-sizing: content-box;
   border-radius: 3px;

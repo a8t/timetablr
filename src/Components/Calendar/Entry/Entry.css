@@ -31,6 +31,7 @@
 }
 
 .removeEntry:hover {
+  background-color: pink;
   color: red;
   border: 1px solid red;
 }
