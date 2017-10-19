@@ -6,15 +6,16 @@ import './Sidebar.css';
 const Sidebar = props => {
   return (
     <div id='sidebar'>
-      <Search 
+      <Search
         addToShortlist={props.addToShortlist}
         shortlist={props.shortlist}
         />
-        <Shortlist 
+        <Shortlist
           removeFromShortlist={props.removeFromShortlist}
           addMeetingSectionData={props.addMeetingSectionData}
           removeMeetingSectionData={props.removeMeetingSectionData}
           shortlist={props.shortlist}
+          buttonClicked={props.buttonClicked}
         />
     </div>
   );

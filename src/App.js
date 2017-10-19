@@ -27,6 +27,7 @@ class App extends Component {
         friday:     []
       }
     }
+    this.buttonClicked = []
     this.addMeetingSectionData = this.addMeetingSectionData.bind(this)
     this.removeMeetingSectionData = this.removeMeetingSectionData.bind(this)
     this.addToShortlist = this.addToShortlist.bind(this)
@@ -101,6 +102,7 @@ class App extends Component {
 
       return {meetingSectionData: prevState.meetingSectionData}
     })
+
   }
 
 
@@ -141,7 +143,8 @@ class App extends Component {
           removeMeetingSectionData={this.removeMeetingSectionData}
           addToShortlist={this.addToShortlist}
           removeFromShortlist={this.removeFromShortlist}
-          shortlist={this.state.shortlist}/>
+          shortlist={this.state.shortlist}
+          buttonClicked={this.props.buttonClicked}/>
         <Calendar
           meetingSectionData={this.state.meetingSectionData}
           addMeetingSectionData={this.addMeetingSectionData}
