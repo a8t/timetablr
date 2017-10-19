@@ -8,11 +8,9 @@
 #calendarFall,
 #calendarWinter {
     font-family: 'Fira Sans', sans-serif;
-    font-size: 14px;
     padding: 0 2px;
     width: auto;
     height: auto;
-    background-color: white;
     border-radius: 2px;
     display: grid;
     --colWidth: 110px;

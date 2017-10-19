@@ -74,3 +74,22 @@ describe('removeMeetingSectionData method', () => {
   //   expect(appInstance.state["meetingSectionData"]).toEqual([{ code: 3123, courseCode: 5234 }, { code: 3, courseCode: 5, id: 1 }])
   // })
 })
+
+describe('addToShortlist method', () => {
+  it('removes items from app state, preserves order', () => {
+    const { wrapper, appInstance, sampleData } = setup()
+    appInstance.addMeetingSectionData(sampleData[0])
+    appInstance.addMeetingSectionData(sampleData[1])
+    appInstance.addMeetingSectionData(sampleData[2])
+    appInstance.addMeetingSectionData(sampleData[3])
+
+
+    appInstance.removeMeetingSectionData(sampleData[1])
+    expect(appInstance.state["meetingSectionData"]).toEqual([sampleData[0], sampleData[2], sampleData[3]])
+
+    appInstance.removeMeetingSectionData(sampleData[2])
+    expect(appInstance.state["meetingSectionData"]).toEqual([sampleData[0], sampleData[3]])
+
+  })
+
+})
