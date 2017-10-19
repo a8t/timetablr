@@ -7,15 +7,27 @@ import Sidebar from "./Components/Sidebar/Sidebar.js";
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {meetingSectionData: []}
+    this.state = { meetingSectionData: [], shortlist: [] }
     this.addMeetingSectionData = this.addMeetingSectionData.bind(this)
     this.removeMeetingSectionData = this.removeMeetingSectionData.bind(this)
+    this.addToShortlist = this.addToShortlist.bind(this)
+  }
+
+
+  addToShortlist(newEntry) {
+    fetch(`https://tbd-scheduler-v1.herokuapp.com/courses/get_data?course_id=${newEntry.id}`)
+      .then(response => response.json())
+      .then(jsonResponse => this.setState({
+        shortlist: [...this.state.shortlist, jsonResponse]
+      }))
+  }
+
+  removeFromShortlist(entryData){
+
   }
 
   addMeetingSectionData(newMeetingData) {
-    if (this.state.meetingSectionData.reduce((n, val) => n + (val.code === newMeetingData.code && val.courseCode === newMeetingData.courseCode), 0) >= 2) {
-      return
-    }
+    if (this.state.meetingSectionData.reduce((n, val) => n + (val.code === newMeetingData.code && val.courseCode === newMeetingData.courseCode), 0) >= 2) return
 
     this.setState({
       meetingSectionData: [...this.state.meetingSectionData, newMeetingData]
@@ -34,7 +46,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Sidebar addMeetingSectionData={this.addMeetingSectionData} removeMeetingSectionData={this.removeMeetingSectionData} />
+        <Sidebar 
+          addMeetingSectionData={this.addMeetingSectionData} 
+          removeMeetingSectionData={this.removeMeetingSectionData} 
+          addToShortlist={this.addToShortlist}
+          shortlist={this.state.shortlist}/>
         <Calendar meetingSectionData={this.state.meetingSectionData}/>
       </div>
       );
