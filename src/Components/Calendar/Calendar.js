@@ -53,7 +53,6 @@ class Calendar extends Component {
     const sectionsDataArray = this.state.meetingSectionData
     const fallEntries = sectionsDataArray.filter(eachSectionData => eachSectionData.term === "2017 Fall").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
     const winterEntries = sectionsDataArray.filter(eachSectionData => eachSectionData.term === "2018 Winter").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
-    console.log(sectionsDataArray);
 
     return (
       <div id="calendars">
