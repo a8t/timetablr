@@ -14,8 +14,6 @@ const SearchResult = props => {
         <p className='courseCode'>
             {props.courseCode}:
         </p>
-        <button onClick={e => e.preventDefault}
-          >+</button>
         <p className='courseName'>
           {props.courseName}
         </p>
