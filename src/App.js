@@ -9,8 +9,17 @@ class App extends Component {
     super(props)
     this.state = {
       meetingSectionData: [],
-      shortlist: [],
-      currentCourse: {
+      shortlist: []
+    }
+    this.currentCoursesAdded = {
+      "2017 Fall": {
+        monday:     [],
+        tuesday:    [],
+        wednesday:  [],
+        thursday:   [],
+        friday:     []
+      },
+      "2018 Winter": {
         monday:     [],
         tuesday:    [],
         wednesday:  [],
@@ -22,6 +31,8 @@ class App extends Component {
     this.removeMeetingSectionData = this.removeMeetingSectionData.bind(this)
     this.addToShortlist = this.addToShortlist.bind(this)
     this.removeFromShortlist = this.removeFromShortlist.bind(this)
+    this.addToCurrentCoursesAdded = this.addToCurrentCoursesAdded.bind(this)
+    this.checkAgainstCurrentCoursesAdded = this.checkAgainstCurrentCoursesAdded.bind(this)
   }
 
 
@@ -38,18 +49,38 @@ class App extends Component {
   }
 
 
-  addMeetingSectionData(newMeetingData) {
-    if (this.state.meetingSectionData.reduce((n, val) => n + (val.code === newMeetingData.code && val.courseCode === newMeetingData.courseCode), 0) < 2) {
+  addMeetingSectionData(newMeetingData, hoveredOrClicked) {
+    if (
+      this.state.meetingSectionData.reduce((n, val) => n + (val.code === newMeetingData.code
+        && val.courseCode === newMeetingData.courseCode), 0) < 2
+      ) {
       this.setState({
-        meetingSectionData: [...this.state.meetingSectionData, newMeetingData],
-        currentCourse: {
-          monday:     ["fg"],
-          tuesday:    [],
-          wednesday:  [],
-          thursday:   [],
-          friday:     []
-        }
+        meetingSectionData: [...this.state.meetingSectionData, newMeetingData]
+      })
 
+      const meetingDayTime = this.meetingSectionDataToDayAndTime(newMeetingData)
+      this.addToCurrentCoursesAdded(meetingDayTime)
+      this.checkAgainstCurrentCoursesAdded(meetingDayTime)
+
+
+
+      console.log("state", this.state);
+
+
+    }
+  }
+
+  meetingSectionDataToDayAndTime(newMeetingData) {
+    console.log(newMeetingData);
+    return newMeetingData.course_times.map(eachTime => {
+      return {
+        day:    eachTime.day.toLowerCase(),
+        start:  eachTime.start,
+        end:    eachTime.end,
+        term:   newMeetingData.term
+      }
+    })
+  }
 
   removeFromShortlist(entryData){
     this.setState((prevState) => {
@@ -62,13 +93,6 @@ class App extends Component {
     })
   }
 
-  addMeetingSectionData(newMeetingData) {
-    if (this.state.meetingSectionData.reduce((n, val) => n + (val.code === newMeetingData.code && val.courseCode === newMeetingData.courseCode), 0) >= 2) return
-
-    this.setState({
-      meetingSectionData: [...this.state.meetingSectionData, newMeetingData]
-    })
-  }
 
   removeMeetingSectionData(meetingDataToRemove) {
     this.setState((prevState) => {
@@ -79,20 +103,36 @@ class App extends Component {
     })
   }
 
-  addToCourseTimes() {
-    this.setState({
-      currentCourse: [...this.state.currentCourse.monday,  "world"]
+
+
+  addToCurrentCoursesAdded(meetingDayTimeTerm) {
+    meetingDayTimeTerm.forEach(eachDayTimeTermObj => {
+      const {day, start, end, term} = eachDayTimeTermObj
+      console.log(this);
+      this.currentCoursesAdded[term][day].push({
+        start: start,
+        end: end
+      })
     })
   }
 
-  render() {
+  checkAgainstCurrentCoursesAdded(meetingDayTimeTerm) {
+    meetingDayTimeTerm.forEach(eachDayTimeTermObj => {
+      const {day, start, end, term} = eachDayTimeTermObj
 
-    // let courseTimes = this.state.meetingSectionData.map(course => {
-    //   return course.course_times.map(times => {
-    //     this.addToCourseTimes()
-    //   })
-    // });
-     console.log("==============",this.state.currentCourse.monday);
+    this.currentCoursesAdded[term][day].forEach(eachAlreadyAdded => {
+      if (
+           (start >= eachAlreadyAdded.start && start <= eachAlreadyAdded.end) ||
+           (end >= eachAlreadyAdded.start && end <= eachAlreadyAdded.end) ||
+           (eachAlreadyAdded.start >= start && eachAlreadyAdded.start <= end) ||
+           (eachAlreadyAdded.end >= start && eachAlreadyAdded.end <= end)
+         ) {console.log("conflict")};
+       })
+    })
+  }
+
+
+  render() {
 
     return (
       <div className="App">
@@ -110,6 +150,6 @@ class App extends Component {
       </div>
       );
     }
-  }
+}
 
   export default App;
