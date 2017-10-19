@@ -3,8 +3,9 @@ import './Entry.css';
 
 const Entry = props => {
   return (
-    <div style={props.style}> 
-      <p>{props.courseCode}</p>
+    <div style={props.style} className="entry"> 
+      <p className="entryText courseCode">{props.courseCode}</p>
+      <p className="entryText">{props.code}</p>
     </div>
   )
 }

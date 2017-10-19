@@ -26,12 +26,6 @@ class Calendar extends Component {
 
     return entryJSON.course_times.map(eachTime => {
       const styleObj = {
-        background: "lightblue",
-        boxShadow: "0px 4px 10px 1px rgba(118,122,128,.5 )",
-        zIndex: "3",
-        borderRadius: "2px",
-        margin: "2px",
-        padding: "5px",
         gridRowStart: 'time' + timeToMilitaryTime(eachTime.start),
         gridRowEnd: 'time' + timeToMilitaryTime(eachTime.end),
         gridColumn: eachTime.day.toLowerCase()
@@ -39,6 +33,7 @@ class Calendar extends Component {
 
       return (
         <Entry
+          code={entryJSON.code}
           style={styleObj}
           courseCode={entryJSON.courseCode}
           instructors={entryJSON.instructors ? entryJSON.instructors : ""}
@@ -65,7 +60,7 @@ class Calendar extends Component {
           <div className="weekday line"           style={{gridColumn: "thursday  / span 1"}}>TH</div>
           <div className="weekday"           style={{gridColumn: "friday    / span 1"}}>FR</div>
           <div className="time"              style={{gridRow: "time     / span 2"}}></div>
-          <div className="timeslot"          style={{gridRow: "time8    / span 2"}}>8am</div>
+          <div className="timeslot first"    style={{ gridRow: "time8    / span 2" }}>8am</div>
           <div className="timeslot halfHour" style={{gridRow: "time830  / span 1"}}></div>
           <div className="timeslot"          style={{gridRow: "time9    / span 2"}}>9am</div>
           <div className="timeslot halfHour" style={{gridRow: "time930  / span 1"}}></div>
@@ -104,7 +99,7 @@ class Calendar extends Component {
           <div className="weekday line"           style={{gridColumn: "wednesday / span 1"}}>WE</div>
           <div className="weekday line"           style={{gridColumn: "thursday  / span 1"}}>TH</div>
           <div className="weekday"           style={{gridColumn: "friday    / span 1"}}>FR</div>
-          <div className="timeslot"          style={{gridRow: "time8    / span 2"}}>8am</div>
+          <div className="timeslot first"    style={{gridRow: "time8    / span 2"}}>8am</div>
           <div className="timeslot halfHour" style={{gridRow: "time830  / span 1"}}></div>
           <div className="timeslot"          style={{gridRow: "time9    / span 2"}}>9am</div>
           <div className="timeslot halfHour" style={{gridRow: "time930  / span 1"}}></div>

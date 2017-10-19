@@ -38,7 +38,7 @@ class ShortlistEntry extends Component {
         <p className="shortlistEntryName">
           {this.props.name}
         </p>
-        <div className='showCourseInformation' style={{ display: this.state.displayInfo ? 'block' : 'none', overflow: 'scroll'}}>
+        <div className='showCourseInformation' style={{ display: this.state.displayInfo ? 'block' : 'none', overflow: 'auto'}}>
           <p className="shortlistEntryDesc">
             {this.props.description}
           </p>
