@@ -23,8 +23,6 @@ class Calendar extends Component {
   sectionDataToEntry(entryJSON) {
 
     // const color = colors[Math.floor(Math.random() * colors.length)]
-    console.log(entryJSON);
-    
 
     return entryJSON.course_times.map(eachTime => {
       const styleObj = {
