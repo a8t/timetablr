@@ -4,15 +4,15 @@ import ShortlistEntry from './ShortlistEntry/ShortlistEntry.js'
 
 const Shortlist = props => {
 
-  const shortlistResults = props.shortlist.map(eachResult => 
-    <ShortlistEntry 
-      key={eachResult.code} 
-      code={eachResult.code} 
-      name={eachResult.name} 
-      description={eachResult.description} 
-      ms_data={eachResult.ms_data} 
-      term={eachResult.term} 
-      addMeetingSectionData={props.addMeetingSectionData} 
+  const shortlistResults = props.shortlist.map(eachResult =>
+    <ShortlistEntry
+      key={eachResult.code}
+      code={eachResult.code}
+      name={eachResult.name}
+      description={eachResult.description}
+      ms_data={eachResult.ms_data}
+      term={eachResult.term}
+      addMeetingSectionData={props.addMeetingSectionData}
       removeMeetingSectionData={props.removeMeetingSectionData}
       removeFromShortlist={props.removeFromShortlist}
     />
@@ -30,3 +30,5 @@ const Shortlist = props => {
 }
 
 export default Shortlist;
+
+<ShortlistEntry removeMeetingSectionData/>
