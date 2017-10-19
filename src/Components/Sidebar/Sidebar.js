@@ -9,12 +9,13 @@ const Sidebar = props => {
       <Search 
         addToShortlist={props.addToShortlist}
         shortlist={props.shortlist}
-      />
-      <Shortlist 
-        addMeetingSectionData={props.addMeetingSectionData}
-        removeMeetingSectionData={props.removeMeetingSectionData}
-        shortlist={props.shortlist}
-      />
+        />
+        <Shortlist 
+          removeFromShortlist={props.removeFromShortlist}
+          addMeetingSectionData={props.addMeetingSectionData}
+          removeMeetingSectionData={props.removeMeetingSectionData}
+          shortlist={props.shortlist}
+        />
     </div>
   );
 }

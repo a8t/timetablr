@@ -3,7 +3,14 @@ import './Entry.css';
 
 const Entry = props => {
   return (
-    <div style={props.style} className="entry"> 
+    <div 
+      style={props.style} 
+      className="entry"
+    > 
+      <button
+        className="removeEntry"
+        onClick={(e) => props.removeMeetingSectionData({ code: props.code, courseCode: props.courseCode })}  
+      >x</button>
       <p className="entryText courseCode">{props.courseCode}</p>
       <p className="entryText">{props.code}</p>
     </div>

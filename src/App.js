@@ -11,19 +11,30 @@ class App extends Component {
     this.addMeetingSectionData = this.addMeetingSectionData.bind(this)
     this.removeMeetingSectionData = this.removeMeetingSectionData.bind(this)
     this.addToShortlist = this.addToShortlist.bind(this)
+    this.removeFromShortlist = this.removeFromShortlist.bind(this)
   }
 
 
   addToShortlist(newEntry) {
     fetch(`https://tbd-scheduler-v1.herokuapp.com/courses/get_data?course_id=${newEntry.id}`)
       .then(response => response.json())
-      .then(jsonResponse => this.setState({
-        shortlist: [...this.state.shortlist, jsonResponse]
-      }))
+      .then(jsonResponse => {
+        this.setState({
+          shortlist: [...this.state.shortlist, jsonResponse]
+        })
+      })
+      
   }
 
   removeFromShortlist(entryData){
+    this.setState((prevState) => {
+      const entryShortlistIndex = prevState.shortlist.findIndex(i => i.code === entryData.code && i.term === entryData.term)
+      prevState.shortlist.splice(entryShortlistIndex, 1)
 
+      const msData = prevState.meetingSectionData.filter(each => each.courseCode != entryData.code && each.term != entryData.term)
+
+      return { shortlist: prevState.shortlist, meetingSectionData: msData }
+    })
   }
 
   addMeetingSectionData(newMeetingData) {
@@ -50,8 +61,13 @@ class App extends Component {
           addMeetingSectionData={this.addMeetingSectionData} 
           removeMeetingSectionData={this.removeMeetingSectionData} 
           addToShortlist={this.addToShortlist}
+          removeFromShortlist={this.removeFromShortlist}
           shortlist={this.state.shortlist}/>
-        <Calendar meetingSectionData={this.state.meetingSectionData}/>
+        <Calendar 
+          meetingSectionData={this.state.meetingSectionData}
+          addMeetingSectionData={this.addMeetingSectionData}
+          removeMeetingSectionData={this.removeMeetingSectionData} 
+        />
       </div>
       );
     }

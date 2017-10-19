@@ -39,6 +39,7 @@ class Calendar extends Component {
           instructors={entryJSON.instructors ? entryJSON.instructors : ""}
           timeStart={eachTime.start / 3600 % 12}
           timeEnd={eachTime.end / 3600 % 12}
+          removeMeetingSectionData={this.props.removeMeetingSectionData} 
           key={entryJSON.courseCode + eachTime.day + eachTime.start}/>) }
     )
   }

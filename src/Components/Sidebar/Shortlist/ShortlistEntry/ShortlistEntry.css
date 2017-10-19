@@ -6,6 +6,7 @@
   border-left: solid #3F51B5 8px;
   text-align: left;
   font-weight: bold;
+  position: relative;
 }
 
 .showCourseInformation {
@@ -25,4 +26,18 @@
 .shortlistEntryDesc {
   font-weight: normal;
   color: #757575;
+}
+
+.remove {
+  border: 2px solid white;
+  background: none;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+}
+
+.remove:hover {
+  border: 2px solid red;
+  box-sizing: content-box;
+  border-radius: 3px;
 }

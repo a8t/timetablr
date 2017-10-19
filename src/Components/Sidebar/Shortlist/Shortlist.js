@@ -14,6 +14,7 @@ const Shortlist = props => {
       term={eachResult.term} 
       addMeetingSectionData={props.addMeetingSectionData} 
       removeMeetingSectionData={props.removeMeetingSectionData}
+      removeFromShortlist={props.removeFromShortlist}
     />
   )
 
