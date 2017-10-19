@@ -7,12 +7,23 @@ import Sidebar from "./Components/Sidebar/Sidebar.js";
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { meetingSectionData: [], shortlist: [] }
+    this.state = {
+      meetingSectionData: [],
+      shortlist: [],
+      currentCourse: {
+        monday:     [],
+        tuesday:    [],
+        wednesday:  [],
+        thursday:   [],
+        friday:     []
+      }
+    }
     this.addMeetingSectionData = this.addMeetingSectionData.bind(this)
     this.removeMeetingSectionData = this.removeMeetingSectionData.bind(this)
     this.addToShortlist = this.addToShortlist.bind(this)
     this.removeFromShortlist = this.removeFromShortlist.bind(this)
   }
+
 
 
   addToShortlist(newEntry) {
@@ -23,8 +34,22 @@ class App extends Component {
           shortlist: [...this.state.shortlist, jsonResponse]
         })
       })
-      
+
   }
+
+
+  addMeetingSectionData(newMeetingData) {
+    if (this.state.meetingSectionData.reduce((n, val) => n + (val.code === newMeetingData.code && val.courseCode === newMeetingData.courseCode), 0) < 2) {
+      this.setState({
+        meetingSectionData: [...this.state.meetingSectionData, newMeetingData],
+        currentCourse: {
+          monday:     ["fg"],
+          tuesday:    [],
+          wednesday:  [],
+          thursday:   [],
+          friday:     []
+        }
+
 
   removeFromShortlist(entryData){
     this.setState((prevState) => {
@@ -44,7 +69,7 @@ class App extends Component {
       meetingSectionData: [...this.state.meetingSectionData, newMeetingData]
     })
   }
-  
+
   removeMeetingSectionData(meetingDataToRemove) {
     this.setState((prevState) => {
       const index = prevState.meetingSectionData.findIndex(i => i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code)
@@ -54,24 +79,37 @@ class App extends Component {
     })
   }
 
+  addToCourseTimes() {
+    this.setState({
+      currentCourse: [...this.state.currentCourse.monday,  "world"]
+    })
+  }
+
   render() {
+
+    // let courseTimes = this.state.meetingSectionData.map(course => {
+    //   return course.course_times.map(times => {
+    //     this.addToCourseTimes()
+    //   })
+    // });
+     console.log("==============",this.state.currentCourse.monday);
+
     return (
       <div className="App">
-        <Sidebar 
-          addMeetingSectionData={this.addMeetingSectionData} 
-          removeMeetingSectionData={this.removeMeetingSectionData} 
+        <Sidebar
+          addMeetingSectionData={this.addMeetingSectionData}
+          removeMeetingSectionData={this.removeMeetingSectionData}
           addToShortlist={this.addToShortlist}
           removeFromShortlist={this.removeFromShortlist}
           shortlist={this.state.shortlist}/>
-        <Calendar 
+        <Calendar
           meetingSectionData={this.state.meetingSectionData}
           addMeetingSectionData={this.addMeetingSectionData}
-          removeMeetingSectionData={this.removeMeetingSectionData} 
+          removeMeetingSectionData={this.removeMeetingSectionData}
         />
       </div>
       );
     }
   }
-  
+
   export default App;
-  
