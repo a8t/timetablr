@@ -5,7 +5,7 @@ import './SearchResult.css'
 const SearchResult = props => {
 
   return (
-    <div className='searchResult' onClick={() => props.addToShortList({
+    <div className='searchResult' onClick={() => props.addToShortlist({
       code: props.courseCode,
       name: props.courseName,
       id: props.courseID

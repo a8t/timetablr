@@ -66,13 +66,13 @@ class Search extends Component {
 
   render () {
 
-    const searchResults = this.state.searchResults.filter(eachResult => !this.props.shortlistCodes.includes(eachResult.code+eachResult.term)).map(eachResult => 
+    const searchResults = this.state.searchResults.filter(eachResult => !this.props.shortlist.map(each => each.code + each.term).includes(eachResult.code+eachResult.term)).map(eachResult => 
       <SearchResult 
         key={eachResult.code} 
         courseID={eachResult.id} 
         courseCode={eachResult.code} 
         courseName={eachResult.name} 
-        addToShortList={this.props.addToShortList}
+        addToShortlist={this.props.addToShortlist}
       />
     )
 

@@ -8,5 +8,5 @@ import { configure } from 'enzyme';
 configure({ adapter: new Adapter() });
 
 it('renders without crashing', () => {
-  mount(<Sidebar/>)
+  shallow(<Sidebar/>)
 });
