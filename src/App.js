@@ -7,12 +7,34 @@ import Sidebar from "./Components/Sidebar/Sidebar.js";
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { meetingSectionData: [], shortlist: [] }
+    this.state = {
+      meetingSectionData: [],
+      shortlist: []
+    }
+    this.currentCoursesAdded = {
+      "2017 Fall": {
+        monday:     [],
+        tuesday:    [],
+        wednesday:  [],
+        thursday:   [],
+        friday:     []
+      },
+      "2018 Winter": {
+        monday:     [],
+        tuesday:    [],
+        wednesday:  [],
+        thursday:   [],
+        friday:     []
+      }
+    }
     this.addMeetingSectionData = this.addMeetingSectionData.bind(this)
     this.removeMeetingSectionData = this.removeMeetingSectionData.bind(this)
     this.addToShortlist = this.addToShortlist.bind(this)
     this.removeFromShortlist = this.removeFromShortlist.bind(this)
+    this.addToCurrentCoursesAdded = this.addToCurrentCoursesAdded.bind(this)
+    this.checkAgainstCurrentCoursesAdded = this.checkAgainstCurrentCoursesAdded.bind(this)
   }
+
 
 
   addToShortlist(newEntry) {
@@ -23,7 +45,41 @@ class App extends Component {
           shortlist: [...this.state.shortlist, jsonResponse]
         })
       })
-      
+
+  }
+
+
+  addMeetingSectionData(newMeetingData, hoveredOrClicked) {
+    if (
+      this.state.meetingSectionData.reduce((n, val) => n + (val.code === newMeetingData.code
+        && val.courseCode === newMeetingData.courseCode), 0) < 2
+      ) {
+      this.setState({
+        meetingSectionData: [...this.state.meetingSectionData, newMeetingData]
+      })
+
+      const meetingDayTime = this.meetingSectionDataToDayAndTime(newMeetingData)
+      this.addToCurrentCoursesAdded(meetingDayTime)
+      this.checkAgainstCurrentCoursesAdded(meetingDayTime)
+
+
+
+      console.log("state", this.state);
+
+
+    }
+  }
+
+  meetingSectionDataToDayAndTime(newMeetingData) {
+    console.log(newMeetingData);
+    return newMeetingData.course_times.map(eachTime => {
+      return {
+        day:    eachTime.day.toLowerCase(),
+        start:  eachTime.start,
+        end:    eachTime.end,
+        term:   newMeetingData.term
+      }
+    })
   }
 
   removeFromShortlist(entryData){
@@ -37,14 +93,7 @@ class App extends Component {
     })
   }
 
-  addMeetingSectionData(newMeetingData) {
-    if (this.state.meetingSectionData.reduce((n, val) => n + (val.code === newMeetingData.code && val.courseCode === newMeetingData.courseCode), 0) >= 2) return
 
-    this.setState({
-      meetingSectionData: [...this.state.meetingSectionData, newMeetingData]
-    })
-  }
-  
   removeMeetingSectionData(meetingDataToRemove) {
     this.setState((prevState) => {
       const index = prevState.meetingSectionData.findIndex(i => i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code)
@@ -54,24 +103,53 @@ class App extends Component {
     })
   }
 
+
+
+  addToCurrentCoursesAdded(meetingDayTimeTerm) {
+    meetingDayTimeTerm.forEach(eachDayTimeTermObj => {
+      const {day, start, end, term} = eachDayTimeTermObj
+      console.log(this);
+      this.currentCoursesAdded[term][day].push({
+        start: start,
+        end: end
+      })
+    })
+  }
+
+  checkAgainstCurrentCoursesAdded(meetingDayTimeTerm) {
+    meetingDayTimeTerm.forEach(eachDayTimeTermObj => {
+      const {day, start, end, term} = eachDayTimeTermObj
+
+    this.currentCoursesAdded[term][day].forEach(eachAlreadyAdded => {
+      if (
+           (start >= eachAlreadyAdded.start && start <= eachAlreadyAdded.end) ||
+           (end >= eachAlreadyAdded.start && end <= eachAlreadyAdded.end) ||
+           (eachAlreadyAdded.start >= start && eachAlreadyAdded.start <= end) ||
+           (eachAlreadyAdded.end >= start && eachAlreadyAdded.end <= end)
+         ) {console.log("conflict")};
+       })
+    })
+  }
+
+
   render() {
+
     return (
       <div className="App">
-        <Sidebar 
-          addMeetingSectionData={this.addMeetingSectionData} 
-          removeMeetingSectionData={this.removeMeetingSectionData} 
+        <Sidebar
+          addMeetingSectionData={this.addMeetingSectionData}
+          removeMeetingSectionData={this.removeMeetingSectionData}
           addToShortlist={this.addToShortlist}
           removeFromShortlist={this.removeFromShortlist}
           shortlist={this.state.shortlist}/>
-        <Calendar 
+        <Calendar
           meetingSectionData={this.state.meetingSectionData}
           addMeetingSectionData={this.addMeetingSectionData}
-          removeMeetingSectionData={this.removeMeetingSectionData} 
+          removeMeetingSectionData={this.removeMeetingSectionData}
         />
       </div>
       );
     }
-  }
-  
+}
+
   export default App;
-  
