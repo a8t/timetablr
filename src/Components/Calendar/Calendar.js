@@ -24,6 +24,7 @@ class Calendar extends Component {
 
     return entryJSON.course_times.map(eachTime => {
       const styleObj = {
+        opacity: entryJSON.clicked ? 1 : 0.5,
         gridRowStart: 'time' + timeToMilitaryTime(eachTime.start),
         gridRowEnd: 'time' + timeToMilitaryTime(eachTime.end),
         gridColumn: eachTime.day.toLowerCase()

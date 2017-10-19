@@ -87,16 +87,18 @@ describe('removeMeetingSectionData method', () => {
     expect(appInstance.state["meetingSectionData"]).toEqual([sampleData[0], sampleData[3]])
     
   })
-  // it('removes the most recent occurence', () => {
-  //   const wrapper = shallow(<App />)
-  //   const appInstance = wrapper.instance()
-  //   appInstance.addMeetingSectionData({ code: 3, courseCode: 5, id: 1 })
-  //   appInstance.addMeetingSectionData({ code: 3123, courseCode: 5234 })
-  //   appInstance.addMeetingSectionData({ code: 3, courseCode: 5, id: 2})
-  //   appInstance.removeMeetingSectionData({ code: 3, courseCode: 5 })
+  it('removes the most recent occurence', () => {
+    const { wrapper, appInstance, sampleData } = setup()
+
+    appInstance.addMeetingSectionData({...sampleData[0], id: 1 })
+    appInstance.addMeetingSectionData(sampleData[1])
+    appInstance.addMeetingSectionData({...sampleData[0], id: 2})
+    appInstance.addMeetingSectionData(sampleData[2])
+
+    appInstance.removeMeetingSectionData(sampleData[0])
     
-  //   expect(appInstance.state["meetingSectionData"]).toEqual([{ code: 3123, courseCode: 5234 }, { code: 3, courseCode: 5, id: 1 }])
-  // })
+    expect(appInstance.state["meetingSectionData"]).toEqual([{ ...sampleData[0], id: 1 }, sampleData[1], sampleData[2]])
+  })
 })
 
 describe('addToShortlist method', () => {

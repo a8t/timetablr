@@ -49,25 +49,27 @@ class App extends Component {
   }
 
 
-  addMeetingSectionData(newMeetingData, hoveredOrClicked) {
-    if (
-      this.state.meetingSectionData.reduce((n, val) => n + (val.code === newMeetingData.code
-        && val.courseCode === newMeetingData.courseCode), 0) < 2
-      ) {
-      this.setState({
-        meetingSectionData: [...this.state.meetingSectionData, newMeetingData]
-      })
+  addMeetingSectionData(newMeetingData, clicked) {
+    if (this.state.meetingSectionData.reduce((n, val) => n + (val.code === newMeetingData.code && val.courseCode === newMeetingData.courseCode), 0) >= 2) return
 
-      const meetingDayTime = this.meetingSectionDataToDayAndTime(newMeetingData)
-      this.addToCurrentCoursesAdded(meetingDayTime)
-      this.checkAgainstCurrentCoursesAdded(meetingDayTime)
-
-
-
-      console.log("state", this.state);
-
-
+    if (clicked) {
+      newMeetingData = {...newMeetingData, clicked: true}
     }
+
+    this.setState({
+      meetingSectionData: [...this.state.meetingSectionData, newMeetingData]
+    })
+
+      // const meetingDayTime = this.meetingSectionDataToDayAndTime(newMeetingData)
+      // this.addToCurrentCoursesAdded(meetingDayTime)
+      // this.checkAgainstCurrentCoursesAdded(meetingDayTime)
+
+
+
+      // console.log("state", this.state);
+
+
+    
   }
 
   meetingSectionDataToDayAndTime(newMeetingData) {
@@ -96,10 +98,12 @@ class App extends Component {
 
   removeMeetingSectionData(meetingDataToRemove) {
     this.setState((prevState) => {
-      const index = prevState.meetingSectionData.findIndex(i => i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code)
-      prevState.meetingSectionData.splice(index,1)
+      const revArr = prevState.meetingSectionData.reverse()
+      const index = revArr.findIndex(i => i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code && !i.clicked) > -1 ? revArr.findIndex(i => i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code && !i.clicked) : revArr.findIndex(i => i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code)
 
-      return {meetingSectionData: prevState.meetingSectionData}
+      revArr.splice(index,1)
+
+      return {meetingSectionData: revArr.reverse()}
     })
   }
 
@@ -120,14 +124,14 @@ class App extends Component {
     meetingDayTimeTerm.forEach(eachDayTimeTermObj => {
       const {day, start, end, term} = eachDayTimeTermObj
 
-    this.currentCoursesAdded[term][day].forEach(eachAlreadyAdded => {
-      if (
-           (start >= eachAlreadyAdded.start && start <= eachAlreadyAdded.end) ||
-           (end >= eachAlreadyAdded.start && end <= eachAlreadyAdded.end) ||
-           (eachAlreadyAdded.start >= start && eachAlreadyAdded.start <= end) ||
-           (eachAlreadyAdded.end >= start && eachAlreadyAdded.end <= end)
-         ) {console.log("conflict")};
-       })
+      this.currentCoursesAdded[term][day].forEach(eachAlreadyAdded => {
+        if (
+            (start >= eachAlreadyAdded.start && start <= eachAlreadyAdded.end) ||
+            (end >= eachAlreadyAdded.start && end <= eachAlreadyAdded.end) ||
+            (eachAlreadyAdded.start >= start && eachAlreadyAdded.start <= end) ||
+            (eachAlreadyAdded.end >= start && eachAlreadyAdded.end <= end)
+        ) {console.log("conflict")};
+      })
     })
   }
 

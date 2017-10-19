@@ -23,7 +23,10 @@ class ShortlistEntry extends Component {
         key={eachMSD.id}
         className="meetingSection"
         style={{margin: "2px"}}
-        onClick={(e) => { e.target.style={backgroundColor: 'green', border: 'green'}; e.preventDefault(); e.stopPropagation(); this.props.addMeetingSectionData({...eachMSD, term: this.props.term, courseCode: this.props.code, }) }}
+        onClick={(e) => { 
+          e.target.style={backgroundColor: 'green', border: 'green'}; 
+          e.preventDefault(); e.stopPropagation(); 
+          this.props.addMeetingSectionData({...eachMSD, term: this.props.term, courseCode: this.props.code, }, true) }}
         onMouseOver={(e) => { this.props.addMeetingSectionData({...eachMSD, term: this.props.term, courseCode: this.props.code}) }}
         onMouseLeave={(e) => { this.props.removeMeetingSectionData({...eachMSD, term: this.props.term, courseCode: this.props.code}) }}
       >
@@ -32,11 +35,7 @@ class ShortlistEntry extends Component {
 
     return (
       <div onClick={() => this.toggleCourseInformation()} className="shortlistEntry">
-<<<<<<< HEAD
         <button 
-=======
-        <button
->>>>>>> c0e872dde57452d37948da5e58d6c0b782723e3a
           className="remove"
           onClick={(e) => {
             e.stopPropagation()
