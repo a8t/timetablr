@@ -21,7 +21,7 @@ const Shortlist = props => {
 
   return (
     <div id="shortlist">
-      <p>Shortlist</p>
+      <p>SHORTLIST</p>
       <div className='shortlistResults'>
         {shortlistResults}
       </div>
