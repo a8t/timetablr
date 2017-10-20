@@ -1,10 +1,34 @@
 .navbar {
   grid-area: navbar;
-  height: 50px;
+  height: 35px;
   width: 100%;
-  background-color: blue;
+  background-color: #df744a;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;  
+}
 
+.printbutton {
+  background-color: white;
+  border: blue;
+  height: 30px;
+}
+
+.printbutton:hover {
+  border-bottom: 3px solid blue;
+}
+
+.printbutton:active {
+  border-bottom: 1px solid blue;
+}
+
+nav > a {
+  width: 30px;
+  background: white;
+  padding: 5px;
+  margin: 5px; 
 }

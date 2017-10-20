@@ -8,9 +8,13 @@ const Navbar = props => {
       className="navbar"
     >
       <button
-        className="removeEntry"
+        className="printbutton"
         onClick={(e) => window.print()}
-      >x</button>
+      >Print your calendar!</button>
+      <nav>
+        <a href="">Login</a>
+        <a href="">Sign Up</a>
+      </nav>
     </div>
   )
 }

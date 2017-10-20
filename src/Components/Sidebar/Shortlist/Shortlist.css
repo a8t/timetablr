@@ -1,6 +1,7 @@
 #shortlist {
   border-top: solid #3F51B5 2px;
   color: #111;
+  overflow: auto;
 }
 
 #shortlist > p {
