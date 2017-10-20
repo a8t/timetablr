@@ -10,18 +10,33 @@ class MSButton extends Component {
     const props = this.props
 
     const added = this.props.meetingSectionData.find(eachAdded => eachAdded.code === props.eachMSD.code && eachAdded.courseCode === props.code)
+    const addedClicked = this.props.meetingSectionData.find(eachAdded => eachAdded.code === props.eachMSD.code && eachAdded.courseCode === props.code && eachAdded.clicked === "clicked")
+
+    const addedTwice = this.props.meetingSectionData.reduce((n, val) => n + (val.code === props.eachMSD.code && val.courseCode === props.code), 0) >= 2
+    
+    let color 
+    if (addedTwice || addedClicked) {
+      color = "lightgreen"
+    } else if (added) {
+      color = "lightcyan"
+    } else {
+      color = "white"
+    }
+    
     
     return (
       <button
         className="meetingSection"
-        style={{ background: added ? "lightgreen" : "white"}}
+        style={{ background: color}}
         onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code, }, true)
+          e.stopPropagation()
+          e.preventDefault()
+          !addedTwice ? 
+          props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code, }, "clicked") :
+          props.removeMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "clicked") 
         }}
-        onMouseOver={(e) => { props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }) }}
-        onMouseLeave={(e) => {props.removeMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }) }}
+        onMouseOver={(e) => { props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }), "hovered" }}
+        onMouseLeave={(e) => {props.removeMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }), "hovered" }}
       >
         {props.eachMSD.code}
       </button>

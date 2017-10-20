@@ -50,30 +50,37 @@ class App extends Component {
 
 
   addMeetingSectionData(newMeetingData, clicked) {
-    if (this.state.meetingSectionData.reduce((n, val) => n + (val.code === newMeetingData.code && val.courseCode === newMeetingData.courseCode), 0) >= 2) return
+    if (
+      this.state.meetingSectionData.reduce(
+        (n, val) => n + (val.code === newMeetingData.code && val.courseCode === newMeetingData.courseCode), 0
+      ) >= 2
+    ) return
 
-    if (clicked) {
-      newMeetingData = { ...newMeetingData, clicked: true }
-    }
 
     this.setState({
-      meetingSectionData: [...this.state.meetingSectionData, newMeetingData]
+      meetingSectionData: [...this.state.meetingSectionData, { ...newMeetingData, clicked: clicked }]
     })
-
-    // const meetingDayTime = this.meetingSectionDataToDayAndTime(newMeetingData)
-    // this.addToCurrentCoursesAdded(meetingDayTime)
-    // this.checkAgainstCurrentCoursesAdded(meetingDayTime)
-
-
-
-    // console.log("state", this.state);
-
-
-
   }
 
+
+  removeMeetingSectionData(meetingDataToRemove, clicked) {
+    this.setState((prevState) => {
+      const revArr = prevState.meetingSectionData.reverse()
+      const clickedIndex = revArr.findIndex(i => 
+        i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code && clicked === i.clicked
+      ) 
+      const unclickedIndex = revArr.findIndex(i => 
+        i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code
+      )
+
+      revArr.splice(clickedIndex > -1 ? clickedIndex : unclickedIndex , 1)
+
+      return { meetingSectionData: revArr.reverse() }
+    })
+  }
+
+
   meetingSectionDataToDayAndTime(newMeetingData) {
-    console.log(newMeetingData);
     return newMeetingData.course_times.map(eachTime => {
       return {
         day: eachTime.day.toLowerCase(),
@@ -95,17 +102,6 @@ class App extends Component {
     })
   }
 
-
-  removeMeetingSectionData(meetingDataToRemove) {
-    this.setState((prevState) => {
-      const revArr = prevState.meetingSectionData.reverse()
-      const index = revArr.findIndex(i => i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code && !i.clicked) > -1 ? revArr.findIndex(i => i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code && !i.clicked) : revArr.findIndex(i => i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code)
-
-      revArr.splice(index, 1)
-
-      return { meetingSectionData: revArr.reverse() }
-    })
-  }
 
 
 
