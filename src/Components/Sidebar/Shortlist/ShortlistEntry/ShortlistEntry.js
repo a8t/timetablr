@@ -31,7 +31,7 @@ class ShortlistEntry extends Component {
 
     return (
       <div onClick={() => this.toggleCourseInformation()} className="shortlistEntry" key={this.props.code + this.props.term}>
-        <button 
+        <button
           className="remove"
           onClick={(e) => {
             e.stopPropagation()
@@ -51,6 +51,9 @@ class ShortlistEntry extends Component {
           {this.props.name}
         </p>
         <div className='showCourseInformation' style={{ display: this.state.displayInfo ? 'block' : 'none', overflow: 'auto'}}>
+          <p className="shortlistEntryDesc title">
+            Description:
+          </p>
           <p className="shortlistEntryDesc">
             {this.props.description}
           </p>
