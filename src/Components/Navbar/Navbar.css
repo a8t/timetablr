@@ -32,6 +32,7 @@
   text-shadow: 0 1px rgba(black, .2);
   border: 1px solid;
   border-color: #c61e03 #b91900 #aa1701;
+  transition: all .5s ease;
 
   -webkit-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.4) 0 1.5px 0;
   -moz-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.3) 0 1.5px 0;
@@ -39,7 +40,13 @@
 }
 
 .navBarLinks > a:hover {
-    border-bottom: 3px solid #b91900;
+  border: 1px solid white;
+  background-color: #b91900;
+  color: white;
+
+  -webkit-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1.5px 0;
+  -moz-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.3) 0 1.5px 0;
+  box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1.5px 0;
 }
 
 .navBarLinks > a:active {
@@ -62,6 +69,7 @@
   border-color: #c61e03 #b91900 #aa1701;
   height: auto;
   padding: 5px 10px;
+  transition: all .5s ease;
 
   -webkit-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.4) 0 1.5px 0;
   -moz-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.3) 0 1.5px 0;
@@ -69,7 +77,13 @@
 }
 
 .printbutton:hover {
-  border-bottom: 3px solid #b91900;
+  border: 1px solid white;
+  background-color: #b91900;
+  color: white;
+
+  -webkit-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1.5px 0;
+  -moz-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.3) 0 1.5px 0;
+  box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1.5px 0;
 }
 
 .printbutton:active {
