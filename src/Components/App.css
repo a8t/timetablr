@@ -5,14 +5,16 @@
 
 
 .App {
+  position: relative;
   background-color: white;
   text-align: center;
   height: auto;
   display: grid;
   grid-template-columns: 300px 1fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: auto;
   grid-column-gap: 10px;
   grid-template-areas:
+    "navbar  navbar"
     "sidebar calendars"
 
 }
@@ -21,6 +23,38 @@
   grid-area: calendars;
   margin: 10px;
   border-radius: 4px;
+}
+
+@media print {
+  @page {
+    size: landscape;
+  }
+  .App {
+    grid-template-areas: 
+      "calendars calendars"
+  }
+  .navbar {
+    display: none;
+  }
+  #sidebar {
+    display: none;
+  }
+  #calendars {
+    width: 100%;
+  }
+  #calendars > div {
+    width: 45%;
+    --colWidth: 16%;
+    --rowheight: 22px;
+  }
+  button {
+    display: none;
+  }
+
+  .entryText, .courseCode {
+    font-weight: normal;
+    font-size: 10pt;
+  }
 }
 
 /*#shortlist {
