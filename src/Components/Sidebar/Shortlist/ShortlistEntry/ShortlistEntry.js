@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './ShortlistEntry.css'
+import MSButton from './MSButton/MSButton'
 
 class ShortlistEntry extends Component {
   constructor(props){
@@ -7,7 +8,6 @@ class ShortlistEntry extends Component {
     this.state = {
       displayInfo: false
     }
-    this.toggleCourseInformation = this.toggleCourseInformation.bind(this)
   }
 
   toggleCourseInformation() {
@@ -19,21 +19,17 @@ class ShortlistEntry extends Component {
   render (){
 
     const msData = this.props.ms_data.map(eachMSD =>
-      <button
-        key={eachMSD.id}
-        className="meetingSection"
-        style={{margin: "2px"}}
-        onClick={(e) => { e.target.className="meetingSection clicked";
-          console.log("clicked course", e.target.style);
-          e.preventDefault(); e.stopPropagation(); this.props.addMeetingSectionData({...eachMSD, term: this.props.term, courseCode: this.props.code, }, true) }}
-        onMouseOver={(e) => { this.props.addMeetingSectionData({...eachMSD, term: this.props.term, courseCode: this.props.code}) }}
-        onMouseLeave={(e) => { this.props.removeMeetingSectionData({...eachMSD, term: this.props.term, courseCode: this.props.code})  }}
-      >
-        {eachMSD.code}
-      </button>)
+      <MSButton
+        eachMSD={eachMSD}
+        addMeetingSectionData={ this.props.addMeetingSectionData}
+        removeMeetingSectionData = {this.props.addMeetingSectionData}
+        term={this.props.term}
+        code={this.props.code}
+        meetingSectionData={this.props.meetingSectionData}
+      />)
 
     return (
-      <div onClick={() => this.toggleCourseInformation()} className="shortlistEntry">
+      <div onClick={() => this.toggleCourseInformation()} className="shortlistEntry" key={this.props.code + this.props.term}>
         <button 
           className="remove"
           onClick={(e) => {
@@ -44,6 +40,9 @@ class ShortlistEntry extends Component {
             })
           }}
         >x</button>
+        <button className="expandArrow">
+          {this.state.displayInfo ? "^" : "v"}
+        </button>
         <p className="shortlistEntryCode">
           {this.props.code}
         </p>

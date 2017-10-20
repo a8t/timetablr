@@ -15,6 +15,7 @@ const Shortlist = props => {
       addMeetingSectionData={props.addMeetingSectionData}
       removeMeetingSectionData={props.removeMeetingSectionData}
       removeFromShortlist={props.removeFromShortlist}
+      meetingSectionData={props.meetingSectionData}
     />
   )
 
@@ -30,5 +31,3 @@ const Shortlist = props => {
 }
 
 export default Shortlist;
-
-<ShortlistEntry removeMeetingSectionData/>

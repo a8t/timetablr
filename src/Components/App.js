@@ -89,7 +89,7 @@ class App extends Component {
       const entryShortlistIndex = prevState.shortlist.findIndex(i => i.code === entryData.code && i.term === entryData.term)
       prevState.shortlist.splice(entryShortlistIndex, 1)
 
-      const msData = prevState.meetingSectionData.filter(each => each.courseCode != entryData.code && each.term != entryData.term)
+      const msData = prevState.meetingSectionData.filter(each => each.courseCode !== entryData.code && each.term !== entryData.term)
 
       return { shortlist: prevState.shortlist, meetingSectionData: msData }
     })
@@ -112,7 +112,6 @@ class App extends Component {
   addToCurrentCoursesAdded(meetingDayTimeTerm) {
     meetingDayTimeTerm.forEach(eachDayTimeTermObj => {
       const { day, start, end, term } = eachDayTimeTermObj
-      console.log(this);
       this.currentCoursesAdded[term][day].push({
         start: start,
         end: end
@@ -136,8 +135,9 @@ class App extends Component {
   }
 
 
-  render() {
+  render() {    
 
+    
     return (
       <div className="App">
         <Navbar />
@@ -146,7 +146,8 @@ class App extends Component {
           removeMeetingSectionData={this.removeMeetingSectionData}
           addToShortlist={this.addToShortlist}
           removeFromShortlist={this.removeFromShortlist}
-          shortlist={this.state.shortlist} />
+          shortlist={this.state.shortlist} 
+          meetingSectionData = {this.state.meetingSectionData}/>
         <Calendar
           meetingSectionData={this.state.meetingSectionData}
           addMeetingSectionData={this.addMeetingSectionData}

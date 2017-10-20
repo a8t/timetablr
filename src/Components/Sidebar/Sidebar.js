@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Search from "./Search/Search.js";
 import Shortlist from "./Shortlist/Shortlist.js";
 import './Sidebar.css';
@@ -16,6 +16,7 @@ const Sidebar = props => {
           removeMeetingSectionData={props.removeMeetingSectionData}
           shortlist={props.shortlist}
           buttonClicked={props.buttonClicked}
+          meetingSectionData={props.meetingSectionData}
         />
     </div>
   );
