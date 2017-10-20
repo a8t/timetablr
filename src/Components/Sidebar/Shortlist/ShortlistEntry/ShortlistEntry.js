@@ -20,9 +20,10 @@ class ShortlistEntry extends Component {
 
     const msData = this.props.ms_data.map(eachMSD =>
       <MSButton
+        key={eachMSD.id + eachMSD.code}
         eachMSD={eachMSD}
         addMeetingSectionData={ this.props.addMeetingSectionData}
-        removeMeetingSectionData = {this.props.addMeetingSectionData}
+        removeMeetingSectionData={this.props.removeMeetingSectionData}
         term={this.props.term}
         code={this.props.code}
         meetingSectionData={this.props.meetingSectionData}

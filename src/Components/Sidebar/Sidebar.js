@@ -1,4 +1,4 @@
-import React from 'react';
+import React   from 'react';
 import Search from "./Search/Search.js";
 import Shortlist from "./Shortlist/Shortlist.js";
 import './Sidebar.css';
