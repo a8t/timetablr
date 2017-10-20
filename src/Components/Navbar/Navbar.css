@@ -1,5 +1,6 @@
 .navbar {
   grid-area: navbar;
+  font-size: 12px;
   height: 40px;
   width: 100%;
   background-color: #df744a;
@@ -23,18 +24,26 @@
 
 .navBarLinks > a {
   text-decoration: none;
-  font-size: 13px;
   color: #111;
-  width: 70px;
+  width: auto;
+  height: auto;
   background: white;
   padding: 5px 10px;
   text-shadow: 0 1px rgba(black, .2);
   border: 1px solid;
   border-color: #c61e03 #b91900 #aa1701;
 
-  -webkit-box-shadow:rgba(255, 255, 255, 0.4) 0 2px 0, inset rgba(180, 180, 180, 0.4) 0 2px 0;
-  -moz-box-shadow:rgba(255, 255, 255, 0.4) 0 2px 0, inset rgba(180, 180, 180, 0.3) 0 2px 0;
-  box-shadow:rgba(255, 255, 255, 0.4) 0 2px 0, inset rgba(180, 180, 180, 0.4) 0 2px 0;
+  -webkit-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.4) 0 1.5px 0;
+  -moz-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.3) 0 1.5px 0;
+  box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.4) 0 1.5px 0;
+}
+
+.navBarLinks > a:hover {
+    border-bottom: 3px solid #b91900;
+}
+
+.navBarLinks > a:active {
+  border-bottom: 1px solid #b91900;
 }
 
 .login {
@@ -45,16 +54,24 @@
   border-radius: 0 3px 3px 0;
 }
 
+
 .printbutton {
   background-color: white;
-  border: blue;
-  height: 30px;
+  border-radius: 3px;
+  border: 1px solid;
+  border-color: #c61e03 #b91900 #aa1701;
+  height: auto;
+  padding: 5px 10px;
+
+  -webkit-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.4) 0 1.5px 0;
+  -moz-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.3) 0 1.5px 0;
+  box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.4) 0 1.5px 0;
 }
 
 .printbutton:hover {
-  border-bottom: 3px solid blue;
+  border-bottom: 3px solid #b91900;
 }
 
 .printbutton:active {
-  border-bottom: 1px solid blue;
+  border-bottom: 1px solid #b91900;
 }

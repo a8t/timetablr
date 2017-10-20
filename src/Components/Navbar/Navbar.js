@@ -14,7 +14,7 @@ const Navbar = props => {
       <button
         className="printbutton"
         onClick={(e) => window.print()}
-      >Print your calendar!</button>
+      >PRINT CALENDAR</button>
     </div>
   )
 }

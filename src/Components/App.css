@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 
@@ -30,7 +31,7 @@
     size: landscape;
   }
   .App {
-    grid-template-areas: 
+    grid-template-areas:
       "calendars calendars"
   }
   .navbar * {
