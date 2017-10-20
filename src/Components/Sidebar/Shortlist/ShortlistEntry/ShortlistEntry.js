@@ -25,7 +25,7 @@ class ShortlistEntry extends Component {
         style={{margin: "2px"}}
         onClick={(e) => { e.target.className="meetingSection clicked";
           console.log("clicked course", e.target.style);
-          e.preventDefault(); e.stopPropagation(); this.props.addMeetingSectionData({...eachMSD, term: this.props.term, courseCode: this.props.code, }) }}
+          e.preventDefault(); e.stopPropagation(); this.props.addMeetingSectionData({...eachMSD, term: this.props.term, courseCode: this.props.code, }, true) }}
         onMouseOver={(e) => { this.props.addMeetingSectionData({...eachMSD, term: this.props.term, courseCode: this.props.code}) }}
         onMouseLeave={(e) => { this.props.removeMeetingSectionData({...eachMSD, term: this.props.term, courseCode: this.props.code})  }}
       >
