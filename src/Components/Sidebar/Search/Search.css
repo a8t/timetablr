@@ -2,14 +2,13 @@
   background-color: white;
   color: #333;
   font-weight: bold;
-  
-  border-top: solid #df744a 30px;
+  border-top: solid #df744a 40px;
 }
 
 .searchResults {
   position: absolute;
   left: 30px;
-  top: 75px;
+  top: 87px;
   width: 80%;
   border: solid #e1e1e1 1px;
   transition: height 5s linear;
