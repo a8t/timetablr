@@ -12,7 +12,7 @@ const Entry = props => {
         onClick={(e) => props.removeMeetingSectionData({ code: props.code, courseCode: props.courseCode })}
       >x</button>
       <p className="entryText courseCode">{props.courseCode}</p>
-      <p className="entryText meetingSection">{props.code}</p>
+      <p className="entryText">{props.code}</p>
     </div>
   )
 }
