@@ -11,7 +11,7 @@
   height: auto;
   display: grid;
   grid-template-columns: 300px 1fr;
-  grid-template-rows: auto;
+  grid-template-rows: 35px 1fr;
   grid-column-gap: 10px;
   grid-template-areas:
     "navbar  navbar"
@@ -33,7 +33,7 @@
     grid-template-areas: 
       "calendars calendars"
   }
-  .navbar {
+  .navbar * {
     display: none;
   }
   #sidebar {
@@ -41,6 +41,8 @@
   }
   #calendars {
     width: 100%;
+    position: absolute;
+    top: 10px;
   }
   #calendars > div {
     width: 45%;
