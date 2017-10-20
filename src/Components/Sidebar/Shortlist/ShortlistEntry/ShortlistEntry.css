@@ -43,3 +43,8 @@
   box-sizing: content-box;
   border-radius: 3px;
 }
+
+.clicked {
+  background-color: green;
+  border: .5px solid green;
+}

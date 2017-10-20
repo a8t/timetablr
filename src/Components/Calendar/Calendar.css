@@ -3,12 +3,12 @@
     flex-flow: wrap;
     justify-content: space-around;
     align-items: center;
+    padding-top: 10px;
 }
 
 #calendarFall,
 #calendarWinter {
-    border-top: solid #df744a 20px;
-    
+        
     font-family: 'Fira Sans', sans-serif;
     padding: 0 2px;
     width: auto;

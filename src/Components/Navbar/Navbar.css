@@ -1,0 +1,10 @@
+.navbar {
+  grid-area: navbar;
+  height: 50px;
+  width: 100%;
+  background-color: blue;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+}
