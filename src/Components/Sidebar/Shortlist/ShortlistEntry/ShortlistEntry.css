@@ -35,7 +35,6 @@
   right: 2px;
   box-sizing: content-box;
   border-radius: 2px;
-
 }
 
 .remove {
@@ -50,6 +49,7 @@
 
 .expandArrow {
   bottom: 2px;
+  color: #b2b2b2;
 }
 
 .expandArrow:hover, .expandArrow:focus  {
