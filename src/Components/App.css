@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  font-family: 'Fira Sans', sans-serif;
 }
 
 
@@ -54,7 +53,12 @@
     display: none;
   }
 
-  .entryText, .courseCode {
+  .entryText.courseCode {
+    font-weight: normal;
+    font-size: 10pt;
+  }
+
+  .entryText.meetingSection {
     font-weight: normal;
     font-size: 10pt;
   }
