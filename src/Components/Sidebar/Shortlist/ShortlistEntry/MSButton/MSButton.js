@@ -32,10 +32,10 @@ class MSButton extends Component {
           e.stopPropagation()
           e.preventDefault()
           !addedTwice ?
-          props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code, }, "clicked") :
-          props.removeMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "clicked")
+          [props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code, }, "clicked"), props.increaseCount()] :
+          [props.removeMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "clicked"), props.decreaseCount()]
         }}
-        onMouseOver={(e) => { props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }), "hovered" }}
+        onMouseOver={(e) => {props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }), "hovered" }}
         onMouseLeave={(e) => {props.removeMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }), "hovered" }}
       >
         {props.eachMSD.code}

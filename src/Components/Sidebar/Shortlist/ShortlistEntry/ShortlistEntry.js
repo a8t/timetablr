@@ -27,6 +27,8 @@ class ShortlistEntry extends Component {
         term={this.props.term}
         code={this.props.code}
         meetingSectionData={this.props.meetingSectionData}
+        increaseCount={this.props.increaseCount}
+        decreaseCount={this.props.decreaseCount}
       />)
 
     return (

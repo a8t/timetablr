@@ -17,6 +17,8 @@ const Sidebar = props => {
           shortlist={props.shortlist}
           buttonClicked={props.buttonClicked}
           meetingSectionData={props.meetingSectionData}
+          increaseCount={props.increaseCount}
+          decreaseCount={props.decreaseCount}
         />
     </div>
   );

@@ -66,6 +66,68 @@
   }
 }
 
+
+/*counter and flash*/
+#counter{
+  z-index: 10;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 24px;
+  min-width: 24px;
+  border-radius: 50%;
+  background: #333;
+  color: #fff;
+  line-height: 24px;
+  text-align: center;
+  font-size: 14px;
+  transform-origin: 0 0;
+
+}
+
+@keyframes flash1 {
+    0% {
+        background: red;
+        font-size: 36px;
+        height: 48px;
+        width: 48px;
+        line-height: 48px;
+        opacity: 0.3;
+    }
+    100% {
+        background: #f5f5f5;
+        opacity: 1;
+    }
+}
+
+@keyframes flash2 {
+    0% {
+        background: red;
+        font-size: 36px;
+        height: 48px;
+        width: 48px;
+        line-height: 48px;
+        opacity: 0.3;
+    }
+    100% {
+        background: #f5f5f5;
+        opacity: 1;
+    }
+}
+
+.flash1, .flash2 {
+    animation-duration: 300ms;
+    animation-timing-function: ease-in-out;
+}
+
+.flash1 {
+    animation-name: flash1;
+}
+
+.flash2 {
+    animation-name: flash2;
+}
+
 /*#shortlist {
   background-color: #eee;
   border-radius: 4px;
