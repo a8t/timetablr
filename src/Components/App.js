@@ -3,13 +3,15 @@ import './App.css';
 import Calendar from "./Calendar/Calendar";
 import Sidebar from "./Sidebar/Sidebar";
 import Navbar from "./Navbar/Navbar";
+import Counter from "./Counter/Counter"
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       meetingSectionData: [],
-      shortlist: []
+      shortlist: [],
+      count: 0
     }
     this.currentCoursesAdded = {
       "2017 Fall": {
@@ -33,8 +35,22 @@ class App extends Component {
     this.removeFromShortlist = this.removeFromShortlist.bind(this)
     this.addToCurrentCoursesAdded = this.addToCurrentCoursesAdded.bind(this)
     this.checkAgainstCurrentCoursesAdded = this.checkAgainstCurrentCoursesAdded.bind(this)
+    this.decreaseCount = this.decreaseCount.bind(this);
+    this.increaseCount = this.increaseCount.bind(this)
   }
 
+
+  decreaseCount() {
+    this.setState({
+      count: this.state.count - 1
+    });
+  }
+
+  increaseCount() {
+    this.setState({
+      count: this.state.count + 1
+    });
+  }
 
 
   addToShortlist(newEntry) {
@@ -66,10 +82,10 @@ class App extends Component {
   removeMeetingSectionData(meetingDataToRemove, clicked) {
     this.setState((prevState) => {
       const revArr = prevState.meetingSectionData.reverse()
-      const clickedIndex = revArr.findIndex(i => 
+      const clickedIndex = revArr.findIndex(i =>
         i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code && clicked === i.clicked
-      ) 
-      const unclickedIndex = revArr.findIndex(i => 
+      )
+      const unclickedIndex = revArr.findIndex(i =>
         i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code
       )
 
@@ -103,8 +119,6 @@ class App extends Component {
   }
 
 
-
-
   addToCurrentCoursesAdded(meetingDayTimeTerm) {
     meetingDayTimeTerm.forEach(eachDayTimeTermObj => {
       const { day, start, end, term } = eachDayTimeTermObj
@@ -131,9 +145,8 @@ class App extends Component {
   }
 
 
-  render() {    
+  render() {
 
-  
     return (
       <div className="App">
         <Navbar />
@@ -142,13 +155,19 @@ class App extends Component {
           removeMeetingSectionData={this.removeMeetingSectionData}
           addToShortlist={this.addToShortlist}
           removeFromShortlist={this.removeFromShortlist}
-          shortlist={this.state.shortlist} 
-          meetingSectionData = {this.state.meetingSectionData}/>
+          shortlist={this.state.shortlist}
+          meetingSectionData = {this.state.meetingSectionData}
+          decreaseCount={this.decreaseCount}
+          increaseCount={this.increaseCount}
+        />
         <Calendar
           meetingSectionData={this.state.meetingSectionData}
           addMeetingSectionData={this.addMeetingSectionData}
           removeMeetingSectionData={this.removeMeetingSectionData}
+          decreaseCount={this.decreaseCount}
+          increaseCount={this.increaseCount}
         />
+        <Counter count={this.state.count}/>
       </div>
     );
   }

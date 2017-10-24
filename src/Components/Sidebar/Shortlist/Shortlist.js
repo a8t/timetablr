@@ -16,6 +16,8 @@ const Shortlist = props => {
       removeMeetingSectionData={props.removeMeetingSectionData}
       removeFromShortlist={props.removeFromShortlist}
       meetingSectionData={props.meetingSectionData}
+      increaseCount={props.increaseCount}
+      decreaseCount={props.decreaseCount}
     />
   )
 
