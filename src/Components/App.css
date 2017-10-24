@@ -70,53 +70,63 @@
 /*counter and flash*/
 #counter{
   z-index: 10;
-  position: absolute;
-  top: 5px;
-  right: 5px;
+  position: fixed;
+  top: 8px;
+  right: 10px;
   height: 24px;
   min-width: 24px;
-  border-radius: 50%;
-  background: #333;
   color: #fff;
   line-height: 24px;
   text-align: center;
-  font-size: 14px;
+  font-size: 26px;
   transform-origin: 0 0;
 
 }
 
 @keyframes flash1 {
     0% {
-        background: red;
-        font-size: 36px;
-        height: 48px;
-        width: 48px;
-        line-height: 48px;
-        opacity: 0.3;
+      color: #df744a;
+      font-size: 46px;
+      line-height: 48px;
+      opacity: .3;
+    }
+    25% {
+      color: #0ba7b7;
+      opacity: 1;
+    }
+    50% {
+      color: blue;
+      opacity: .3;
     }
     100% {
-        background: #f5f5f5;
-        opacity: 1;
+      color: #0ba7b7;
+      opacity: 1;
     }
 }
 
 @keyframes flash2 {
     0% {
-        background: red;
-        font-size: 36px;
-        height: 48px;
-        width: 48px;
-        line-height: 48px;
-        opacity: 0.3;
+      color: #df744a;
+      font-size: 46px;
+      line-height: 48px;
+      opacity: .3;
+    }
+    25% {
+      color: #0ba7b7;
+      opacity: 1;
+    }
+    50% {
+      color: blue;
+      opacity: .3;
     }
     100% {
-        background: #f5f5f5;
-        opacity: 1;
+      color: #0ba7b7;
+      opacity: 1;
     }
 }
 
 .flash1, .flash2 {
-    animation-duration: 300ms;
+    animation-duration: 500ms;
     animation-timing-function: ease-in-out;
 }
 
