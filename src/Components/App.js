@@ -164,6 +164,8 @@ class App extends Component {
           meetingSectionData={this.state.meetingSectionData}
           addMeetingSectionData={this.addMeetingSectionData}
           removeMeetingSectionData={this.removeMeetingSectionData}
+          decreaseCount={this.decreaseCount}
+          increaseCount={this.increaseCount}
         />
         <Counter count={this.state.count}/>
       </div>
