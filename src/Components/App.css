@@ -75,11 +75,13 @@
   right: 10px;
   height: 24px;
   min-width: 24px;
-  color: #fff;
+  color: #b91900;
   line-height: 24px;
   text-align: center;
   font-size: 26px;
   transform-origin: 0 0;
+  opacity: .4;
+  text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;
 
 }
 
