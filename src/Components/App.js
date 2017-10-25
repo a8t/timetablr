@@ -34,7 +34,7 @@ class App extends Component {
     this.addToShortlist = this.addToShortlist.bind(this)
     this.removeFromShortlist = this.removeFromShortlist.bind(this)
     this.addToCurrentCoursesAdded = this.addToCurrentCoursesAdded.bind(this)
-    this.checkAgainstCurrentCoursesAdded = this.checkAgainstCurrentCoursesAdded.bind(this)
+    this.isConflicting = this.isConflicting.bind(this)
     this.decreaseCount = this.decreaseCount.bind(this);
     this.increaseCount = this.increaseCount.bind(this)
   }
@@ -71,7 +71,6 @@ class App extends Component {
         (n, val) => n + (val.code === newMeetingData.code && val.courseCode === newMeetingData.courseCode), 0
       ) >= 2
     ) return
-
 
     this.setState({
       meetingSectionData: [...this.state.meetingSectionData, { ...newMeetingData, clicked: clicked }]
@@ -129,7 +128,7 @@ class App extends Component {
     })
   }
 
-  checkAgainstCurrentCoursesAdded(meetingDayTimeTerm) {
+  isConflicting(meetingDayTimeTerm) {
     meetingDayTimeTerm.forEach(eachDayTimeTermObj => {
       const { day, start, end, term } = eachDayTimeTermObj
 
@@ -139,8 +138,10 @@ class App extends Component {
           (end >= eachAlreadyAdded.start && end <= eachAlreadyAdded.end) ||
           (eachAlreadyAdded.start >= start && eachAlreadyAdded.start <= end) ||
           (eachAlreadyAdded.end >= start && eachAlreadyAdded.end <= end)
-        ) { console.log("conflict") };
+        ) { return true };
       })
+
+      return false
     })
   }
 
