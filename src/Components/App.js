@@ -11,7 +11,6 @@ class App extends Component {
     this.state = {
       meetingSectionData: [],
       shortlist: [],
-      count: 0
     }
     this.currentCoursesAdded = {
       "2017 Fall": {
@@ -36,26 +35,6 @@ class App extends Component {
     this.addToCurrentCoursesAdded = this.addToCurrentCoursesAdded.bind(this)
     this.isConflicting = this.isConflicting.bind(this)
   }
-
-
-
-
-
-  //
-  // decreaseCount() {
-  //   this.setState({
-  //     count: this.state.count - 1
-  //   });
-  // }
-  //
-  // increaseCount() {
-  //   this.setState({
-  //     count: this.state.count + 1
-  //   });
-  // }
-
-
-
 
   addToShortlist(newEntry) {
     fetch(`https://tbd-scheduler-v1.herokuapp.com/courses/get_data?course_id=${newEntry.id}`)
