@@ -53,15 +53,15 @@ class Calendar extends Component {
       <div id="calendars">
         <div id='calendarFall'>
           {fallEntries}
-          <div className="weekday line term"           style={{gridColumn: "start     / span 1"}}>F '17</div>
-          <div className="weekday line"           style={{gridColumn: "monday    / span 1"}}>MO</div>
-          <div className="weekday line"           style={{gridColumn: "tuesday   / span 1"}}>TU</div>
-          <div className="weekday line"           style={{gridColumn: "wednesday / span 1"}}>WE</div>
-          <div className="weekday line"           style={{gridColumn: "thursday  / span 1"}}>TH</div>
+          <div className="weekday line term" style={{gridColumn: "start     / span 1"}}>F '17</div>
+          <div className="weekday line"      style={{gridColumn: "monday    / span 2"}}>MO</div>
+          <div className="weekday line"      style={{gridColumn: "tuesday   / span 2"}}>TU</div>
+          <div className="weekday line"      style={{gridColumn: "wednesday / span 2"}}>WE</div>
+          <div className="weekday line"      style={{gridColumn: "thursday  / span 2"}}>TH</div>
           <div className="weekday"           style={{gridColumn: "friday    / span 1"}}>FR</div>
           <div className="time"              style={{gridRow: "time     / span 2"}}></div>
           <div className="time"              style={{gridRow: "time     / span 2"}}></div>
-          <div className="timeslot first"    style={{ gridRow: "time8    / span 2" }}>8am</div>
+          <div className="timeslot first"    style={{gridRow: "time8    / span 2" }}>8am</div>
           <div className="timeslot halfHour" style={{gridRow: "time830  / span 1"}}></div>
           <div className="timeslot"          style={{gridRow: "time9    / span 2"}}>9am</div>
           <div className="timeslot halfHour" style={{gridRow: "time930  / span 1"}}></div>
@@ -94,11 +94,11 @@ class Calendar extends Component {
         </div>
         <div id='calendarWinter'>
           {winterEntries}
-          <div className="weekday line term"           style={{gridColumn: "start     / span 1"}}>W '18</div>
-          <div className="weekday line"           style={{gridColumn: "monday    / span 1"}}>MO</div>
-          <div className="weekday line"           style={{gridColumn: "tuesday   / span 1"}}>TU</div>
-          <div className="weekday line"           style={{gridColumn: "wednesday / span 1"}}>WE</div>
-          <div className="weekday line"           style={{gridColumn: "thursday  / span 1"}}>TH</div>
+          <div className="weekday line term" style={{gridColumn: "start     / span 1"}}>W '18</div>
+          <div className="weekday line"      style={{gridColumn: "monday    / span 2"}}>MO</div>
+          <div className="weekday line"      style={{gridColumn: "tuesday   / span 2"}}>TU</div>
+          <div className="weekday line"      style={{gridColumn: "wednesday / span 2"}}>WE</div>
+          <div className="weekday line"      style={{gridColumn: "thursday  / span 2"}}>TH</div>
           <div className="weekday"           style={{gridColumn: "friday    / span 1"}}>FR</div>
           <div className="timeslot first"    style={{gridRow: "time8    / span 2"}}>8am</div>
           <div className="timeslot halfHour" style={{gridRow: "time830  / span 1"}}></div>

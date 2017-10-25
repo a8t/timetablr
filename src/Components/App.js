@@ -47,6 +47,23 @@ class App extends Component {
 
   }
 
+  removeFromShortlist(entryData) {
+    this.setState((prevState) => {
+
+      const entryShortlistIndex = prevState.shortlist.findIndex(i => i.code === entryData.code && i.term === entryData.term)
+
+      const msData = prevState.meetingSectionData.filter(each => each.courseCode !== entryData.code)
+
+      return {
+        shortlist: [
+          ...prevState.shortlist.slice(0, entryShortlistIndex),
+          ...prevState.shortlist.slice(entryShortlistIndex + 1)
+        ],
+        meetingSectionData: msData
+      }
+    })
+  }
+
 
   addMeetingSectionData(newMeetingData, clicked) {
     if (
@@ -59,7 +76,6 @@ class App extends Component {
       meetingSectionData: [...this.state.meetingSectionData, { ...newMeetingData, clicked: clicked }]
     })
   }
-
 
   removeMeetingSectionData(meetingDataToRemove, clicked) {
     this.setState((prevState) => {
@@ -77,7 +93,6 @@ class App extends Component {
     })
   }
 
-
   meetingSectionDataToDayAndTime(newMeetingData) {
     return newMeetingData.course_times.map(eachTime => {
       return {
@@ -88,24 +103,6 @@ class App extends Component {
       }
     })
   }
-
-  removeFromShortlist(entryData) {
-    this.setState((prevState) => {
-
-      const entryShortlistIndex = prevState.shortlist.findIndex(i => i.code === entryData.code && i.term === entryData.term)
-
-      const msData = prevState.meetingSectionData.filter(each => each.courseCode !== entryData.code)
-      
-      return { 
-        shortlist: [
-          ...prevState.shortlist.slice(0, entryShortlistIndex),
-          ...prevState.shortlist.slice(entryShortlistIndex+1)
-        ],
-        meetingSectionData: msData }
-    })
-  }
-
-
 
   addToCurrentCoursesAdded(meetingDayTimeTerm) {
     meetingDayTimeTerm.forEach(eachDayTimeTermObj => {
@@ -137,9 +134,7 @@ class App extends Component {
 
   render() {
 
-    const updatedCount = this.state.meetingSectionData.filter((data) =>
-      data.clicked === 'clicked'
-    ).length
+    const addedCoursesCount = this.state.meetingSectionData.filter(data => data.clicked === 'clicked').length
 
     return (
       <div className="App">
@@ -159,7 +154,7 @@ class App extends Component {
           removeMeetingSectionData={this.removeMeetingSectionData}
           updateCount={this.updateCount}
         />
-      <Counter count={updatedCount}/>
+      <Counter count={addedCoursesCount}/>
       </div>
     );
   }
