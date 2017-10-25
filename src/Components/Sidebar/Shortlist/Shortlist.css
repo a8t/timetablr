@@ -1,10 +1,11 @@
 #shortlist {
-  border-top: solid #3F51B5 2px;
-  color: #111;
+  border-top: solid gray 1px;
   overflow: auto;
 }
 
 #shortlist > p {
+  font-size: 14px;
+  color: #111;
   margin: 0;
   padding: 10px 0;
 }

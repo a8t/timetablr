@@ -13,17 +13,17 @@ class MSButton extends Component {
     const addedClicked = this.props.meetingSectionData.find(eachAdded => eachAdded.code === props.eachMSD.code && eachAdded.courseCode === props.code && eachAdded.clicked === "clicked")
 
     const addedTwice = this.props.meetingSectionData.reduce((n, val) => n + (val.code === props.eachMSD.code && val.courseCode === props.code), 0) >= 2
-    
-    let color 
+
+    let color
     if (addedTwice || addedClicked) {
-      color = "lightgreen"
+      color = "#9be04c"
     } else if (added) {
       color = "lightcyan"
     } else {
       color = "white"
     }
-    
-    
+
+
     return (
       <button
         className="meetingSection"
@@ -31,11 +31,11 @@ class MSButton extends Component {
         onClick={(e) => {
           e.stopPropagation()
           e.preventDefault()
-          !addedTwice ? 
-          props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code, }, "clicked") :
-          props.removeMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "clicked") 
+          !addedTwice ?
+          [props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code, }, "clicked"), props.increaseCount()] :
+          [props.removeMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "clicked"), props.decreaseCount()]
         }}
-        onMouseOver={(e) => { props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }), "hovered" }}
+        onMouseOver={(e) => {props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }), "hovered" }}
         onMouseLeave={(e) => {props.removeMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }), "hovered" }}
       >
         {props.eachMSD.code}
