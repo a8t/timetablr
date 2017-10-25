@@ -39,7 +39,6 @@ class Calendar extends Component {
           timeStart={eachTime.start / 3600 % 12}
           timeEnd={eachTime.end / 3600 % 12}
           removeMeetingSectionData={this.props.removeMeetingSectionData}
-          decreaseCount={this.props.decreaseCount}
           key={entryJSON.courseCode + eachTime.day + eachTime.start}/>) }
     )
   }

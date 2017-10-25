@@ -67,78 +67,7 @@
 }
 
 
-/*counter and flash*/
-#counter{
-  z-index: 10;
-  position: fixed;
-  top: 8px;
-  right: 10px;
-  height: 24px;
-  min-width: 24px;
-  color: #b91900;
-  line-height: 24px;
-  text-align: center;
-  font-size: 26px;
-  transform-origin: 0 0;
-  opacity: .4;
-  text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;
 
-}
-
-@keyframes flash1 {
-    0% {
-      color: #df744a;
-      font-size: 46px;
-      line-height: 48px;
-      opacity: .3;
-    }
-    25% {
-      color: #0ba7b7;
-      opacity: 1;
-    }
-    50% {
-      color: blue;
-      opacity: .3;
-    }
-    100% {
-      color: #0ba7b7;
-      opacity: 1;
-    }
-}
-
-@keyframes flash2 {
-    0% {
-      color: #df744a;
-      font-size: 46px;
-      line-height: 48px;
-      opacity: .3;
-    }
-    25% {
-      color: #0ba7b7;
-      opacity: 1;
-    }
-    50% {
-      color: blue;
-      opacity: .3;
-    }
-    100% {
-      color: #0ba7b7;
-      opacity: 1;
-    }
-}
-
-.flash1, .flash2 {
-    animation-duration: 500ms;
-    animation-timing-function: ease-in-out;
-}
-
-.flash1 {
-    animation-name: flash1;
-}
-
-.flash2 {
-    animation-name: flash2;
-}
 
 /*#shortlist {
   background-color: #eee;

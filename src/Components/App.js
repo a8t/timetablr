@@ -35,22 +35,26 @@ class App extends Component {
     this.removeFromShortlist = this.removeFromShortlist.bind(this)
     this.addToCurrentCoursesAdded = this.addToCurrentCoursesAdded.bind(this)
     this.isConflicting = this.isConflicting.bind(this)
-    this.decreaseCount = this.decreaseCount.bind(this);
-    this.increaseCount = this.increaseCount.bind(this)
   }
 
 
-  decreaseCount() {
-    this.setState({
-      count: this.state.count - 1
-    });
-  }
 
-  increaseCount() {
-    this.setState({
-      count: this.state.count + 1
-    });
-  }
+
+
+  //
+  // decreaseCount() {
+  //   this.setState({
+  //     count: this.state.count - 1
+  //   });
+  // }
+  //
+  // increaseCount() {
+  //   this.setState({
+  //     count: this.state.count + 1
+  //   });
+  // }
+
+
 
 
   addToShortlist(newEntry) {
@@ -75,6 +79,7 @@ class App extends Component {
     this.setState({
       meetingSectionData: [...this.state.meetingSectionData, { ...newMeetingData, clicked: clicked }]
     })
+    console.log('count', this.state.count, this.state.meetingSectionData);
   }
 
 
@@ -118,6 +123,7 @@ class App extends Component {
   }
 
 
+
   addToCurrentCoursesAdded(meetingDayTimeTerm) {
     meetingDayTimeTerm.forEach(eachDayTimeTermObj => {
       const { day, start, end, term } = eachDayTimeTermObj
@@ -148,6 +154,10 @@ class App extends Component {
 
   render() {
 
+    const updatedCount = this.state.meetingSectionData.filter((data) =>
+      data.clicked === 'clicked'
+    ).length
+
     return (
       <div className="App">
         <Navbar />
@@ -158,17 +168,15 @@ class App extends Component {
           removeFromShortlist={this.removeFromShortlist}
           shortlist={this.state.shortlist}
           meetingSectionData = {this.state.meetingSectionData}
-          decreaseCount={this.decreaseCount}
-          increaseCount={this.increaseCount}
+          updateCount={this.updateCount}
         />
         <Calendar
           meetingSectionData={this.state.meetingSectionData}
           addMeetingSectionData={this.addMeetingSectionData}
           removeMeetingSectionData={this.removeMeetingSectionData}
-          decreaseCount={this.decreaseCount}
-          increaseCount={this.increaseCount}
+          updateCount={this.updateCount}
         />
-        <Counter count={this.state.count}/>
+      <Counter count={updatedCount}/>
       </div>
     );
   }
