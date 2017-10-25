@@ -79,7 +79,6 @@ class App extends Component {
     this.setState({
       meetingSectionData: [...this.state.meetingSectionData, { ...newMeetingData, clicked: clicked }]
     })
-    console.log('count', this.state.count, this.state.meetingSectionData);
   }
 
 
@@ -113,12 +112,17 @@ class App extends Component {
 
   removeFromShortlist(entryData) {
     this.setState((prevState) => {
+
       const entryShortlistIndex = prevState.shortlist.findIndex(i => i.code === entryData.code && i.term === entryData.term)
-      prevState.shortlist.splice(entryShortlistIndex, 1)
 
-      const msData = prevState.meetingSectionData.filter(each => each.courseCode !== entryData.code && each.term !== entryData.term)
-
-      return { shortlist: prevState.shortlist, meetingSectionData: msData }
+      const msData = prevState.meetingSectionData.filter(each => each.courseCode !== entryData.code)
+      
+      return { 
+        shortlist: [
+          ...prevState.shortlist.slice(0, entryShortlistIndex),
+          ...prevState.shortlist.slice(entryShortlistIndex+1)
+        ],
+        meetingSectionData: msData }
     })
   }
 
