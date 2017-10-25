@@ -1,4 +1,4 @@
-/*counter and flash*/
+/*STYLE COUNTER*/
 #counter{
   z-index: 10;
   position: fixed;
@@ -16,6 +16,7 @@
 
 }
 
+/*DEFINE FLASH ANIMATIONS*/
 @keyframes flash1 {
     0% {
       color: #df744a;

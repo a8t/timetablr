@@ -1,3 +1,4 @@
+/*STYLE ENTIRE SEARCH COMPONENT*/
 #search {
   background-color: white;
   color: #333;
@@ -6,6 +7,7 @@
   box-shadow: 0px 4px 10px 1px rgba(118,122,128,.2 );
 }
 
+/*STYLE DIV CONTAINING SEARCH RESULTS*/
 .searchResults {
   position: absolute;
   left: 30px;
@@ -17,6 +19,7 @@
   z-index: 2;
 }
 
+/*STYLE SEARCH BAR*/
 .searchBar {
   color: #111;
   width: 80%;

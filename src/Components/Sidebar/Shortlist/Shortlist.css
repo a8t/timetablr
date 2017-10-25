@@ -1,8 +1,10 @@
+/*STYLE ENTIRE SHORTLIST COMPONENT*/
 #shortlist {
   border-top: solid gray 1px;
   overflow: auto;
 }
 
+/*STYLE SHORTLIST TITLE*/
 #shortlist > p {
   font-size: 14px;
   color: #111;

@@ -1,4 +1,8 @@
+/*STYLE CALENDAR COMPONENTS*/
 #calendars {
+    grid-area: calendars;
+    margin: 10px;
+    border-radius: 4px;
     display: flex;
     flex-flow: wrap;
     justify-content: space-around;
@@ -6,6 +10,7 @@
     padding-top: 10px;
 }
 
+/*STYLE FALL AND WINTER CALENDARS*/
 #calendarFall,
 #calendarWinter {
 
@@ -56,7 +61,8 @@
     -moz-box-shadow: 0px 10px 22px 2px rgba(118,122,128,.5);
     box-shadow: 0px 10px 22px 2px rgba(118,122,128,.5);
 }
-/*monday - friday text*/
+
+/*STYLE MO - FR TEXT*/
 .weekday {
     grid-row: time / end;
     text-align:center;
@@ -71,14 +77,13 @@
     z-index: 2;
 }
 
-/*8am - 10pm text*/
+/*STYLE TIMES TEXT*/
 .timeslot {
     color: #111;
     grid-column: start / end;
     padding-left: 4px;
     text-align: left;
 }
-
 
 .time {
     grid-column: start / end;
@@ -90,7 +95,7 @@
     margin-top: 8px;
 }
 
-/*half hour rows*/
+/*STYLE HALF HOUR ROWS*/
 .halfHour {
     background-color: #F4F4F4;
     border-bottom: 1px solid #BDBDBD;
@@ -101,6 +106,7 @@
 
 }
 
+/*STYLE TERM TEXT*/
 .term {
   font-weight: bold;
   text-align: left;

@@ -1,3 +1,4 @@
+/*STYLE ENTIRE SHORTLIST ENTRY COMPONENT*/
 .shortlistEntry {
   margin: 10px;
   padding: 10px;
@@ -9,6 +10,7 @@
   position: relative;
 }
 
+/*STYLE SHORTLIST ENTRY ELEMENTS*/
 .showCourseInformation {
   padding: 5px;
 }
@@ -37,6 +39,7 @@
   padding-bottom: 18px;
 }
 
+/*STYLE SHORTLIST ENTRY REMOVE AND EXPAND BUTTON*/
 .remove, .expandArrow {
   border: 2px solid white;
   background: none;
@@ -66,10 +69,3 @@
   background-color: lightblue;
   border: 2px solid blue;
 }
-
-
-/*
-.clicked {
-  background-color: lightgreen;
-  border: .5px solid green;
-} */
