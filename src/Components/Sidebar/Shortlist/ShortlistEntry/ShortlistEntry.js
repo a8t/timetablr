@@ -27,8 +27,6 @@ class ShortlistEntry extends Component {
         term={this.props.term}
         code={this.props.code}
         meetingSectionData={this.props.meetingSectionData}
-        increaseCount={this.props.increaseCount}
-        decreaseCount={this.props.decreaseCount}
       />)
 
     return (
@@ -41,7 +39,6 @@ class ShortlistEntry extends Component {
               code: this.props.code,
               term: this.props.term
             })
-            this.props.decreaseCount()
           }}
         >x</button>
         <button className="expandArrow">
