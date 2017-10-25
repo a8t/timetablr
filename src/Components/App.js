@@ -42,7 +42,7 @@ class App extends Component {
       .then(response => response.json())
       .then(jsonResponse => {
         this.setState({
-          shortlist: [...this.state.shortlist, jsonResponse]
+          shortlist: [jsonResponse, ...this.state.shortlist]
         })
       })
 
