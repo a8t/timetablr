@@ -1,15 +1,14 @@
 import React from 'react';
 import './Navbar.css';
+import Login from './Login/Login.js'
 
 const Navbar = props => {
   return (
     <div
       style={props.style}
-      className="navbar"
-    >
+      className="navbar" >
       <nav className="navBarLinks">
-        <button className="login" href="#">LOGIN</button>
-        <button className="signup" href="#">SIGN UP</button>
+        <Login />
       </nav>
       <button
         className="printbutton"
