@@ -18,7 +18,15 @@ class ShortlistEntry extends Component {
 
   render (){
 
-    const msData = this.props.ms_data.map(eachMSD =>
+    const msData = this.props.ms_data.sort((a,b) => {
+      console.log(a.code, b.code);
+      
+      if (a.code < b.code) {
+        return -1
+      } else {
+        return 1
+      }
+    }).map(eachMSD =>
       <MSButton
         key={eachMSD.id + eachMSD.code}
         eachMSD={eachMSD}
@@ -30,7 +38,15 @@ class ShortlistEntry extends Component {
       />)
 
     return (
-      <div onClick={() => this.toggleCourseInformation()} className="shortlistEntry" key={this.props.code + this.props.term}>
+      <div 
+        onClick={() => this.toggleCourseInformation()} 
+        className="shortlistEntry" key={this.props.code + this.props.term}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape') {
+            this.toggleCourseInformation()
+          }
+        }}
+      >
         <button
           className="remove"
           onClick={(e) => {

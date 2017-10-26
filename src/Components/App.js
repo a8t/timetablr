@@ -76,14 +76,12 @@ class App extends Component {
           shortlist: [jsonResponse, ...this.state.shortlist]
         })
       })
-
   }
 
   removeFromShortlist(entryData) {
     this.setState((prevState) => {
 
       const entryShortlistIndex = prevState.shortlist.findIndex(i => i.code === entryData.code && i.term === entryData.term)
-
       const msData = prevState.meetingSectionData.filter(each => each.courseCode !== entryData.code)
 
       return {
@@ -97,39 +95,25 @@ class App extends Component {
   }
 
 
-  addMeetingSectionData(newMeetingData, clicked) {
+  addMeetingSectionData(newMeetingData, addMethod) {
     if (
       this.state.meetingSectionData.reduce(
-        (n, val) => n + (val.id === newMeetingData.id), 0
-      ) >= 2
+        (n, val) => n + (val.id === newMeetingData.id && val.addMethod === addMethod), 0
+      ) >= 1
     ) return
 
-    // const meetingSectionDataToDayAndTime = (newMeetingData) => {
-    //   return newMeetingData.course_times.map(eachTime => {
-    //     return {
-    //       day: eachTime.day.toLowerCase(),
-    //       start: eachTime.start,
-    //       end: eachTime.end,
-    //       term: newMeetingData.term
-    //     }
-    //   })
-    // }
-
-    // if (clicked == "clicked") {
-    //   this.addToCurrentCoursesAdded(meetingSectionDataToDayAndTime(newMeetingData))
-    // }
     
     this.setState({
-      meetingSectionData: [{ ...newMeetingData, clicked: clicked }, ...this.state.meetingSectionData, ]
+      meetingSectionData: [{ ...newMeetingData, addMethod: addMethod }, ...this.state.meetingSectionData, ]
     })
   }
 
-  removeMeetingSectionData(meetingDataToRemove, clicked) {
+  removeMeetingSectionData(meetingDataToRemove, addMethod) {
     
     this.setState((prevState) => {
       
       const index = prevState.meetingSectionData.findIndex(i =>
-        i.id === meetingDataToRemove.id &&  i.clicked === clicked
+        i.id === meetingDataToRemove.id &&  i.addMethod === addMethod
       )
       
       return { meetingSectionData: [
@@ -149,6 +133,16 @@ class App extends Component {
     })
   }
 
+  meetingSectionDataToDayAndTime (newMeetingData) {
+    return newMeetingData.course_times.map(eachTime => {
+      return {
+        day: eachTime.day.toLowerCase(),
+        start: eachTime.start,
+        end: eachTime.end,
+        term: newMeetingData.term
+      }
+    })
+  }
   isConflicting(meetingDayTimeTerm) {
     meetingDayTimeTerm.forEach(eachDayTimeTermObj => {
       const { day, start, end, term } = eachDayTimeTermObj
@@ -168,14 +162,13 @@ class App extends Component {
 
 
   render() {
-
-    const addedCoursesCount = this.state.meetingSectionData.filter(data => data.clicked === 'clicked').length
+    const addedCoursesCount = this.state.meetingSectionData.filter(data => data.addMethod === 'clicked').length
 
     const sectionDataToEntry = entryJSON => {
       return entryJSON.course_times.map(eachTime => {
         const styleObj = {
-          opacity:      entryJSON.clicked === "clicked" ? 1 : 0.5,
-          background:   entryJSON.clicked === "hovered" ? "lightgreen" : "#0ba7b7",
+          opacity:      entryJSON.addMethod === "clicked" ? 1 : 0.5,
+          background:   entryJSON.addMethod === "hovered" ? "lightgreen" : "#0ba7b7",
           gridRowStart: 'time' + timeToMilitaryTime(eachTime.start),
           gridRowEnd:   'time' + timeToMilitaryTime(eachTime.end),
           gridColumn:   eachTime.day.toLowerCase() + "/ span 2"
