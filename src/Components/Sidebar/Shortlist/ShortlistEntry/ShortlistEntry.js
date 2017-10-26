@@ -66,7 +66,7 @@ class ShortlistEntry extends Component {
               term: this.props.term
             })
           }}
-        >🗑</button>
+        >❌</button>
         <button className="expandArrow">
           {this.state.displayInfo ? "🙈" : "🐵"}
         </button>

@@ -52,11 +52,15 @@ button.remove, .expandArrow {
   right: 2px;
   box-sizing: content-box;
   cursor: pointer;
+  transition: all 250ms linear;
+  outline: none
+  
 }
 
 button.remove {
+  right: 6px;
+  
   top: 2px;
-  transition: all 250ms linear;
 }
 
 button.remove:hover,
@@ -65,12 +69,12 @@ button.remove:focus  {
   border-radius: 50%;
   color: red;
   background-color: pink;
-  border: 2px solid red;
+  border: 2px solid red;  
 }
 
 .expandArrow {
   bottom: 2px;
-  color: #b2b2b2;
+  font-size: 20px;
 }
 
 .expandArrow:hover, .expandArrow:focus  {
