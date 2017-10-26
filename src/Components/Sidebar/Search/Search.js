@@ -77,7 +77,7 @@ class Search extends Component {
         addToShortlist={this.props.addToShortlist}
         searchResultFocused={this.searchResultFocused}
         searchResultUnfocused={this.searchResultUnfocused}
-        
+        term={eachResult.term}
       />
     )
 

@@ -11,12 +11,66 @@ const setup = () => {
   const wrapper = shallow(<App />)
   const appInstance = wrapper.instance()
   const sampleData = [
-    { code: "msCode0", courseCode: "courseCode0", name: "course0", description: "desc0", ms_data: [], term: "term0", department: "dept0" },
-    { code: "msCode1", courseCode: "courseCode0", name: "course0", description: "desc0", ms_data: [], term: "term0", department: "dept0" },
-    { code: "msCode1", courseCode: "courseCode1", name: "course1", description: "desc1", ms_data: [], term: "term1", department: "dept1" },
-    { code: "msCode2", courseCode: "courseCode2", name: "course2", description: "desc2", ms_data: [], term: "term2", department: "dept2" },
-    { code: "msCode3", courseCode: "courseCode3", name: "course3", description: "desc3", ms_data: [], term: "term3", department: "dept3" },
-    { code: "msCode4", courseCode: "courseCode4", name: "course4", description: "desc4", ms_data: [], term: "term4", department: "dept4" },
+    { 
+      id: 0,
+      code: "msCode1", 
+      courseCode: "courseCode0", 
+      name: "course0", 
+      description: "desc0", 
+      ms_data: [], 
+      term: "term0", 
+      department: "dept0" 
+    },
+    { 
+      id: 1,
+      code: "msCode0", 
+      courseCode: "courseCode0", 
+      name: "course0", 
+      description: "desc0", 
+      ms_data: [], 
+      term: "term0", 
+      department: "dept0" 
+    },
+    { 
+      id: 2,
+      code: "msCode1", 
+      courseCode: "courseCode1", 
+      name: "course1", 
+      description: "desc1", 
+      ms_data: [], 
+      term: "term1", 
+      department: "dept1" 
+    },
+    { 
+      id: 3,
+      code: "msCode2", 
+      courseCode: "courseCode2", 
+      name: "course2", 
+      description: "desc2", 
+      ms_data: [], 
+      term: "term2", 
+      department: "dept2" 
+    },
+    { 
+      id: 4,
+      code: "msCode3", 
+      courseCode: "courseCode3", 
+      name: "course3", 
+      description: "desc3", 
+      ms_data: [], 
+      term: "term3", 
+      department: "dept3" 
+    },
+    { 
+      id: 5,
+      code: "msCode4", 
+      courseCode: "courseCode4", 
+      name: "course4", 
+      description: "desc4", 
+      ms_data: [], 
+      term: "term4", 
+      department: "dept4" 
+    },
   ]
   const sampleShortlist = [
     {
@@ -63,42 +117,61 @@ describe('addMeetingSection method', () => {
 
   it('doesnt allow adding more than two of each', () => {
     const { wrapper, appInstance, sampleData } = setup()
-    appInstance.addMeetingSectionData(sampleData[0])
-    appInstance.addMeetingSectionData(sampleData[0])    
-    appInstance.addMeetingSectionData(sampleData[1])    
-    appInstance.addMeetingSectionData(sampleData[0])    
-    expect(appInstance.state["meetingSectionData"]).toEqual([sampleData[0], sampleData[0], sampleData[1]])
+    appInstance.addMeetingSectionData(sampleData[0], "clicked")
+    appInstance.addMeetingSectionData(sampleData[0], "clicked")    
+    appInstance.addMeetingSectionData(sampleData[1], "clicked")    
+    appInstance.addMeetingSectionData(sampleData[0], "clicked")    
+    expect(appInstance.state["meetingSectionData"]).toEqual(
+      [
+        { ...sampleData[1], clicked: 'clicked'},
+        {...sampleData[0], clicked: 'clicked'},
+        { ...sampleData[0], clicked: 'clicked'}
+      ]
+    )
   })
 })
 
 describe('removeMeetingSectionData method', () => {
-  it('removes items from app state, preserves order', () => {
+  it('removes items from app state, preserves order (fifo)', () => {
     const { wrapper, appInstance, sampleData } = setup()
-    appInstance.addMeetingSectionData(sampleData[0])
-    appInstance.addMeetingSectionData(sampleData[1])
-    appInstance.addMeetingSectionData(sampleData[2])
-    appInstance.addMeetingSectionData(sampleData[3])
+    appInstance.addMeetingSectionData(sampleData[0], "clicked")
+    appInstance.addMeetingSectionData(sampleData[3], "clicked")
+    appInstance.addMeetingSectionData(sampleData[1], "clicked")
+    appInstance.addMeetingSectionData(sampleData[2], "clicked")
 
     
-    appInstance.removeMeetingSectionData(sampleData[1])
-    expect(appInstance.state["meetingSectionData"]).toEqual([sampleData[0], sampleData[2], sampleData[3]])
+    appInstance.removeMeetingSectionData(sampleData[1], 'clicked')
+    expect(appInstance.state["meetingSectionData"]).toEqual([
+      {...sampleData[2], clicked: 'clicked'}, 
+      {...sampleData[3], clicked: 'clicked'}, 
+      {...sampleData[0], clicked: 'clicked'}
+    ])
 
-    appInstance.removeMeetingSectionData(sampleData[2])
-    expect(appInstance.state["meetingSectionData"]).toEqual([sampleData[0], sampleData[3]])
+    appInstance.removeMeetingSectionData(sampleData[2], 'clicked')
+    expect(appInstance.state["meetingSectionData"]).toEqual([
+      {...sampleData[3], clicked: 'clicked'}, 
+      {...sampleData[0], clicked: 'clicked'}
+    ])
     
   })
-  it('removes the most recent occurence', () => {
+
+  it('removes items from app state, preserves order (fifo)', () => {
     const { wrapper, appInstance, sampleData } = setup()
+    appInstance.addMeetingSectionData(sampleData[0], "clicked")
+    appInstance.addMeetingSectionData(sampleData[1], "clicked")
+    appInstance.addMeetingSectionData(sampleData[2], "hovered")
+    appInstance.addMeetingSectionData(sampleData[2], "clicked")
+    appInstance.removeMeetingSectionData(sampleData[2], 'hovered')
 
-    appInstance.addMeetingSectionData({...sampleData[0], id: 1 })
-    appInstance.addMeetingSectionData(sampleData[1])
-    appInstance.addMeetingSectionData({...sampleData[0], id: 2})
-    appInstance.addMeetingSectionData(sampleData[2])
-
-    appInstance.removeMeetingSectionData(sampleData[0])
+    expect(appInstance.state["meetingSectionData"]).toEqual([
+      {...sampleData[2], clicked: 'clicked'}, 
+      {...sampleData[1], clicked: 'clicked'}, 
+      {...sampleData[0], clicked: 'clicked'}
+    ])
     
-    expect(appInstance.state["meetingSectionData"]).toEqual([{ ...sampleData[0], id: 1 }, sampleData[1], sampleData[2]])
   })
+
+
 })
 
 describe('addToShortlist method', () => {

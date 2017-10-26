@@ -15,16 +15,15 @@
   justify-content: space-around;
 
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 132, 76)), to(rgb(241, 90, 30)));
-  background-image: -webkit-linear-gradient(top, rgb(255, 132, 76), rgb(241, 90, 30));
-  background-image: -moz-linear-gradient(top, rgb(255, 132, 76), rgb(241, 90, 30));
-  background-image: -o-linear-gradient(top, rgb(255, 132, 76), rgb(241, 90, 30));
-  background-image: -ms-linear-gradient(top, rgb(255, 132, 76), rgb(241, 90, 30));
-  background-image: linear-gradient(top, rgb(255, 132, 76), rgb(241, 90, 30));
+  background-image: -webkit-linear-gradient(to bottom, rgb(255, 132, 76), rgb(241, 90, 30));
+  background-image: -moz-linear-gradient(to bottom, rgb(255, 132, 76), rgb(241, 90, 30));
+  background-image: -o-linear-gradient(to bottom, rgb(255, 132, 76), rgb(241, 90, 30));
+  background-image: -ms-linear-gradient(to bottom, rgb(255, 132, 76), rgb(241, 90, 30));
+  background-image: linear-gradient(to bottom, rgb(255, 132, 76), rgb(241, 90, 30));
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#4ca2e8', EndColorStr='#2371b7');
 }
 
-/*STYLE NAV BAR LINKS*/
-.navBarLinks > a {
+.navbar  button {
   text-decoration: none;
   color: #111;
   width: auto;
@@ -41,7 +40,7 @@
   box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.4) 0 1.5px 0;
 }
 
-.navBarLinks > a:hover {
+.navbar button:hover {
   border: 1px solid white;
   background-color: #b91900;
   color: white;
@@ -51,7 +50,7 @@
   box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1.5px 0;
 }
 
-.navBarLinks > a:active {
+.navbar > button:active {
   border-bottom: 1px solid #b91900;
 }
 
@@ -61,33 +60,4 @@
 
 .signup {
   border-radius: 0 3px 3px 0;
-}
-
-/*STYLE PRINT BUTTON*/
-.printbutton {
-  background-color: white;
-  border-radius: 3px;
-  border: 1px solid;
-  border-color: #c61e03 #b91900 #aa1701;
-  height: auto;
-  padding: 5px 10px;
-  transition: all .5s ease;
-
-  -webkit-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.4) 0 1.5px 0;
-  -moz-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.3) 0 1.5px 0;
-  box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.4) 0 1.5px 0;
-}
-
-.printbutton:hover {
-  border: 1px solid white;
-  background-color: #b91900;
-  color: white;
-
-  -webkit-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1.5px 0;
-  -moz-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.3) 0 1.5px 0;
-  box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1.5px 0;
-}
-
-.printbutton:active {
-  border-bottom: 1px solid #b91900;
 }
