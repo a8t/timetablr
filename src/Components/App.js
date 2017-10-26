@@ -4,6 +4,10 @@ import Calendar from "./Calendar/Calendar";
 import Sidebar from "./Sidebar/Sidebar";
 import Navbar from "./Navbar/Navbar";
 import Counter from "./Counter/Counter"
+import Entry from './Calendar/Entry/Entry.js'
+
+const timeToMilitaryTime = secondsTime => Number.isInteger(secondsTime / 3600) ? secondsTime / 3600 : Math.floor(secondsTime / 3600) + "30"
+
 
 class App extends Component {
   constructor(props) {
@@ -72,6 +76,21 @@ class App extends Component {
       ) >= 2
     ) return
 
+    const meetingSectionDataToDayAndTime = (newMeetingData) => {
+      return newMeetingData.course_times.map(eachTime => {
+        return {
+          day: eachTime.day.toLowerCase(),
+          start: eachTime.start,
+          end: eachTime.end,
+          term: newMeetingData.term
+        }
+      })
+    }
+
+    if (clicked == "clicked") {
+      this.addToCurrentCoursesAdded(meetingSectionDataToDayAndTime(newMeetingData))
+    }
+
     this.setState({
       meetingSectionData: [...this.state.meetingSectionData, { ...newMeetingData, clicked: clicked }]
     })
@@ -90,17 +109,6 @@ class App extends Component {
       revArr.splice(clickedIndex > -1 ? clickedIndex : unclickedIndex , 1)
 
       return { meetingSectionData: revArr.reverse() }
-    })
-  }
-
-  meetingSectionDataToDayAndTime(newMeetingData) {
-    return newMeetingData.course_times.map(eachTime => {
-      return {
-        day: eachTime.day.toLowerCase(),
-        start: eachTime.start,
-        end: eachTime.end,
-        term: newMeetingData.term
-      }
     })
   }
 
@@ -136,6 +144,37 @@ class App extends Component {
 
     const addedCoursesCount = this.state.meetingSectionData.filter(data => data.clicked === 'clicked').length
 
+    const sectionDataToEntry = entryJSON => {
+      return entryJSON.course_times.map(eachTime => {
+        const styleObj = {
+          opacity:      entryJSON.clicked === "clicked" ? 1 : 0.5,
+          gridRowStart: 'time' + timeToMilitaryTime(eachTime.start),
+          gridRowEnd:   'time' + timeToMilitaryTime(eachTime.end),
+          gridColumn:   eachTime.day.toLowerCase() + "/ span 2"
+        }        
+
+        return (
+          <Entry
+            code={entryJSON.code}
+            style={styleObj}
+            courseCode={entryJSON.courseCode}
+            instructors={entryJSON.instructors ? entryJSON.instructors : ""}
+            timeStart={eachTime.start / 3600 % 12}
+            timeEnd={eachTime.end / 3600 % 12}
+            removeMeetingSectionData={this.removeMeetingSectionData}
+            key={entryJSON.courseCode + eachTime.day + eachTime.start} 
+          />
+        )
+      }
+    )
+  }
+  
+    const fallCourses   = this.state.meetingSectionData.filter(eachSectionData => eachSectionData.term === "2017 Fall")
+    const fallEntries   = fallCourses.map(eachSectionData => sectionDataToEntry(eachSectionData))
+    
+    const winterCourses = this.state.meetingSectionData.filter(eachSectionData => eachSectionData.term === "2018 Winter")
+    const winterEntries = winterCourses.map(eachSectionData => sectionDataToEntry(eachSectionData))
+
     return (
       <div className="App">
         <Navbar />
@@ -146,13 +185,10 @@ class App extends Component {
           removeFromShortlist={this.removeFromShortlist}
           shortlist={this.state.shortlist}
           meetingSectionData = {this.state.meetingSectionData}
-          updateCount={this.updateCount}
         />
         <Calendar
-          meetingSectionData={this.state.meetingSectionData}
-          addMeetingSectionData={this.addMeetingSectionData}
-          removeMeetingSectionData={this.removeMeetingSectionData}
-          updateCount={this.updateCount}
+          fallEntries={fallEntries}
+          winterEntries={winterEntries}
         />
       <Counter count={addedCoursesCount}/>
       </div>

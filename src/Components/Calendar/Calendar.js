@@ -1,58 +1,11 @@
 import React, {Component} from 'react';
 import './Calendar.css';
-import Entry from './Entry/Entry.js'
 
-const timeToMilitaryTime = secondsTime => Number.isInteger(secondsTime / 3600) ? secondsTime / 3600 : Math.floor(secondsTime / 3600) + "30"
-
-class Calendar extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      meetingSectionData: []
-    }
-  }
-
-  componentWillReceiveProps(nextProps){
-    this.setState({
-      meetingSectionData: nextProps.meetingSectionData
-    })
-  }
-
-  sectionDataToEntry(entryJSON) {
-
-    // const color = colors[Math.floor(Math.random() * colors.length)]
-
-    return entryJSON.course_times.map(eachTime => {
-      const styleObj = {
-        opacity: entryJSON.clicked ? 1 : 0.5,
-        gridRowStart: 'time' + timeToMilitaryTime(eachTime.start),
-        gridRowEnd: 'time' + timeToMilitaryTime(eachTime.end),
-        gridColumn: eachTime.day.toLowerCase()
-      }
-
-      return (
-        <Entry
-          code={entryJSON.code}
-          style={styleObj}
-          courseCode={entryJSON.courseCode}
-          instructors={entryJSON.instructors ? entryJSON.instructors : ""}
-          timeStart={eachTime.start / 3600 % 12}
-          timeEnd={eachTime.end / 3600 % 12}
-          removeMeetingSectionData={this.props.removeMeetingSectionData}
-          key={entryJSON.courseCode + eachTime.day + eachTime.start}/>) }
-    )
-  }
-
-  render () {
-
-    const sectionsDataArray = this.state.meetingSectionData
-    const fallEntries = sectionsDataArray.filter(eachSectionData => eachSectionData.term === "2017 Fall").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
-    const winterEntries = sectionsDataArray.filter(eachSectionData => eachSectionData.term === "2018 Winter").map(eachSectionData => this.sectionDataToEntry(eachSectionData))
-
-    return (
+const Calendar = props => {
+  return (
       <div id="calendars">
         <div id='calendarFall'>
-          {fallEntries}
+          {props.fallEntries}
           <div className="weekday line term" style={{gridColumn: "start     / span 1"}}>F '17</div>
           <div className="weekday line"      style={{gridColumn: "monday    / span 2"}}>MO</div>
           <div className="weekday line"      style={{gridColumn: "tuesday   / span 2"}}>TU</div>
@@ -93,7 +46,7 @@ class Calendar extends Component {
           <div className="timeslot halfHour" style={{gridRow: "time2230 / span 1"}}></div>
         </div>
         <div id='calendarWinter'>
-          {winterEntries}
+          {props.winterEntries}
           <div className="weekday line term" style={{gridColumn: "start     / span 1"}}>W '18</div>
           <div className="weekday line"      style={{gridColumn: "monday    / span 2"}}>MO</div>
           <div className="weekday line"      style={{gridColumn: "tuesday   / span 2"}}>TU</div>
@@ -133,7 +86,6 @@ class Calendar extends Component {
         </div>
       </div>
     )
-  }
 }
-
+    
 export default Calendar
