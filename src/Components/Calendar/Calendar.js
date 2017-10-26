@@ -6,12 +6,12 @@ const Calendar = props => {
       <div id="calendars">
         <div id='calendarFall'>
           {props.fallEntries}
-          <div className="weekday line term" style={{gridColumn: "start     / span 1"}}>F '17</div>
+          <div className="weekday term"      style={{gridColumn: "start     / span 1"}}>F '17</div>
           <div className="weekday line"      style={{gridColumn: "monday    / span 2"}}>MO</div>
           <div className="weekday line"      style={{gridColumn: "tuesday   / span 2"}}>TU</div>
           <div className="weekday line"      style={{gridColumn: "wednesday / span 2"}}>WE</div>
           <div className="weekday line"      style={{gridColumn: "thursday  / span 2"}}>TH</div>
-          <div className="weekday"           style={{gridColumn: "friday    / span 2"}}>FR</div>
+          <div className="weekday line"      style={{gridColumn: "friday    / span 2"}}>FR</div>
           <div className="time"              style={{gridRow: "time     / span 2"}}></div>
           <div className="time"              style={{gridRow: "time     / span 2"}}></div>
           <div className="timeslot first"    style={{gridRow: "time8    / span 2" }}>8am</div>
