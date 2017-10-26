@@ -176,7 +176,6 @@ class App extends Component {
     
     const winterCourses = this.state.meetingSectionData.filter(eachSectionData => eachSectionData.term === "2018 Winter")
     const winterEntries = winterCourses.reverse().map(eachSectionData => sectionDataToEntry(eachSectionData))
-    console.log(winterCourses);
     
     return (
       <div className="App">

@@ -11,12 +11,66 @@ const setup = () => {
   const wrapper = shallow(<App />)
   const appInstance = wrapper.instance()
   const sampleData = [
-    { code: "msCode0", courseCode: "courseCode0", name: "course0", description: "desc0", ms_data: [], term: "term0", department: "dept0" },
-    { code: "msCode1", courseCode: "courseCode0", name: "course0", description: "desc0", ms_data: [], term: "term0", department: "dept0" },
-    { code: "msCode1", courseCode: "courseCode1", name: "course1", description: "desc1", ms_data: [], term: "term1", department: "dept1" },
-    { code: "msCode2", courseCode: "courseCode2", name: "course2", description: "desc2", ms_data: [], term: "term2", department: "dept2" },
-    { code: "msCode3", courseCode: "courseCode3", name: "course3", description: "desc3", ms_data: [], term: "term3", department: "dept3" },
-    { code: "msCode4", courseCode: "courseCode4", name: "course4", description: "desc4", ms_data: [], term: "term4", department: "dept4" },
+    { 
+      id: 0,
+      code: "msCode1", 
+      courseCode: "courseCode0", 
+      name: "course0", 
+      description: "desc0", 
+      ms_data: [], 
+      term: "term0", 
+      department: "dept0" 
+    },
+    { 
+      id: 1,
+      code: "msCode0", 
+      courseCode: "courseCode0", 
+      name: "course0", 
+      description: "desc0", 
+      ms_data: [], 
+      term: "term0", 
+      department: "dept0" 
+    },
+    { 
+      id: 2,
+      code: "msCode1", 
+      courseCode: "courseCode1", 
+      name: "course1", 
+      description: "desc1", 
+      ms_data: [], 
+      term: "term1", 
+      department: "dept1" 
+    },
+    { 
+      id: 3,
+      code: "msCode2", 
+      courseCode: "courseCode2", 
+      name: "course2", 
+      description: "desc2", 
+      ms_data: [], 
+      term: "term2", 
+      department: "dept2" 
+    },
+    { 
+      id: 4,
+      code: "msCode3", 
+      courseCode: "courseCode3", 
+      name: "course3", 
+      description: "desc3", 
+      ms_data: [], 
+      term: "term3", 
+      department: "dept3" 
+    },
+    { 
+      id: 5,
+      code: "msCode4", 
+      courseCode: "courseCode4", 
+      name: "course4", 
+      description: "desc4", 
+      ms_data: [], 
+      term: "term4", 
+      department: "dept4" 
+    },
   ]
   const sampleShortlist = [
     {
