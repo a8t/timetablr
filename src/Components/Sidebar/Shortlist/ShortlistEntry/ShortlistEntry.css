@@ -42,11 +42,11 @@
 /*STYLE SHORTLIST ENTRY REMOVE AND EXPAND BUTTON*/
 button.remove, .expandArrow {
   border: 2px solid transparent;
+  border-radius: 50%;
   background: none;
   position: absolute;
   right: 2px;
   box-sizing: content-box;
-  border-radius: 2px;
   cursor: pointer;
 }
 
@@ -58,7 +58,7 @@ button.remove {
 button.remove:hover,
 button.remove:focus  {
   transform: rotate(180deg);
-  border-radius: 50px;
+  border-radius: 50%;
   color: red;
   background-color: pink;
   border: 2px solid red;

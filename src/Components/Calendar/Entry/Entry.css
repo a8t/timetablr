@@ -36,7 +36,7 @@
   right: 0px;
   border: 1px solid transparent;
   box-sizing: margin-box;
-  border-radius: 2px;
+  border-radius: 50%;
   transition: all 250ms linear;
 }
 
@@ -45,5 +45,5 @@
   color: red;
   border: 1px solid red;
   transform: rotate(180deg);
-  border-radius: 50px;
+  border-radius: 50%;
 }

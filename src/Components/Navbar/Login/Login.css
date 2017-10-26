@@ -29,6 +29,7 @@ button.closeForm {
   color: #aaa;
   margin: 0;
   border: 2px solid transparent;
+  border-radius: 50%;
   box-shadow: none;
   transition: all 250ms linear;
 }
@@ -37,7 +38,7 @@ button.closeForm:hover,
 button.closeForm:focus {
   cursor: pointer;
   transform: rotate(180deg);
-  border-radius: 50px;
+  border-radius: 50%;
   color: red;
   background-color: pink;
   border: 2px solid red;
