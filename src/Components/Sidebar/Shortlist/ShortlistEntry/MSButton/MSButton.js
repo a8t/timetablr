@@ -3,13 +3,11 @@ import './MSButton.css'
 
 const MSButton = props => {
 
-  const added = props.meetingSectionData.find(eachAdded => eachAdded.code === props.eachMSD.code && eachAdded.courseCode === props.code)
-  const addedClicked = props.meetingSectionData.find(eachAdded => eachAdded.code === props.eachMSD.code && eachAdded.courseCode === props.code && eachAdded.clicked === "clicked")
-
-  const addedTwice = props.meetingSectionData.reduce((n, val) => n + (val.code === props.eachMSD.code && val.courseCode === props.code), 0) >= 2
+  const added = props.meetingSectionData.find(eachAdded => eachAdded.id === props.eachMSD.id)
+  const addedClicked = props.meetingSectionData.find(eachAdded => eachAdded.id === props.eachMSD.id && eachAdded.addMethod === "clicked")
 
   let color
-  if (addedTwice || addedClicked) {
+  if (addedClicked) {
     color = "#9be04c"
   } else if (added) {
     color = "lightcyan"
@@ -25,7 +23,7 @@ const MSButton = props => {
       onClick={(e) => {
         e.stopPropagation()
         e.preventDefault()
-        if (addedTwice) {
+        if (addedClicked) {
           props.removeMeetingSectionData(props.eachMSD, "clicked")
         } else {
           props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code, }, "clicked")
@@ -34,6 +32,10 @@ const MSButton = props => {
       onMouseOver={(e) => { 
         props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered" )}}
       onMouseLeave={(e) => { 
+        props.removeMeetingSectionData(props.eachMSD, "hovered" )}}
+      onFocus={(e) => { 
+        props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered" )}}
+      onBlur={(e) => { 
         props.removeMeetingSectionData(props.eachMSD, "hovered" )}}
     >
       {props.eachMSD.code}

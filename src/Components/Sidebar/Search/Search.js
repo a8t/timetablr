@@ -94,6 +94,7 @@ class Search extends Component {
           onKeyDown={(e) => {
             if (e.key === 'Escape') {
               this.searchResultUnfocused()
+              e.target.blur()
             }
           }}
           placeholder="Search course"/>
