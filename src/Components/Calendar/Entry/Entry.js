@@ -9,8 +9,7 @@ const Entry = props => {
     >
       <button
         className="removeEntry"
-        onClick={(e) => {props.removeMeetingSectionData({ code: props.code, courseCode: props.courseCode }, "clicked")}}
-        
+        onClick={(e) => {props.removeMeetingSectionData({ id: props.id }, "clicked")}}
       >x</button>
       <p className="entryText courseCode">{props.courseCode}</p>
       <p className="entryText">{props.code}</p>

@@ -4,7 +4,8 @@ import Calendar from "./Calendar/Calendar";
 import Sidebar from "./Sidebar/Sidebar";
 import Navbar from "./Navbar/Navbar";
 import Counter from "./Counter/Counter"
-import Entry from './Calendar/Entry/Entry.js'
+import Entry from './Calendar/Entry/Entry'
+import { loadState} from "./localState"
 
 const timeToMilitaryTime = secondsTime => Number.isInteger(secondsTime / 3600) ? secondsTime / 3600 : Math.floor(secondsTime / 3600) + "30"
 
@@ -38,6 +39,34 @@ class App extends Component {
     this.removeFromShortlist = this.removeFromShortlist.bind(this)
     this.addToCurrentCoursesAdded = this.addToCurrentCoursesAdded.bind(this)
     this.isConflicting = this.isConflicting.bind(this)
+  }
+
+  componentWillMount(){
+    const loadState = () => {
+      try {
+        const serializedState = localStorage.getItem('state');
+        if (serializedState === null) {
+          return undefined
+        }
+        return JSON.parse(serializedState)
+      } catch (err) {
+        return undefined
+      }
+    }
+
+    if (loadState()) this.setState(loadState())
+
+    const saveState = (e) => {
+      try {
+        const serializedState = JSON.stringify(this.state)
+        localStorage.setItem('state', serializedState)
+      } catch (err) {
+        return undefined
+      }
+    }
+    
+
+    window.addEventListener("beforeunload", saveState)
   }
 
   addToShortlist(newEntry) {
@@ -101,9 +130,9 @@ class App extends Component {
     this.setState((prevState) => {
       
       const index = prevState.meetingSectionData.findIndex(i =>
-        i.id === meetingDataToRemove.id && clicked === i.clicked
+        i.id === meetingDataToRemove.id &&  i.clicked === clicked
       )
-
+      
       return { meetingSectionData: [
         ...prevState.meetingSectionData.slice(0, index),
         ...prevState.meetingSectionData.slice(index+1)
@@ -151,20 +180,18 @@ class App extends Component {
           gridRowStart: 'time' + timeToMilitaryTime(eachTime.start),
           gridRowEnd:   'time' + timeToMilitaryTime(eachTime.end),
           gridColumn:   eachTime.day.toLowerCase() + "/ span 2"
-        }        
-
-
+        }       
+        
         return (
           <Entry
             code={entryJSON.code}
+            id={entryJSON.id}
             style={styleObj}
             courseCode={entryJSON.courseCode}
-            instructors={entryJSON.instructors ? entryJSON.instructors : ""}
             timeStart={eachTime.start / 3600 % 12}
             timeEnd={eachTime.end / 3600 % 12}
             key={entryJSON.courseCode + eachTime.day + eachTime.start} 
             removeMeetingSectionData={this.removeMeetingSectionData}
-            addMeetingSectionData={this.addMeetingSectionData}
           />
         )
       }
