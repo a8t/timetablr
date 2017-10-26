@@ -26,7 +26,7 @@ const MSButton = props => {
         e.stopPropagation()
         e.preventDefault()
         if (addedTwice) {
-          props.removeMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "clicked")
+          props.removeMeetingSectionData(props.eachMSD, "clicked")
         } else {
           props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code, }, "clicked")
         }
@@ -34,7 +34,7 @@ const MSButton = props => {
       onMouseOver={(e) => { 
         props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered" )}}
       onMouseLeave={(e) => { 
-        props.removeMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered" )}}
+        props.removeMeetingSectionData(props.eachMSD, "hovered" )}}
     >
       {props.eachMSD.code}
     </button>
