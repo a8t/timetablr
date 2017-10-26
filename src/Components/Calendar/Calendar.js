@@ -11,7 +11,7 @@ const Calendar = props => {
           <div className="weekday line"      style={{gridColumn: "tuesday   / span 2"}}>TU</div>
           <div className="weekday line"      style={{gridColumn: "wednesday / span 2"}}>WE</div>
           <div className="weekday line"      style={{gridColumn: "thursday  / span 2"}}>TH</div>
-          <div className="weekday"           style={{gridColumn: "friday    / span 1"}}>FR</div>
+          <div className="weekday"           style={{gridColumn: "friday    / span 2"}}>FR</div>
           <div className="time"              style={{gridRow: "time     / span 2"}}></div>
           <div className="time"              style={{gridRow: "time     / span 2"}}></div>
           <div className="timeslot first"    style={{gridRow: "time8    / span 2" }}>8am</div>
@@ -52,7 +52,7 @@ const Calendar = props => {
           <div className="weekday line"      style={{gridColumn: "tuesday   / span 2"}}>TU</div>
           <div className="weekday line"      style={{gridColumn: "wednesday / span 2"}}>WE</div>
           <div className="weekday line"      style={{gridColumn: "thursday  / span 2"}}>TH</div>
-          <div className="weekday"           style={{gridColumn: "friday    / span 1"}}>FR</div>
+          <div className="weekday"           style={{gridColumn: "friday    / span 2"}}>FR</div>
           <div className="timeslot first"    style={{gridRow: "time8    / span 2"}}>8am</div>
           <div className="timeslot halfHour" style={{gridRow: "time830  / span 1"}}></div>
           <div className="timeslot"          style={{gridRow: "time9    / span 2"}}>9am</div>

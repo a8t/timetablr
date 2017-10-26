@@ -15,7 +15,7 @@
     height: auto;
     border-radius: 2px;
     display: grid;
-    --colWidth: 60px;
+    --colWidth: 55px;
     --rowheight: 28px;
     grid-template-columns: 
         [start]             var(--colWidth) 
@@ -26,7 +26,7 @@
         [wednesday]         var(--colWidth) 
         [wednesdayConflict] var(--colWidth) 
         [thursday]          var(--colWidth) 
-        [thursdayConflict] var(--colWidth) 
+        [thursdayConflict]  var(--colWidth) 
         [friday]            var(--colWidth) 
         [fridayConflict]    var(--colWidth) 
         [end];
