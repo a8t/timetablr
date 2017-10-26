@@ -57,6 +57,7 @@ class App extends Component {
     if (loadState()) this.setState(loadState())
 
     const saveState = (e) => {
+      e.preventDefault()
       try {
         const serializedState = JSON.stringify(this.state)
         localStorage.setItem('state', serializedState)
@@ -64,7 +65,6 @@ class App extends Component {
         return undefined
       }
     }
-    
 
     window.addEventListener("beforeunload", saveState)
   }
