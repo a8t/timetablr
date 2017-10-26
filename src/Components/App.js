@@ -5,7 +5,6 @@ import Sidebar from "./Sidebar/Sidebar";
 import Navbar from "./Navbar/Navbar";
 import Counter from "./Counter/Counter"
 import Entry from './Calendar/Entry/Entry'
-import { loadState} from "./localState"
 
 const timeToMilitaryTime = secondsTime => Number.isInteger(secondsTime / 3600) ? secondsTime / 3600 : Math.floor(secondsTime / 3600) + "30"
 
