@@ -29,11 +29,14 @@
   width: auto;
   height: auto;
   background: white;
-  padding: 5px 10px;
+  padding: 6px 10px;
   text-shadow: 0 1px rgba(black, .2);
   border: 1px solid;
   border-color: #c61e03 #b91900 #aa1701;
   transition: all .5s ease;
+  cursor: pointer;
+  letter-spacing: 1px;
+  border-radius: 4px;
 
   -webkit-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.4) 0 1.5px 0;
   -moz-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.3) 0 1.5px 0;
@@ -52,12 +55,4 @@
 
 .navbar > button:active {
   border-bottom: 1px solid #b91900;
-}
-
-.login {
-  border-radius: 3px 0 0 3px;
-}
-
-.signup {
-  border-radius: 0 3px 3px 0;
 }

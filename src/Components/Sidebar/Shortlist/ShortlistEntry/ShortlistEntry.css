@@ -40,20 +40,25 @@
 }
 
 /*STYLE SHORTLIST ENTRY REMOVE AND EXPAND BUTTON*/
-.remove, .expandArrow {
-  border: 2px solid white;
+button.remove, .expandArrow {
+  border: 2px solid transparent;
   background: none;
   position: absolute;
   right: 2px;
   box-sizing: content-box;
   border-radius: 2px;
+  cursor: pointer;
 }
 
-.remove {
+button.remove {
   top: 2px;
+  transition: all 250ms linear;
 }
 
-.remove:hover, .remove:focus  {
+button.remove:hover,
+button.remove:focus  {
+  transform: rotate(180deg);
+  border-radius: 50px;
   color: red;
   background-color: pink;
   border: 2px solid red;
