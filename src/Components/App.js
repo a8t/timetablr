@@ -72,7 +72,7 @@ class App extends Component {
   addMeetingSectionData(newMeetingData, clicked) {
     if (
       this.state.meetingSectionData.reduce(
-        (n, val) => n + (val.code === newMeetingData.code && val.courseCode === newMeetingData.courseCode), 0
+        (n, val) => n + (val.id === newMeetingData.id), 0
       ) >= 2
     ) return
 
@@ -90,17 +90,18 @@ class App extends Component {
     // if (clicked == "clicked") {
     //   this.addToCurrentCoursesAdded(meetingSectionDataToDayAndTime(newMeetingData))
     // }
-
+    
     this.setState({
       meetingSectionData: [{ ...newMeetingData, clicked: clicked }, ...this.state.meetingSectionData, ]
     })
   }
 
   removeMeetingSectionData(meetingDataToRemove, clicked) {
+    
     this.setState((prevState) => {
       
       const index = prevState.meetingSectionData.findIndex(i =>
-        i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code && clicked === i.clicked
+        i.id === meetingDataToRemove.id && clicked === i.clicked
       )
 
       return { meetingSectionData: [
@@ -146,10 +147,12 @@ class App extends Component {
       return entryJSON.course_times.map(eachTime => {
         const styleObj = {
           opacity:      entryJSON.clicked === "clicked" ? 1 : 0.5,
+          background:   entryJSON.clicked === "hovered" ? "lightgreen" : "#0ba7b7",
           gridRowStart: 'time' + timeToMilitaryTime(eachTime.start),
           gridRowEnd:   'time' + timeToMilitaryTime(eachTime.end),
           gridColumn:   eachTime.day.toLowerCase() + "/ span 2"
         }        
+
 
         return (
           <Entry
@@ -159,8 +162,9 @@ class App extends Component {
             instructors={entryJSON.instructors ? entryJSON.instructors : ""}
             timeStart={eachTime.start / 3600 % 12}
             timeEnd={eachTime.end / 3600 % 12}
-            removeMeetingSectionData={this.removeMeetingSectionData}
             key={entryJSON.courseCode + eachTime.day + eachTime.start} 
+            removeMeetingSectionData={this.removeMeetingSectionData}
+            addMeetingSectionData={this.addMeetingSectionData}
           />
         )
       }
@@ -168,11 +172,12 @@ class App extends Component {
   }
   
     const fallCourses   = this.state.meetingSectionData.filter(eachSectionData => eachSectionData.term === "2017 Fall")
-    const fallEntries   = fallCourses.map(eachSectionData => sectionDataToEntry(eachSectionData))
+    const fallEntries   = fallCourses.reverse().map(eachSectionData => sectionDataToEntry(eachSectionData))
     
     const winterCourses = this.state.meetingSectionData.filter(eachSectionData => eachSectionData.term === "2018 Winter")
-    const winterEntries = winterCourses.map(eachSectionData => sectionDataToEntry(eachSectionData))
-
+    const winterEntries = winterCourses.reverse().map(eachSectionData => sectionDataToEntry(eachSectionData))
+    console.log(winterCourses);
+    
     return (
       <div className="App">
         <Navbar />

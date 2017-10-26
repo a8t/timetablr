@@ -5,7 +5,7 @@ import './SearchResult.css'
 const SearchResult = props => {
 
   return (
-    <button 
+    <button  
       className='searchResult' 
       onMouseDown={() => {
         props.addToShortlist({
@@ -37,6 +37,9 @@ const SearchResult = props => {
         </p>
         <p className='courseName'>
           {props.courseName}
+        </p>
+        <p className='courseTerm'>
+          {props.term}
         </p>
       </div>
     </button>

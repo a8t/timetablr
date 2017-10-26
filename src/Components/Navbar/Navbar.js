@@ -8,8 +8,8 @@ const Navbar = props => {
       className="navbar"
     >
       <nav className="navBarLinks">
-        <a className="login" href="#">LOGIN</a>
-        <a className="signup" href="#">SIGN UP</a>
+        <button className="login" href="#">LOGIN</button>
+        <button className="signup" href="#">SIGN UP</button>
       </nav>
       <button
         className="printbutton"
