@@ -63,42 +63,61 @@ describe('addMeetingSection method', () => {
 
   it('doesnt allow adding more than two of each', () => {
     const { wrapper, appInstance, sampleData } = setup()
-    appInstance.addMeetingSectionData(sampleData[0])
-    appInstance.addMeetingSectionData(sampleData[0])    
-    appInstance.addMeetingSectionData(sampleData[1])    
-    appInstance.addMeetingSectionData(sampleData[0])    
-    expect(appInstance.state["meetingSectionData"]).toEqual([sampleData[0], sampleData[0], sampleData[1]])
+    appInstance.addMeetingSectionData(sampleData[0], "clicked")
+    appInstance.addMeetingSectionData(sampleData[0], "clicked")    
+    appInstance.addMeetingSectionData(sampleData[1], "clicked")    
+    appInstance.addMeetingSectionData(sampleData[0], "clicked")    
+    expect(appInstance.state["meetingSectionData"]).toEqual(
+      [
+        { ...sampleData[1], clicked: 'clicked'},
+        {...sampleData[0], clicked: 'clicked'},
+        { ...sampleData[0], clicked: 'clicked'}
+      ]
+    )
   })
 })
 
 describe('removeMeetingSectionData method', () => {
-  it('removes items from app state, preserves order', () => {
+  it('removes items from app state, preserves order (fifo)', () => {
     const { wrapper, appInstance, sampleData } = setup()
-    appInstance.addMeetingSectionData(sampleData[0])
-    appInstance.addMeetingSectionData(sampleData[1])
-    appInstance.addMeetingSectionData(sampleData[2])
-    appInstance.addMeetingSectionData(sampleData[3])
+    appInstance.addMeetingSectionData(sampleData[0], "clicked")
+    appInstance.addMeetingSectionData(sampleData[3], "clicked")
+    appInstance.addMeetingSectionData(sampleData[1], "clicked")
+    appInstance.addMeetingSectionData(sampleData[2], "clicked")
 
     
-    appInstance.removeMeetingSectionData(sampleData[1])
-    expect(appInstance.state["meetingSectionData"]).toEqual([sampleData[0], sampleData[2], sampleData[3]])
+    appInstance.removeMeetingSectionData(sampleData[1], 'clicked')
+    expect(appInstance.state["meetingSectionData"]).toEqual([
+      {...sampleData[2], clicked: 'clicked'}, 
+      {...sampleData[3], clicked: 'clicked'}, 
+      {...sampleData[0], clicked: 'clicked'}
+    ])
 
-    appInstance.removeMeetingSectionData(sampleData[2])
-    expect(appInstance.state["meetingSectionData"]).toEqual([sampleData[0], sampleData[3]])
+    appInstance.removeMeetingSectionData(sampleData[2], 'clicked')
+    expect(appInstance.state["meetingSectionData"]).toEqual([
+      {...sampleData[3], clicked: 'clicked'}, 
+      {...sampleData[0], clicked: 'clicked'}
+    ])
     
   })
-  it('removes the most recent occurence', () => {
+
+  it('removes items from app state, preserves order (fifo)', () => {
     const { wrapper, appInstance, sampleData } = setup()
+    appInstance.addMeetingSectionData(sampleData[0], "clicked")
+    appInstance.addMeetingSectionData(sampleData[1], "clicked")
+    appInstance.addMeetingSectionData(sampleData[2], "hovered")
+    appInstance.addMeetingSectionData(sampleData[2], "clicked")
+    appInstance.removeMeetingSectionData(sampleData[2], 'hovered')
 
-    appInstance.addMeetingSectionData({...sampleData[0], id: 1 })
-    appInstance.addMeetingSectionData(sampleData[1])
-    appInstance.addMeetingSectionData({...sampleData[0], id: 2})
-    appInstance.addMeetingSectionData(sampleData[2])
-
-    appInstance.removeMeetingSectionData(sampleData[0])
+    expect(appInstance.state["meetingSectionData"]).toEqual([
+      {...sampleData[2], clicked: 'clicked'}, 
+      {...sampleData[1], clicked: 'clicked'}, 
+      {...sampleData[0], clicked: 'clicked'}
+    ])
     
-    expect(appInstance.state["meetingSectionData"]).toEqual([{ ...sampleData[0], id: 1 }, sampleData[1], sampleData[2]])
   })
+
+
 })
 
 describe('addToShortlist method', () => {

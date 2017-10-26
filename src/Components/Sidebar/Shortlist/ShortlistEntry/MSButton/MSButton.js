@@ -35,8 +35,10 @@ class MSButton extends Component {
           [props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code, }, "clicked")] :
           [props.removeMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "clicked")]
         }}
-        onMouseOver={(e) => {props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }), "hovered" }}
-        onMouseLeave={(e) => {props.removeMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }), "hovered" }}
+        onMouseOver={(e) => { 
+          props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered" )}}
+        onMouseLeave={(e) => { 
+          props.removeMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered" )}}
       >
         {props.eachMSD.code}
       </button>

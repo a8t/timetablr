@@ -76,39 +76,37 @@ class App extends Component {
       ) >= 2
     ) return
 
-    const meetingSectionDataToDayAndTime = (newMeetingData) => {
-      return newMeetingData.course_times.map(eachTime => {
-        return {
-          day: eachTime.day.toLowerCase(),
-          start: eachTime.start,
-          end: eachTime.end,
-          term: newMeetingData.term
-        }
-      })
-    }
+    // const meetingSectionDataToDayAndTime = (newMeetingData) => {
+    //   return newMeetingData.course_times.map(eachTime => {
+    //     return {
+    //       day: eachTime.day.toLowerCase(),
+    //       start: eachTime.start,
+    //       end: eachTime.end,
+    //       term: newMeetingData.term
+    //     }
+    //   })
+    // }
 
-    if (clicked == "clicked") {
-      this.addToCurrentCoursesAdded(meetingSectionDataToDayAndTime(newMeetingData))
-    }
+    // if (clicked == "clicked") {
+    //   this.addToCurrentCoursesAdded(meetingSectionDataToDayAndTime(newMeetingData))
+    // }
 
     this.setState({
-      meetingSectionData: [...this.state.meetingSectionData, { ...newMeetingData, clicked: clicked }]
+      meetingSectionData: [{ ...newMeetingData, clicked: clicked }, ...this.state.meetingSectionData, ]
     })
   }
 
   removeMeetingSectionData(meetingDataToRemove, clicked) {
     this.setState((prevState) => {
-      const revArr = prevState.meetingSectionData.reverse()
-      const clickedIndex = revArr.findIndex(i =>
+      
+      const index = prevState.meetingSectionData.findIndex(i =>
         i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code && clicked === i.clicked
       )
-      const unclickedIndex = revArr.findIndex(i =>
-        i.courseCode === meetingDataToRemove.courseCode && i.code === meetingDataToRemove.code
-      )
 
-      revArr.splice(clickedIndex > -1 ? clickedIndex : unclickedIndex , 1)
-
-      return { meetingSectionData: revArr.reverse() }
+      return { meetingSectionData: [
+        ...prevState.meetingSectionData.slice(0, index),
+        ...prevState.meetingSectionData.slice(index+1)
+      ]}
     })
   }
 
