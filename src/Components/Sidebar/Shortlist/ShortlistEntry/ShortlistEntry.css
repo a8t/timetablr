@@ -8,6 +8,7 @@
   text-align: left;
   font-weight: bold;
   position: relative;
+  min-height: 80px;
 }
 
 /*STYLE SHORTLIST ENTRY ELEMENTS*/
@@ -23,6 +24,8 @@
 .shortlistEntryName {
   margin: 0;
   font-size: 14px;
+  width: 220px;
+  
 }
 
 .shortlistEntryDesc.title {
@@ -37,16 +40,18 @@
   color: #757575;
   margin: 0;
   padding-bottom: 18px;
+  
 }
 
 /*STYLE SHORTLIST ENTRY REMOVE AND EXPAND BUTTON*/
 .remove, .expandArrow {
-  border: 2px solid white;
+  border: 2px solid transparent;
   background: none;
   position: absolute;
   right: 2px;
   box-sizing: content-box;
   border-radius: 2px;
+  font-size: 20px;
 }
 
 .remove {
