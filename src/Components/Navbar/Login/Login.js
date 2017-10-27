@@ -29,8 +29,8 @@ class Login extends Component {
         
           <button className="closeForm" onClick={() => this.props.toggleLogin()}>
             <svg>
-                <line x1="0" y1="0" x2="12" y2="12" stroke="red" stroke-width="4"/>
-                <line x1="0" y1="12" x2="12" y2="0" stroke="red" stroke-width="4"/>
+                <line x1="0" y1="0" x2="12" y2="12" stroke="red" strokeWidth="4"/>
+                <line x1="0" y1="12" x2="12" y2="0" stroke="red" strokeWidth="4"/>
             </svg>
           </button>
 

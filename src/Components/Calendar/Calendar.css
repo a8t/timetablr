@@ -8,11 +8,13 @@
     justify-content: space-around;
     align-items: center;
     padding-top: 10px;
+    --colWidth: 55px;
+    margin-top: 4px;
+
 }
 
 /*STYLE FALL AND WINTER CALENDARS*/
-#calendarFall,
-#calendarWinter {
+.eachCal {
 
     font-family: 'Fira Sans', sans-serif;
     padding: 0 2px;
@@ -20,8 +22,7 @@
     height: auto;
     border-radius: 2px;
     display: grid;
-    --colWidth: 100px;
-    --rowheight: 28px;
+    --rowheight: 26px;
     position: relative;
     grid-gap: 2px;
     grid-template-columns: 
@@ -117,7 +118,10 @@
 
 .first {
     border-top: 1px solid #BDBDBD;
+}
 
+.last {
+    border-bottom: none;
 }
 
 /*STYLE TERM TEXT*/

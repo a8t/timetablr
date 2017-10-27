@@ -6,9 +6,17 @@ class Navbar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      displayLogin: false
+      displayLogin: false,
+      comfy: false
     }
     this.toggleLogin = this.toggleLogin.bind(this)
+    this.toggleComfy = this.toggleComfy.bind(this)
+  }
+
+  toggleComfy() {
+    this.setState({
+      comfy: !this.state.comfy
+    })
   }
 
   toggleLogin() {
@@ -34,10 +42,19 @@ class Navbar extends Component {
           : ""
         }
         
-        <button
-          className="printbutton"
-          onClick={(e) => window.print()}
-        >PRINT CALENDAR</button>
+        <button className="printbutton" onClick={(e) => window.print()}>
+          PRINT CALENDAR
+        </button>
+
+        <button className="cozycomfy" onClick={() => {
+          const setTo = this.state.comfy ? "55px" : "100px" 
+          document.getElementById("calendars").style.setProperty("--colWidth", setTo)
+          this.toggleComfy()
+        }}>
+          View: {this.state.comfy ? "Comfy" : "Compact"}
+        </button>
+
+
       </div>
     )
   }

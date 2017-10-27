@@ -12,7 +12,6 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-
   background-image: -webkit-gradient(linear, left top, left bottom, from(#FFA98F), to(salmon));
   background-image: -webkit-linear-gradient(to bottom, #FFA98F, salmon);
   background-image: -moz-linear-gradient(to bottom, #FFA98F,salmon) ;
