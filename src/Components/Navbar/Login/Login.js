@@ -38,8 +38,8 @@ class Login extends Component {
             <input type="text" className="block form input" required />
             <label className="label form">Password</label>
             <input type="password" className="block form input" required />
-            <input type="checkbox" className="form" />
-            <label className="label form rememberMe">Remember me on this computer</label>
+            <input type="checkbox" className="form" id="remember"/>
+            <label className="label form rememberMe" for="remember">Remember me on this computer</label>
             <button className="block form submit" type="text">SUBMIT</button>
             <button className="form register" type="text">REGISTER</button>
           </div>
