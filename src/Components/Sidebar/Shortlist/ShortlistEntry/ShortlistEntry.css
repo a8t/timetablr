@@ -53,13 +53,19 @@ button.remove, .expandArrow {
   box-sizing: content-box;
   cursor: pointer;
   transition: all 250ms linear;
-  outline: none
-  
+  transform-origin: center;
+  -moz-transform-origin: center;
+  -ms-transform-origin: center;
+  -webkit-transform-origin: center;
+  outline: none;
+  width: 26px;
+  height: 26px;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
 }
 
 button.remove {
-  right: 6px;
-  
   top: 2px;
 }
 

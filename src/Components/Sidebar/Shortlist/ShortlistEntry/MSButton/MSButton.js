@@ -33,10 +33,6 @@ const MSButton = props => {
         props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered" )}}
       onMouseLeave={(e) => { 
         props.removeMeetingSectionData(props.eachMSD, "hovered" )}}
-      onFocus={(e) => { 
-        props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered" )}}
-      onBlur={(e) => { 
-        props.removeMeetingSectionData(props.eachMSD, "hovered" )}}
     >
       {props.eachMSD.code}
     </button>

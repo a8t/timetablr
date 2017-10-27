@@ -1,6 +1,6 @@
 /*STYLE COUNTER*/
 #counter{
-  z-index: 8;
+  z-index: 400;
   position: fixed;
   top: 8px;
   right: 10px;

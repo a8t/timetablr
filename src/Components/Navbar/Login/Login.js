@@ -27,8 +27,11 @@ class Login extends Component {
 
         <div id="modal" className="modalContainer" onClick={(e) => e.stopPropagation()}>
         
-          <button class="closeForm" onClick={() => this.props.toggleLogin()}>
-            x
+          <button className="closeForm" onClick={() => this.props.toggleLogin()}>
+            <svg>
+                <line x1="0" y1="0" x2="12" y2="12" stroke="red" stroke-width="4"/>
+                <line x1="0" y1="12" x2="12" y2="0" stroke="red" stroke-width="4"/>
+            </svg>
           </button>
 
           <div className="popupForm">
@@ -37,7 +40,7 @@ class Login extends Component {
 
             <div className="rememberMe">
               <input type="checkbox" className="form" id="remember"/>
-              <label className="form" for="remember">Remember me on this computer</label>
+              <label className="form" htmlFor="remember">Remember me on this computer</label>
             </div>
             <button className="block form" type="text">Submit</button>
           </div>

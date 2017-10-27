@@ -97,19 +97,25 @@ class App extends Component {
 
   addMeetingSectionData(newMeetingData, addMethod) {
     if (
-      this.state.meetingSectionData.reduce(
-        (n, val) => n + (val.id === newMeetingData.id && val.addMethod === addMethod), 0
-      ) >= 1
+      this.state.meetingSectionData.reduce((n, val) => n + (val.id === newMeetingData.id && val.addMethod === addMethod), 0) >= 1
     ) return
 
+    console.log("state:", this.state.meetingSectionData);
     
-    this.setState({
-      meetingSectionData: [{ ...newMeetingData, addMethod: addMethod }, ...this.state.meetingSectionData, ]
-    })
+
+    console.log(newMeetingData,addMethod);
+    
+    this.setState(prevState => {
+      return {
+        meetingSectionData: [
+          { ...newMeetingData, addMethod: addMethod }, 
+          ...prevState.meetingSectionData, 
+        ]
+      }}
+    )
   }
 
   removeMeetingSectionData(meetingDataToRemove, addMethod) {
-    
     this.setState((prevState) => {
       
       const index = prevState.meetingSectionData.findIndex(i =>

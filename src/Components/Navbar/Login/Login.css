@@ -15,6 +15,7 @@
 
 button.closeForm {
   box-sizing: border-box;
+  padding: 0px;
   height: 31px;
   width: 31px;
   font-size: 18px;
@@ -26,6 +27,15 @@ button.closeForm {
   border-radius: 50%;
   box-shadow: none;
   transition: all 250ms linear;
+  transform-origin: 50% 50%;
+  
+  }
+
+  .closeForm > svg {
+    box-sizing: border-box;
+    height: 12px;
+    width: 12px;
+    padding: 0px;
   }
 
 button.closeForm:hover,
@@ -36,6 +46,7 @@ button.closeForm:focus {
   color: red;
   background-color: pink;
   border: 2px solid red;
+  outline: none;
 }
 
 
