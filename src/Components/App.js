@@ -5,6 +5,7 @@ import Sidebar from "./Sidebar/Sidebar";
 import Navbar from "./Navbar/Navbar";
 import Counter from "./Counter/Counter"
 import Entry from './Calendar/Entry/Entry'
+import { loadState } from "./LocalState";
 
 const timeToMilitaryTime = secondsTime => Number.isInteger(secondsTime / 3600) ? secondsTime / 3600 : Math.floor(secondsTime / 3600) + "30"
 
@@ -41,31 +42,24 @@ class App extends Component {
   }
 
   componentWillMount(){
-    const loadState = () => {
-      try {
-        const serializedState = localStorage.getItem('state');
-        if (serializedState === null) {
+    if (this.props.match.url.slice(1)) {
+      console.log(this.props.match.url.slice(1));
+      window.addEventListener("beforeunload", e => {e.returnValue = "Make sure you save!"; return "Make sure you save!"})
+    } else {
+
+      if (loadState()) this.setState(loadState())
+
+      const saveState = (e) => {
+        e.preventDefault()
+        try {
+          const serializedState = JSON.stringify(this.state)
+          localStorage.setItem('state', serializedState)
+        } catch (err) {
           return undefined
         }
-        return JSON.parse(serializedState)
-      } catch (err) {
-        return undefined
       }
+      window.addEventListener("beforeunload", saveState)
     }
-
-    if (loadState()) this.setState(loadState())
-
-    const saveState = (e) => {
-      e.preventDefault()
-      try {
-        const serializedState = JSON.stringify(this.state)
-        localStorage.setItem('state', serializedState)
-      } catch (err) {
-        return undefined
-      }
-    }
-
-    window.addEventListener("beforeunload", saveState)
   }
 
   addToShortlist(newEntry) {
@@ -100,10 +94,6 @@ class App extends Component {
       this.state.meetingSectionData.reduce((n, val) => n + (val.id === newMeetingData.id && val.addMethod === addMethod), 0) >= 1
     ) return
 
-    console.log("state:", this.state.meetingSectionData);
-    
-
-    console.log(newMeetingData,addMethod);
     
     this.setState(prevState => {
       return {
