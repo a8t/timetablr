@@ -2,53 +2,49 @@ import React, {Component} from 'react';
 import './Login.css';
 
 class Login extends Component {
-  constructor(props){
+
+  constructor(props) {
     super(props)
-    this.state = {
-      displayLogin: false
-    }
+    this.windowListen = e => { if (e.key === 'Escape') this.props.toggleLogin() }
+  }
+  
+
+  componentWillMount(){
+    window.addEventListener('keydown', this.windowListen)
   }
 
-  toggleLogin() {
-    this.setState({
-      displayLogin: !this.state.displayLogin
-    })
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.windowListen)
   }
-
+  
   render() {
-  return (
-    <div className='loginContainer'>
-      <button
-        onClick={() => this.toggleLogin()}
-        className="login"
-        href="#modal">LOGIN / SIGNUP</button>
+    return (
+          
+      <div 
+        className='loginScreen' 
+        onClick={() => this.props.toggleLogin()}
+      >
 
-      <div id="modal"
-        className="modalContainer"
-        style={{ display: this.state.displayLogin ? 'block' : 'none', overflow: 'auto'}}>
-
-        <div className="popupContainer">
-          <button class="closeForm"
-            onClick={() =>  this.toggleLogin()}>x</button>
-
-          <div></div>
+        <div id="modal" className="modalContainer" onClick={(e) => e.stopPropagation()}>
+        
+          <button class="closeForm" onClick={() => this.props.toggleLogin()}>
+            x
+          </button>
 
           <div className="popupForm">
             <input type="text" className="block form input" placeholder="email" required />
             <input type="password" className="block form input" placeholder="password" required />
 
             <div className="rememberMe">
-              <input type="checkbox" className="form" />
-              <label className="form">Remember me on this computer</label>
+              <input type="checkbox" className="form" id="remember"/>
+              <label className="form" for="remember">Remember me on this computer</label>
             </div>
-
-            <button className="block form" type="text">SUBMIT</button>
+            <button className="block form" type="text">Submit</button>
           </div>
         </div>
-
       </div>
-    </div>
-  )}
+    )
+  }
 }
 
 export default Login
