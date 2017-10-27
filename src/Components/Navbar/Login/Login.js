@@ -31,17 +31,18 @@ class Login extends Component {
           <button class="closeForm"
             onClick={() =>  this.toggleLogin()}>x</button>
 
-          <header className="popupHeader">Login</header>
+          <div></div>
 
           <div className="popupForm">
-            <label className="label form">Email/Username</label>
-            <input type="text" className="block form input" required />
-            <label className="label form">Password</label>
-            <input type="password" className="block form input" required />
-            <input type="checkbox" className="form" id="remember"/>
-            <label className="label form rememberMe" for="remember">Remember me on this computer</label>
-            <button className="block form submit" type="text">SUBMIT</button>
-            <button className="form register" type="text">REGISTER</button>
+            <input type="text" className="block form input" placeholder="email" required />
+            <input type="password" className="block form input" placeholder="password" required />
+
+            <div className="rememberMe">
+              <input type="checkbox" className="form" />
+              <label className="form">Remember me on this computer</label>
+            </div>
+
+            <button className="block form" type="text">SUBMIT</button>
           </div>
         </div>
 
