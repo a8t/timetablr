@@ -8,10 +8,11 @@
   text-align: left;
   font-weight: bold;
   position: relative;
-  min-height: 100px;
+  height: 100px;
   -webkit-transition: height 1s linear;
   -moz-transition: height 1s linear;
   transition: height 1s linear;
+  overflow: hidden;
 }
 
 /*STYLE SHORTLIST ENTRY ELEMENTS*/
@@ -88,57 +89,57 @@ button.remove:hover {
   border: 2px solid blue;
 }
 
-.fade-enter {
+.fade-enter, .fade-enter.shortlistEntryName {
   transition: all 300ms ease-in;
   -webkit-transition: all 300ms ease-in ;
   -moz-transition: all 300ms ease-in ;
   opacity:0.01;
-  min-height: 0px;
-  height: 0px
+  height: 0px;
 }
+
+
+.fade-enter.fade-enter-active, .fade-enter.fade-enter-active .shortlistEntryName {
+  opacity:1;
+  height: 100px;
+}
+
 
 .fade-enter button {
   transition: all 50ms ease-out;
   -webkit-transition: all 50ms ease-out ;
   -moz-transition: all 50ms ease-out ;
   height: 0px;
-  opacity: 0
+  opacity: 0.01
 }
 
 .fade-enter.fade-enter-active button {
-  height: auto;
+  height: 26px;
   opacity: 1
 }
 
-.fade-enter.fade-enter-active {
-  opacity:1;
-  min-height: 100px;
-  height: auto;
-  
-}
-
-.fade-leave {
+.fade-leave, .fade-leave * {
 
   opacity: 1;
-  height: auto
+  height: 100px
 }
 
-.fade-leave button {
+.fade-leave svg {
   transition: all 50ms ease-out;
   -webkit-transition: all 50ms ease-out ;
   -moz-transition: all 50ms ease-out ;
-  opacity: 1  
+  height: 26px
 }
 
-.fade-leave.fade-leave-active button {
-  opacity: 0;
+.fade-leave.fade-leave-active svg {
+  height: 0px;
 }
 
-.fade-leave.fade-leave-active {
-    -webkit-transition: all 200ms ease-in;
-  -moz-transition: all 200ms ease-in;
-  transition: all 200ms ease-in;
+.fade-leave.fade-leave-active, .fade-leave.fade-leave-active *  {
+    -webkit-transition: all 190ms ease-in;
+  -moz-transition: all 190ms ease-in;
+  transition: all 190ms ease-in;
   opacity: 0.01;
   min-height: 0px;
   height: 0;
 }
+
