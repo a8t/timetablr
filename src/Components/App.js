@@ -16,6 +16,7 @@ class App extends Component {
     this.state = {
       meetingSectionData: [],
       shortlist: [],
+      entryHovered: ""
     }
     this.currentCoursesAdded = {
       "2017 Fall": {
@@ -39,6 +40,7 @@ class App extends Component {
     this.removeFromShortlist = this.removeFromShortlist.bind(this)
     this.addToCurrentCoursesAdded = this.addToCurrentCoursesAdded.bind(this)
     this.isConflicting = this.isConflicting.bind(this)
+    this.setEntryHovered = this.setEntryHovered.bind(this)
   }
 
   componentWillMount(){
@@ -55,7 +57,7 @@ class App extends Component {
       const saveState = (e) => {
         e.preventDefault()
         try {
-          const serializedState = JSON.stringify(this.state)
+          const serializedState = JSON.stringify({...this.state, entryHovered: ""})
           localStorage.setItem('state', serializedState)
           e.returnValue = "Make sure you save!";
           return "Make sure you save!"
@@ -163,22 +165,44 @@ class App extends Component {
     })
   }
 
+  setEntryHovered(id) {
+    this.setState({
+      entryHovered: id
+    })
+  }
 
   render() {
     const addedCoursesCount = this.state.meetingSectionData.filter(data => data.addMethod === 'clicked').length
 
     const sectionDataToEntry = entryJSON => {
       return entryJSON.course_times.map(eachTime => {
+
+        let background
+
+        if (this.state.entryHovered === entryJSON.id) {
+          background = "#53CBA4"
+        } else if (entryJSON.addMethod === "hovered") {
+          background = "lightgreen"
+        } else {
+          background = "#0ba7b7"
+        }
+
+        console.log(background);
+        
+
         const styleObj = {
           opacity:      entryJSON.addMethod === "clicked" ? 1 : 0.5,
-          background:   entryJSON.addMethod === "hovered" ? "lightgreen" : "#0ba7b7",
+          background:   background,
           gridRowStart: 'time' + timeToMilitaryTime(eachTime.start),
           gridRowEnd:   'time' + timeToMilitaryTime(eachTime.end),
           gridColumn:   eachTime.day.toLowerCase() + "/ span 2"
         }       
         
+        
+        
         return (
           <Entry
+            setEntryHovered={this.setEntryHovered}
             clicked={entryJSON.addMethod === "clicked"}
             code={entryJSON.code}
             id={entryJSON.id}
