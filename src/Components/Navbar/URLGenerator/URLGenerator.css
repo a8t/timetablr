@@ -10,3 +10,11 @@
 #URLGenerator button {
   width: 160px;
 }
+
+#urltext {
+  color: #C70A00;
+}
+#urltext:hover {
+  color: #FF0D00;
+  font-style: italic;
+}

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './Navbar.css';
 import Login from './Login/Login'
 import URLGenerator from './URLGenerator/URLGenerator'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 class Navbar extends Component {
   constructor(props) {
@@ -38,11 +39,16 @@ class Navbar extends Component {
           <URLGenerator/>
         </nav>
       
-
-        {this.state.displayLogin
-          ? <Login toggleLogin={this.toggleLogin} />
-          : ""
-        }
+        <CSSTransitionGroup
+          transitionName="loginTransition"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}>
+          {this.state.displayLogin
+            ? <Login toggleLogin={this.toggleLogin} key="loginarea"/>
+            : <span key="span" />
+          }
+        </CSSTransitionGroup>
+        
         <div id="printview">
           <button className="printbutton" onClick={(e) => window.print()}>
             Print Calendar

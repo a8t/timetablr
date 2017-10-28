@@ -17,7 +17,7 @@
 nav button, #printview >button {
   text-decoration: none;
   color: #111;
-  width: auto;
+  width: 160px;
   height: auto;
   background: white;
   padding: 6px 10px;
@@ -42,3 +42,4 @@ nav {
   justify-content: flex-start;
   align-items: center;
 }
+

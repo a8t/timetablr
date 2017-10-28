@@ -21,6 +21,7 @@ class Login extends Component {
     return (
           
       <div 
+        key="login"
         className='loginScreen' 
         onClick={() => this.props.toggleLogin()}
       >

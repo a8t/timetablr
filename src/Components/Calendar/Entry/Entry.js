@@ -6,8 +6,7 @@ const Entry = props => {
     <div
       style={props.style}
       className= {`entry ${props.clicked ? "clickedAdd" : "" }`}
-      onMouseEnter={() => {props.setEntryHovered(props.id));
-      }}
+      onMouseEnter={() => {props.setEntryHovered(props.id)}}
       onMouseLeave={() => {props.setEntryHovered("")}}
     >
       <button

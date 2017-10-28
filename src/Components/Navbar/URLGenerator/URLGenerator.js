@@ -17,7 +17,7 @@ class URLGenerator extends Component {
 
   toggleGenerateCopy(){
     this.setState(prevstate => {
-      const newURL = `timetablr.ca/${Math.random().toString(36).substr(2, 10)}`
+      const newURL = `${Math.random().toString(36).substr(2, 10)}`
 
 
       return {
@@ -42,17 +42,22 @@ class URLGenerator extends Component {
             : <CopyToClipboard text={this.state.url}
                 onCopy={() => this.toggleCopied()}>
                 {!this.state.copied 
-                  ? <button>Copy to clipboard</button>
+                  ? <button>Copy to clipboard?</button>
                   : <button onClick={() => {this.toggleGenerateCopy(); this.toggleCopied()}}>Copied! Get new URL?</button>
                 }
               </CopyToClipboard>
         }
         
 
+        {
+          this.state.generated
+            ? <div id="url">
+                <a id="urltext" href={`/${this.state.url}`}>{`timetablr.ca/${this.state.url}`}</a>
+              </div>
+            : <div id="url">
+              </div>
+        }
         
-        <div id="url">
-          {this.state.url}
-        </div>
       </div>
     )
   }
