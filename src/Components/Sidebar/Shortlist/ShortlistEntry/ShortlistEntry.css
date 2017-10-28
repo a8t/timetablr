@@ -8,7 +8,7 @@
   text-align: left;
   font-weight: bold;
   position: relative;
-  min-height: 80px;
+  min-height: 100px;
   -webkit-transition: height 1s linear;
   -moz-transition: height 1s linear;
   transition: height 1s linear;
@@ -86,4 +86,59 @@ button.remove:hover {
   color: blue;
   background-color: lightblue;
   border: 2px solid blue;
+}
+
+.fade-enter {
+  transition: all 300ms ease-in;
+  -webkit-transition: all 300ms ease-in ;
+  -moz-transition: all 300ms ease-in ;
+  opacity:0.01;
+  min-height: 0px;
+  height: 0px
+}
+
+.fade-enter button {
+  transition: all 50ms ease-out;
+  -webkit-transition: all 50ms ease-out ;
+  -moz-transition: all 50ms ease-out ;
+  height: 0px;
+  opacity: 0
+}
+
+.fade-enter.fade-enter-active button {
+  height: auto;
+  opacity: 1
+}
+
+.fade-enter.fade-enter-active {
+  opacity:1;
+  min-height: 100px;
+  height: auto;
+  
+}
+
+.fade-leave {
+
+  opacity: 1;
+  height: auto
+}
+
+.fade-leave button {
+  transition: all 50ms ease-out;
+  -webkit-transition: all 50ms ease-out ;
+  -moz-transition: all 50ms ease-out ;
+  opacity: 1  
+}
+
+.fade-leave.fade-leave-active button {
+  opacity: 0;
+}
+
+.fade-leave.fade-leave-active {
+    -webkit-transition: all 200ms ease-in;
+  -moz-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
+  opacity: 0.01;
+  min-height: 0px;
+  height: 0;
 }

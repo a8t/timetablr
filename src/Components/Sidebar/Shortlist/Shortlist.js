@@ -1,6 +1,7 @@
 import React from 'react';
 import './Shortlist.css'
 import ShortlistEntry from './ShortlistEntry/ShortlistEntry.js'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 const Shortlist = props => {
 
@@ -23,7 +24,12 @@ const Shortlist = props => {
     <div id="shortlist">
       <p>SHORTLIST</p>
       <div className='shortlistResults'>
-        {shortlistResults}
+        <CSSTransitionGroup
+          transitionName="fade"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={200}>
+          {shortlistResults}
+        </CSSTransitionGroup>
       </div>
     </div>
   )
