@@ -12,13 +12,13 @@
   -webkit-transition: height 1s linear;
   -moz-transition: height 1s linear;
   transition: height 1s linear;
-  overflow: hidden;
   
 }
 
 /*STYLE SHORTLIST ENTRY ELEMENTS*/
 .showCourseInformation {
   padding: 5px;
+  overflow: hidden;
 }
 
 .shortlistEntryCode {
@@ -27,7 +27,7 @@
 }
 
 .shortlistEntryName {
-  margin: 0;
+  margin-top: 7px;
   font-size: 14px;
   width: 220px;
   
@@ -90,14 +90,14 @@ button.remove:hover {
   border: 2px solid blue;
 }
 
-.fade-enter {
-  transition: all 300ms ease-in;
-  -webkit-transition: all 300ms ease-in ;
-  -moz-transition: all 300ms ease-in ;
-  opacity:0.01;
+.fade-enter, .fade-enter .shortlistEntryName {
+  transition: all 300ms ease;
+  -webkit-transition: all 300ms ease ;
+  -moz-transition: all 300ms ease ;
+  opacity:0;
   height: 0px;
   min-height: 0px;
-  
+  overflow: hidden;
 }
 
 
@@ -123,7 +123,7 @@ button.remove:hover {
 }
 
 .fade-leave, .fade-leave * {
-
+  overflow: hidden;
   opacity: 1;
   height: 100px
 }
@@ -148,3 +148,24 @@ button.remove:hover {
   height: 0;
 }
 
+.courseInfoFade-enter {
+  max-height:0px;
+}
+
+.courseInfoFade-enter.courseInfoFade-enter-active {
+  transition: max-height 500ms ease-in;
+  max-height: 1000px;
+}
+
+.courseInfoFade-leave p {
+  font-size: 14px;
+  height: 100%;
+  opacity: 1
+}
+
+.courseInfoFade-leave.courseInfoFade-leave-active p, .courseInfoFade-leave.courseInfoFade-leave-active button {
+  transition: all 300ms ease-in;
+  opacity: 0;
+  font-size: 0;
+  height: 0;
+}

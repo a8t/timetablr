@@ -179,6 +179,7 @@ class App extends Component {
         
         return (
           <Entry
+            clicked={entryJSON.addMethod === "clicked"}
             code={entryJSON.code}
             id={entryJSON.id}
             style={styleObj}

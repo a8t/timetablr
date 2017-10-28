@@ -1,7 +1,7 @@
 /*STYLE ENTIRE SHORTLIST COMPONENT*/
 #shortlist {
   border-top: solid gray 1px;
-  overflow: auto;
+  width: 300px;
 }
 
 /*STYLE SHORTLIST TITLE*/

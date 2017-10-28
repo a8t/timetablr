@@ -5,7 +5,7 @@ const Entry = props => {
   return (
     <div
       style={props.style}
-      className="entry"
+      className= {`entry ${props.clicked ? "clickedAdd" : "" }`}
     >
       <button
         className="removeEntry"
