@@ -44,7 +44,10 @@ class App extends Component {
   componentWillMount(){
     if (this.props.match.url.slice(1)) {
       console.log(this.props.match.url.slice(1));
-      window.addEventListener("beforeunload", e => {e.returnValue = "Make sure you save!"; return "Make sure you save!"})
+      window.addEventListener("beforeunload", e => {
+        e.returnValue = "Make sure you save!";
+        return "Make sure you save!"
+      })
     } else {
 
       if (loadState()) this.setState(loadState())
@@ -54,6 +57,8 @@ class App extends Component {
         try {
           const serializedState = JSON.stringify(this.state)
           localStorage.setItem('state', serializedState)
+          e.returnValue = "Make sure you save!";
+          return "Make sure you save!"
         } catch (err) {
           return undefined
         }
@@ -61,6 +66,8 @@ class App extends Component {
       window.addEventListener("beforeunload", saveState)
     }
   }
+
+  
 
   addToShortlist(newEntry) {
     fetch(`https://tbd-scheduler-v1.herokuapp.com/courses/get_data?course_id=${newEntry.id}`)

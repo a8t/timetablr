@@ -9,6 +9,9 @@
   font-weight: bold;
   position: relative;
   min-height: 80px;
+  -webkit-transition: height 1s linear;
+  -moz-transition: height 1s linear;
+  transition: height 1s linear;
 }
 
 /*STYLE SHORTLIST ENTRY ELEMENTS*/
@@ -46,7 +49,7 @@
 /*STYLE SHORTLIST ENTRY REMOVE AND EXPAND BUTTON*/
 button.remove, .expandArrow {
   border: 2px solid transparent;
-  border-radius: 50%;
+  border-radius: 2px;
   background: none;
   position: absolute;
   right: 2px;
@@ -57,7 +60,6 @@ button.remove, .expandArrow {
   -moz-transform-origin: center;
   -ms-transform-origin: center;
   -webkit-transform-origin: center;
-  outline: none;
   width: 26px;
   height: 26px;
   margin: 0;
@@ -69,12 +71,9 @@ button.remove {
   top: 2px;
 }
 
-button.remove:hover,
-button.remove:focus  {
-  transform: rotate(180deg);
-  border-radius: 50%;
-  color: red;
-  background-color: pink;
+button.remove:hover {
+  box-sizing: content-box;
+  background-color: lightpink;
   border: 2px solid red;  
 }
 

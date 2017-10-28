@@ -27,33 +27,37 @@ class Navbar extends Component {
 
   render () {
     return (
-      <div
-        className="navbar" >
+      <div className="navbar" >
         <nav className="navBarLinks">
           <button
             onClick={() => this.toggleLogin()}
             className="login"
-            href="#modal">LOGIN / SIGNUP
+            href="#modal">Login / Sign Up
+          </button>
+          <button>
+            Generate URL
           </button>
         </nav>
+      
 
         {this.state.displayLogin
           ? <Login toggleLogin={this.toggleLogin} />
           : ""
         }
+        <div id="printview">
+          <button className="printbutton" onClick={(e) => window.print()}>
+            Print Calendar
+          </button>
+
+          <button className="cozycomfy" onClick={() => {
+            const setTo = this.state.comfy ? "55px" : "100px" 
+            document.getElementById("calendars").style.setProperty("--colWidth", setTo)
+            this.toggleComfy()
+          }}>
+            View: {this.state.comfy ? "Comfy" : "Compact"}
+          </button>
+        </div>
         
-        <button className="printbutton" onClick={(e) => window.print()}>
-          PRINT CALENDAR
-        </button>
-
-        <button className="cozycomfy" onClick={() => {
-          const setTo = this.state.comfy ? "55px" : "100px" 
-          document.getElementById("calendars").style.setProperty("--colWidth", setTo)
-          this.toggleComfy()
-        }}>
-          View: {this.state.comfy ? "Comfy" : "Compact"}
-        </button>
-
 
       </div>
     )

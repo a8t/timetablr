@@ -4,7 +4,7 @@
   font-size: 12px;
   height: 40px;
   width: 100%;
-  background-color: salmon;
+  background-color: #FFAD00;
   position: fixed;
   top: 0;
   left: 0;
@@ -12,45 +12,27 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFA98F), to(salmon));
-  background-image: -webkit-linear-gradient(to bottom, #FFA98F, salmon);
-  background-image: -moz-linear-gradient(to bottom, #FFA98F,salmon) ;
-  background-image: -o-linear-gradient(to bottom, #FFA98F, salmon);
-  background-image: -ms-linear-gradient(to bottom, #FFA98F, salmon);
-  background-image: linear-gradient(to bottom, #FFA98F, salmon);
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#4ca2e8', EndColorStr='#2371b7');
 }
 
-nav > button, .navbar >button {
+nav > button, #printview >button {
   text-decoration: none;
   color: #111;
   width: auto;
   height: auto;
   background: white;
   padding: 6px 10px;
-  text-shadow: 0 1px rgba(black, .2);
   border: 1px solid;
-  border-color: #c61e03 #b91900 #aa1701;
-  transition: all .5s ease;
+  border-color: #FF5A51;
+  transition: all .2s ease;
   cursor: pointer;
   letter-spacing: 1px;
   border-radius: 4px;
-
-  -webkit-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.4) 0 1.5px 0;
-  -moz-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.3) 0 1.5px 0;
-  box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(180, 180, 180, 0.4) 0 1.5px 0;
+  margin: 5px;
 }
 
-.navbar button:hover {
+#printview >button:hover, nav > button:hover {
   border: 1px solid white;
-  background-color: #b91900;
+  background-color: #FF5A51;
   color: white;
-
-  -webkit-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1.5px 0;
-  -moz-box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.3) 0 1.5px 0;
-  box-shadow:rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1.5px 0;
 }
 
-.navbar > button:active {
-  border-bottom: 1px solid #b91900;
-}

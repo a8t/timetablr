@@ -42,7 +42,7 @@ class Login extends Component {
               <input type="checkbox" className="form" id="remember"/>
               <label className="form" htmlFor="remember">Remember me on this computer</label>
             </div>
-            <button className="block form" type="text">Submit</button>
+            <button className="block form" type="text" id="loginSubmit">Submit</button>
           </div>
         </div>
       </div>
