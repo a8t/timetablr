@@ -6,7 +6,6 @@ import Navbar from "./Navbar/Navbar";
 import Counter from "./Counter/Counter"
 import Entry from "./Calendar/Entry/Entry"
 import { loadState } from "./LocalState";
-import { fire } from "../fire"
 const timeToMilitaryTime = secondsTime => Number.isInteger(secondsTime / 3600) ? secondsTime / 3600 : Math.floor(secondsTime / 3600) + "30"
 
 
@@ -45,6 +44,13 @@ class App extends Component {
 
   componentWillMount(){
     if (this.props.match.url.slice(1)) {
+      fetch(`https://timetablrca.firebaseio.com/URLs/${this.props.match.url.slice(1)}.json`)
+        .then(response => response.json())
+        .then(jsonResponse => {
+          this.setState(JSON.parse(jsonResponse)); console.log(jsonResponse);
+        })
+
+      
       window.addEventListener("beforeunload", e => {
         e.returnValue = "Make sure you save!";
         return "Make sure you save!"
@@ -229,7 +235,9 @@ class App extends Component {
     
     return (
       <div className="App">
-        <Navbar />
+        <Navbar 
+          data={JSON.stringify({ ...this.state, entryHovered: "" })}
+        />
         <Sidebar
           addMeetingSectionData={this.addMeetingSectionData}
           removeMeetingSectionData={this.removeMeetingSectionData}

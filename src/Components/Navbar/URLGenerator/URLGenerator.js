@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "./URLGenerator.css"
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import fire from "../../../fire"
 
 class URLGenerator extends Component {
 
@@ -16,13 +17,16 @@ class URLGenerator extends Component {
   }
 
   toggleGenerateCopy(){
+    const newURL = `${Math.random().toString(36).substr(2, 10)}`
+    
+
+    const newTimetableRef = fire.database().ref('URLs').push(this.props.data)
+    const timetableID = newTimetableRef.key
+
     this.setState(prevstate => {
-      const newURL = `${Math.random().toString(36).substr(2, 10)}`
-
-
       return {
         generated: true,
-        url: newURL
+        url: timetableID
       }
     })
   }
@@ -42,7 +46,7 @@ class URLGenerator extends Component {
                 this.toggleGenerateCopy()
                 e.target.blur()
               }}>Get URL</button>
-            : <CopyToClipboard text={this.state.url}
+            : <CopyToClipboard text={`timetablr.ca/${this.state.url}`}
                 onCopy={() => this.toggleCopied()}>
                 {!this.state.copied 
                   ? <button onClick={e => {

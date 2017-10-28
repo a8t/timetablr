@@ -15,7 +15,7 @@
   padding: 0 40px;
 }
 
-@media screen and (max-width:980px) {
+@media screen and (max-width:1030px) {
   .navbar {
     height: 80px;
   }

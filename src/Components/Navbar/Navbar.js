@@ -48,7 +48,7 @@ class Navbar extends Component {
               : <span key="span" />
             }
           </CSSTransitionGroup>
-          <URLGenerator/>
+          <URLGenerator data={this.props.data}/>
         </nav>
       
         
