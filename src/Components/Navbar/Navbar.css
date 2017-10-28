@@ -14,7 +14,7 @@
   justify-content: space-around;
 }
 
-nav > button, #printview >button {
+nav button, #printview >button {
   text-decoration: none;
   color: #111;
   width: auto;
@@ -30,9 +30,15 @@ nav > button, #printview >button {
   margin: 5px;
 }
 
-#printview >button:hover, nav > button:hover {
+#printview >button:hover, nav button:hover {
   border: 1px solid white;
   background-color: #FF5A51;
   color: white;
 }
 
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Navbar.css';
-import Login from './Login/Login.js'
+import Login from './Login/Login'
+import URLGenerator from './URLGenerator/URLGenerator'
 
 class Navbar extends Component {
   constructor(props) {
@@ -34,9 +35,7 @@ class Navbar extends Component {
             className="login"
             href="#modal">Login / Sign Up
           </button>
-          <button>
-            Generate URL
-          </button>
+          <URLGenerator/>
         </nav>
       
 
