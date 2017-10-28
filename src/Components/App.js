@@ -220,12 +220,6 @@ class App extends Component {
       }
     )
   }
-
-    
-  
-    // this.state.meetingSectionData.forEach(entryJSON => { console.log(entryJSON.code, entryJSON.addMethod, new Date());} )
-    console.log("$$$$$$$$$$$$$$$$$$$$$");
-    
     
     const fallCourses   = this.state.meetingSectionData.filter(eachSectionData => eachSectionData.term === "2017 Fall")
     const fallEntries   = fallCourses.reverse().map(eachSectionData => sectionDataToEntry(eachSectionData))
