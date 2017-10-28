@@ -49,7 +49,8 @@ class App extends Component {
         .then(jsonResponse => {
           this.setState(JSON.parse(jsonResponse)); console.log(jsonResponse);
         })
-
+      console.log(this.props.match.url.slice(1));
+      
       
       window.addEventListener("beforeunload", e => {
         e.returnValue = "Make sure you save!";

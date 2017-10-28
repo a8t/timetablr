@@ -63,7 +63,7 @@ class URLGenerator extends Component {
 
         {this.state.generated
             ? <div id="url">
-                <a id="urltext" href={`/${this.state.url}`}>{`timetablr.ca/${this.state.url}`}</a>
+                <a id="urltext" href={`timetablr.ca/${this.state.url}`}>{`timetablr.ca/${this.state.url}`}</a>
               </div>
             : <div id="url">
               </div>
