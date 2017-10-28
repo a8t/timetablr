@@ -38,26 +38,32 @@ class URLGenerator extends Component {
     return (
       <div id="URLGenerator">
         {!this.state.generated
-            ? <button onClick={() => this.toggleGenerateCopy()}>Get URL</button>
+            ? <button onClick={e => {
+                this.toggleGenerateCopy()
+                e.target.blur()
+              }}>Get URL</button>
             : <CopyToClipboard text={this.state.url}
                 onCopy={() => this.toggleCopied()}>
                 {!this.state.copied 
-                  ? <button>Copy to clipboard?</button>
-                  : <button onClick={() => {this.toggleGenerateCopy(); this.toggleCopied()}}>Copied! Get new URL?</button>
+                  ? <button onClick={e => {
+                      e.target.blur()
+                    }}>Copy to clipboard?</button>
+                  : <button onClick={e => {
+                      this.toggleGenerateCopy()
+                      this.toggleCopied()
+                      e.target.blur()
+                    }}>Copied! Get new URL?</button>
                 }
               </CopyToClipboard>
         }
-        
 
-        {
-          this.state.generated
+        {this.state.generated
             ? <div id="url">
                 <a id="urltext" href={`/${this.state.url}`}>{`timetablr.ca/${this.state.url}`}</a>
               </div>
             : <div id="url">
               </div>
         }
-        
       </div>
     )
   }

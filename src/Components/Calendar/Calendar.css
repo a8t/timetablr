@@ -1,7 +1,6 @@
 /*STYLE CALENDAR COMPONENTS*/
 #calendars {
     grid-area: calendars;
-    margin: 10px;
     border-radius: 4px;
     display: flex;
     flex-flow: wrap;
@@ -9,20 +8,19 @@
     align-items: center;
     padding-top: 10px;
     --colWidth: 55px;
-    margin-top: 4px;
+    --rowheight: 25px;
 
 }
 
 /*STYLE FALL AND WINTER CALENDARS*/
 .eachCal {
-
+    margin: 5px;
     font-family: 'Fira Sans', sans-serif;
     padding: 0 2px;
     width: auto;
     height: auto;
     border-radius: 2px;
     display: grid;
-    --rowheight: 26px;
     position: relative;
     grid-gap: 2px;
     grid-template-columns: 

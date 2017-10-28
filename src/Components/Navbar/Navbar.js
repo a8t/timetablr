@@ -32,32 +32,42 @@ class Navbar extends Component {
       <div className="navbar" >
         <nav className="navBarLinks">
           <button
-            onClick={() => this.toggleLogin()}
+            onClick={(e) => {
+              e.target.blur()
+              this.toggleLogin()
+            }}
             className="login"
             href="#modal">Login / Sign Up
           </button>
+          <CSSTransitionGroup
+            transitionName="loginTransition"
+            transitionEnterTimeout={800}
+            transitionLeaveTimeout={800}>
+            {this.state.displayLogin
+              ? <Login toggleLogin={this.toggleLogin} key="loginarea" />
+              : <span key="span" />
+            }
+          </CSSTransitionGroup>
           <URLGenerator/>
         </nav>
       
-        <CSSTransitionGroup
-          transitionName="loginTransition"
-          transitionEnterTimeout={800}
-          transitionLeaveTimeout={800}>
-          {this.state.displayLogin
-            ? <Login toggleLogin={this.toggleLogin} key="loginarea"/>
-            : <span key="span" />
-          }
-        </CSSTransitionGroup>
+        
         
         <div id="printview">
-          <button className="printbutton" onClick={(e) => window.print()}>
+          <button 
+            className="printbutton" 
+            onClick={e => {
+              window.print()
+              e.target.blur()
+          }}>
             Print Calendar
           </button>
 
-          <button className="cozycomfy" onClick={() => {
+          <button className="cozycomfy" onClick={e => {
             const setTo = this.state.comfy ? "55px" : "100px" 
             document.getElementById("calendars").style.setProperty("--colWidth", setTo)
             this.toggleComfy()
+            e.target.blur()
           }}>
             View: {this.state.comfy ? "Comfy" : "Compact"}
           </button>

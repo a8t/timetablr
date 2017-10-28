@@ -48,6 +48,9 @@ body {
 
 }
 
+
+
+
 /***PRINT CALENDAR***/
 @media print {
   @page {
@@ -72,6 +75,10 @@ body {
     width: 45%;
     --colWidth: 40px;
     --rowheight: 18px;
+    
+  }
+  .eachCal > div {
+    font-size: 12px !important;    
   }
   button {
     display: none;

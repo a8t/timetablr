@@ -11,10 +11,26 @@
   z-index: 10;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 40px;
 }
 
-nav button, #printview >button {
+@media screen and (max-width:980px) {
+  .navbar {
+    height: 80px;
+  }
+
+  #search {
+    border-top: 80px solid #df744a;
+  }
+
+  #calendars {
+    margin-top: 30px;
+  }
+}
+
+
+nav > button, #printview >button, #URLGenerator button {
   text-decoration: none;
   color: #111;
   width: 160px;
@@ -23,17 +39,29 @@ nav button, #printview >button {
   padding: 6px 10px;
   border: 1px solid;
   border-color: #FF5A51;
-  transition: all .2s ease;
   cursor: pointer;
   letter-spacing: 1px;
   border-radius: 4px;
   margin: 5px;
+  outline: none;
+  position: relative;
+  top:-2px;
+  box-shadow: 0 2px 0px #c52028;  
+  
 }
 
-#printview >button:hover, nav button:hover {
-  border: 1px solid white;
-  background-color: #FF5A51;
-  color: white;
+#printview > button:focus, nav > button:focus, #URLGenerator button:focus,
+#printview > button:hover, nav > button:hover, #URLGenerator button:hover  {
+  /* background-color: #FF5A51;
+  color: white; */
+  top: -4px;
+  box-shadow: 0 4px 0px #c52028;  
+
+}
+
+nav button:active, #printview > button:active, #URLGenerator button:active {
+  top: -1px;
+  box-shadow: 0 1px 0px #c52028;  
 }
 
 nav {
