@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './ShortlistEntry.css'
 import MSButton from './MSButton/MSButton'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 class ShortlistEntry extends Component {
   constructor(props){
@@ -81,27 +82,34 @@ class ShortlistEntry extends Component {
         <p className="shortlistEntryName">
           {this.props.name}
         </p>
-        <div className='showCourseInformation' style={{ display: this.state.displayInfo ? 'block' : 'none', overflow: 'auto'}}>
-          <p className="shortlistEntryDesc">
-            {this.props.description}
-          </p>
-          <p>
-            {lectureButtons[0] ? "Lectures" : ""}
-            {lectureButtons[0] ? <br/> : ""}
-            {lectureButtons}
-          </p>
-          <p>
-            {labButtons[0] ? "Labs" : ""}
-            {labButtons[0] ? <br /> : ""}
-            { labButtons }
-          </p>
-          <p>
-            {tutorialButtons[0] ? "Tutorials" : ""}
-            {tutorialButtons[0] ? <br /> : ""}
-            {tutorialButtons}
-          </p>
-        </div>
-
+        <CSSTransitionGroup
+          transitionName="courseInfoFade"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+          {this.state.displayInfo 
+              ? <div className='showCourseInformation' key="desc">
+                  <p className="shortlistEntryDesc">
+                    {this.props.description}
+                  </p>
+                  <p>
+                    {lectureButtons[0] ? "Lectures" : ""}
+                    {lectureButtons[0] ? <br /> : ""}
+                    {lectureButtons}
+                  </p>
+                  <p>
+                    {labButtons[0] ? "Labs" : ""}
+                    {labButtons[0] ? <br /> : ""}
+                    {labButtons}
+                  </p>
+                  <p>
+                    {tutorialButtons[0] ? "Tutorials" : ""}
+                    {tutorialButtons[0] ? <br /> : ""}
+                    {tutorialButtons}
+                  </p>
+              </div>
+            : <span key="span"/>
+          }
+        </CSSTransitionGroup>
       </div>
     )
   }
