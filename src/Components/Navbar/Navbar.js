@@ -41,8 +41,8 @@ class Navbar extends Component {
       
         <CSSTransitionGroup
           transitionName="loginTransition"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}>
+          transitionEnterTimeout={800}
+          transitionLeaveTimeout={800}>
           {this.state.displayLogin
             ? <Login toggleLogin={this.toggleLogin} key="loginarea"/>
             : <span key="span" />
