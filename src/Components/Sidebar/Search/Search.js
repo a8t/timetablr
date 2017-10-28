@@ -1,23 +1,23 @@
-import React, {Component} from 'react';
-import './Search.css'
-import SearchResult from './SearchResult/SearchResult.js'
+import React, {Component} from "react";
+import "./Search.css"
+import SearchResult from "./SearchResult/SearchResult.js"
 
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: '',
+      searchTerm: "",
       searchResults: [],
     }
-    this.timer = ''
+    this.timer = ""
     this.resultFocused = false
-    this.closeTimer = ''
+    this.closeTimer = ""
     this.searchResultFocused = this.searchResultFocused.bind(this)
     this.searchResultUnfocused = this.searchResultUnfocused.bind(this)
   }
 
   updateSearch(event) {
-    this.refs.searchResults.style.display = 'block'
+    this.refs.searchResults.style.display = "block"
     const a = event.target.value
 
     this.setState({
@@ -45,13 +45,13 @@ class Search extends Component {
 
   hideSearchResults() {
       setTimeout(() => {
-        if (!this.resultFocused) {this.refs.searchResults.style.display = 'none'}
+        if (!this.resultFocused) {this.refs.searchResults.style.display = "none"}
         this.resultFocused = false        
       }, 10);
   }
 
   showSearchResults() {
-    this.refs.searchResults.style.display = 'block'
+    this.refs.searchResults.style.display = "block"
   }
 
   searchResultFocused(){    
@@ -60,7 +60,7 @@ class Search extends Component {
 
   searchResultUnfocused() {
     setTimeout(() => {
-      if (!this.resultFocused) { this.refs.searchResults.style.display = 'none' };
+      if (!this.resultFocused) { this.refs.searchResults.style.display = "none" };
       this.resultFocused = false
     }, 0);
   }
@@ -92,13 +92,13 @@ class Search extends Component {
           onFocus={() => this.showSearchResults()}
           onChange={this.updateSearch.bind(this)}
           onKeyDown={(e) => {
-            if (e.key === 'Escape') {
+            if (e.key === "Escape") {
               this.searchResultUnfocused()
               e.target.blur()
             }
           }}
           placeholder="Search course"/>
-        <div className='searchResults' ref="searchResults">
+        <div className="searchResults" ref="searchResults">
             {searchResults}
         </div>
       </div>

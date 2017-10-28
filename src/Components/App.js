@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 import Calendar from "./Calendar/Calendar";
 import Sidebar from "./Sidebar/Sidebar";
 import Navbar from "./Navbar/Navbar";
 import Counter from "./Counter/Counter"
-import Entry from './Calendar/Entry/Entry'
+import Entry from "./Calendar/Entry/Entry"
 import { loadState } from "./LocalState";
-
+import { fire } from "../fire"
 const timeToMilitaryTime = secondsTime => Number.isInteger(secondsTime / 3600) ? secondsTime / 3600 : Math.floor(secondsTime / 3600) + "30"
 
 
@@ -57,7 +57,7 @@ class App extends Component {
         e.preventDefault()
         try {
           const serializedState = JSON.stringify({...this.state, entryHovered: ""})
-          localStorage.setItem('state', serializedState)
+          localStorage.setItem("state", serializedState)
           e.returnValue = "Make sure you save!";
           return "Make sure you save!"
         } catch (err) {
@@ -173,7 +173,7 @@ class App extends Component {
   render() {
 
     
-    const addedCoursesCount = this.state.meetingSectionData.filter(data => data.addMethod === 'clicked').length
+    const addedCoursesCount = this.state.meetingSectionData.filter(data => data.addMethod === "clicked").length
 
     const sectionDataToEntry = entryJSON => {
       
@@ -195,8 +195,8 @@ class App extends Component {
         const styleObj = {
           zIndex:       zIndex,
           background:   background,
-          gridRowStart: 'time' + timeToMilitaryTime(eachTime.start),
-          gridRowEnd:   'time' + timeToMilitaryTime(eachTime.end),
+          gridRowStart: "time" + timeToMilitaryTime(eachTime.start),
+          gridRowEnd:   "time" + timeToMilitaryTime(eachTime.end),
           gridColumn:   eachTime.day.toLowerCase() + "/ span 2"
         }       
         

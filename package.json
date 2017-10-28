@@ -5,6 +5,7 @@
   "dependencies": {
     "auth0-lock": "^10.23.1",
     "enzyme": "^3.1.0",
+    "firebase": "^4.6.0",
     "jest": "^21.2.1",
     "react": "^16.0.0",
     "react-copy-to-clipboard": "^5.0.1",

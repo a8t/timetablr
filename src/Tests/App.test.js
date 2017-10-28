@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from '../Components/App';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "../Components/App";
 
-import { shallow, mount, render } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import { configure } from 'enzyme';
+import { shallow, mount, render } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import { configure } from "enzyme";
 configure({ adapter: new Adapter() });
 
 const setup = () => {
@@ -102,20 +102,20 @@ const setup = () => {
   }
 }
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
+it("renders without crashing", () => {
+  const div = document.createElement("div");
   shallow(<App match={{ url: "hi" }}/>)
 });
 
-describe('addMeetingSection method', () => {
+describe("addMeetingSection method", () => {
 
-  it('adds one item to meeting section ID in state', () => {
+  it("adds one item to meeting section ID in state", () => {
     const { wrapper, appInstance, sampleData } = setup()
     appInstance.addMeetingSectionData(sampleData[0])
     expect(appInstance.state["meetingSectionData"]).toEqual([sampleData[0]])
   })
 
-  it('doesnt allow adding more than one of each', () => {
+  it("doesnt allow adding more than one of each", () => {
     const { wrapper, appInstance, sampleData } = setup()
     appInstance.addMeetingSectionData(sampleData[0], "clicked")
     appInstance.addMeetingSectionData(sampleData[0], "clicked")    
@@ -123,15 +123,15 @@ describe('addMeetingSection method', () => {
     appInstance.addMeetingSectionData(sampleData[0], "clicked")    
     expect(appInstance.state["meetingSectionData"]).toEqual(
       [
-        { ...sampleData[1], addMethod: 'clicked'},
-        { ...sampleData[0], addMethod: 'clicked'}
+        { ...sampleData[1], addMethod: "clicked"},
+        { ...sampleData[0], addMethod: "clicked"}
       ]
     )
   })
 })
 
-describe('removeMeetingSectionData method', () => {
-  it('removes items from app state, preserves order (fifo)', () => {
+describe("removeMeetingSectionData method", () => {
+  it("removes items from app state, preserves order (fifo)", () => {
     const { wrapper, appInstance, sampleData } = setup()
     appInstance.addMeetingSectionData(sampleData[0], "clicked")
     appInstance.addMeetingSectionData(sampleData[3], "clicked")
@@ -139,33 +139,33 @@ describe('removeMeetingSectionData method', () => {
     appInstance.addMeetingSectionData(sampleData[2], "clicked")
 
     
-    appInstance.removeMeetingSectionData(sampleData[1], 'clicked')
+    appInstance.removeMeetingSectionData(sampleData[1], "clicked")
     expect(appInstance.state["meetingSectionData"]).toEqual([
-      {...sampleData[2], addMethod: 'clicked'}, 
-      {...sampleData[3], addMethod: 'clicked'}, 
-      {...sampleData[0], addMethod: 'clicked'}
+      {...sampleData[2], addMethod: "clicked"}, 
+      {...sampleData[3], addMethod: "clicked"}, 
+      {...sampleData[0], addMethod: "clicked"}
     ])
 
-    appInstance.removeMeetingSectionData(sampleData[2], 'clicked')
+    appInstance.removeMeetingSectionData(sampleData[2], "clicked")
     expect(appInstance.state["meetingSectionData"]).toEqual([
-      {...sampleData[3], addMethod: 'clicked'}, 
-      {...sampleData[0], addMethod: 'clicked'}
+      {...sampleData[3], addMethod: "clicked"}, 
+      {...sampleData[0], addMethod: "clicked"}
     ])
     
   })
 
-  it('removes items from app state, preserves order (fifo)', () => {
+  it("removes items from app state, preserves order (fifo)", () => {
     const { wrapper, appInstance, sampleData } = setup()
     appInstance.addMeetingSectionData(sampleData[0], "clicked")
     appInstance.addMeetingSectionData(sampleData[1], "clicked")
     appInstance.addMeetingSectionData(sampleData[2], "hovered")
     appInstance.addMeetingSectionData(sampleData[2], "clicked")
-    appInstance.removeMeetingSectionData(sampleData[2], 'hovered')
+    appInstance.removeMeetingSectionData(sampleData[2], "hovered")
 
     expect(appInstance.state["meetingSectionData"]).toEqual([
-      {...sampleData[2], addMethod: 'clicked'}, 
-      {...sampleData[1], addMethod: 'clicked'}, 
-      {...sampleData[0], addMethod: 'clicked'}
+      {...sampleData[2], addMethod: "clicked"}, 
+      {...sampleData[1], addMethod: "clicked"}, 
+      {...sampleData[0], addMethod: "clicked"}
     ])
     
   })
@@ -173,8 +173,8 @@ describe('removeMeetingSectionData method', () => {
 
 })
 
-describe('addToShortlist method', () => {
-  // it('adds entry data to app shortlist state', () => {
+describe("addToShortlist method", () => {
+  // it("adds entry data to app shortlist state", () => {
   //   const { wrapper, appInstance, sampleData } = setup()
     
   //   appInstance.addToShortlist({id: 3})
@@ -188,8 +188,8 @@ describe('addToShortlist method', () => {
 })
 
 
-describe('removeFromShortlist method', () => {
-  it('removes items from app shortlist', () => {
+describe("removeFromShortlist method", () => {
+  it("removes items from app shortlist", () => {
     const { wrapper, appInstance, sampleShortlist } = setup()
     appInstance.state.shortlist.push(sampleShortlist[0])
     appInstance.state.shortlist.push(sampleShortlist[1])
@@ -204,7 +204,7 @@ describe('removeFromShortlist method', () => {
     ])
   })
 
-  it('removes all associated meetingTimes when course removed', () => {
+  it("removes all associated meetingTimes when course removed", () => {
     const { wrapper, appInstance, sampleShortlist, sampleData} = setup()
     appInstance.state.shortlist.push(sampleShortlist[0])
     appInstance.addMeetingSectionData(sampleData[0])

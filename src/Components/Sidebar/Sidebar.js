@@ -1,11 +1,11 @@
-import React   from 'react';
+import React   from "react";
 import Search from "./Search/Search.js";
 import Shortlist from "./Shortlist/Shortlist.js";
-import './Sidebar.css';
+import "./Sidebar.css";
 
 const Sidebar = props => {
   return (
-    <div id='sidebar'>
+    <div id="sidebar">
       <Search
         addToShortlist={props.addToShortlist}
         shortlist={props.shortlist}

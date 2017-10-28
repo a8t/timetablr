@@ -1,5 +1,5 @@
-import React from 'react';
-import './MSButton.css'
+import React from "react";
+import "./MSButton.css"
 
 const MSButton = props => {
 

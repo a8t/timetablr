@@ -1,12 +1,12 @@
-import React from 'react';
-import './Calendar.css';
+import React from "react";
+import "./Calendar.css";
 
 const Calendar = props => {
   return (
       <div id="calendars">
         <div className="eachCal">
           {props.fallEntries}
-          <div className="weekday term"           style={{gridColumn: "start     / span 1"}}>F '17</div>
+          <div className="weekday term"           style={{gridColumn: "start     / span 1"}}>F "17</div>
           <div className="weekday line"           style={{gridColumn: "monday    / span 2"}}>MO</div>
           <div className="weekday line"           style={{gridColumn: "tuesday   / span 2"}}>TU</div>
           <div className="weekday line"           style={{gridColumn: "wednesday / span 2"}}>WE</div>
@@ -47,7 +47,7 @@ const Calendar = props => {
         </div>
 < div className = "eachCal" >
           {props.winterEntries}
-          <div className="weekday term"           style={{gridColumn: "start     / span 1"}}>W '18</div>
+          <div className="weekday term"           style={{gridColumn: "start     / span 1"}}>W "18</div>
           <div className="weekday line"           style={{gridColumn: "monday    / span 2"}}>MO</div>
           <div className="weekday line"           style={{gridColumn: "tuesday   / span 2"}}>TU</div>
           <div className="weekday line"           style={{gridColumn: "wednesday / span 2"}}>WE</div>

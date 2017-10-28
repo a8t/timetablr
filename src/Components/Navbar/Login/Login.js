@@ -1,20 +1,20 @@
-import React, {Component} from 'react';
-import './Login.css';
+import React, {Component} from "react";
+import "./Login.css";
 
 class Login extends Component {
 
   constructor(props) {
     super(props)
-    this.windowListen = e => { if (e.key === 'Escape') this.props.toggleLogin() }
+    this.windowListen = e => { if (e.key === "Escape") this.props.toggleLogin() }
   }
   
 
   componentWillMount(){
-    window.addEventListener('keydown', this.windowListen)
+    window.addEventListener("keydown", this.windowListen)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.windowListen)
+    window.removeEventListener("keydown", this.windowListen)
   }
   
   render() {
@@ -22,7 +22,7 @@ class Login extends Component {
           
       <div 
         key="login"
-        className='loginScreen' 
+        className="loginScreen" 
         onClick={() => this.props.toggleLogin()}
       >
 

@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ShortlistEntry from '../Components/Sidebar/Shortlist/ShortlistEntry/ShortlistEntry';
+import React from "react";
+import ReactDOM from "react-dom";
+import ShortlistEntry from "../Components/Sidebar/Shortlist/ShortlistEntry/ShortlistEntry";
 
-import { shallow, mount, render } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import { configure } from 'enzyme';
+import { shallow, mount, render } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import { configure } from "enzyme";
 configure({ adapter: new Adapter() });
 
 const setup = () => {
@@ -18,13 +18,13 @@ const setup = () => {
 }
 
 
-it('renders without crashing', () => {
+it("renders without crashing", () => {
   shallow(<ShortlistEntry ms_data={[]}/>)
 });
 
-describe('toggleCourseInformation', () => {
+describe("toggleCourseInformation", () => {
 
-  it('adds one item to meeting section ID in state', () => {
+  it("adds one item to meeting section ID in state", () => {
     const { wrapper, appInstance} = setup()
     appInstance.setState({displayInfo: true})
     appInstance.toggleCourseInformation()

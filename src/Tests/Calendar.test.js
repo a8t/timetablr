@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Calendar from '../Components/Calendar/Calendar';
+import React from "react";
+import ReactDOM from "react-dom";
+import Calendar from "../Components/Calendar/Calendar";
 
-import { shallow, mount, render } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import { configure } from 'enzyme';
+import { shallow, mount, render } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import { configure } from "enzyme";
 configure({ adapter: new Adapter() });
 
-it('renders without crashing', () => {
+it("renders without crashing", () => {
   mount(<Calendar />)
 });
 
@@ -20,9 +20,9 @@ const setup = () => {
   }
 }
 
-describe('', () => {
+describe("", () => {
 
-  it('adds one item to meeting section ID in state', () => {
+  it("adds one item to meeting section ID in state", () => {
     
   })
 })

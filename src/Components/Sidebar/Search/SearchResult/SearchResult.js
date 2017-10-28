@@ -1,12 +1,12 @@
-import React from 'react';
-import './SearchResult.css'
+import React from "react";
+import "./SearchResult.css"
 
 
 const SearchResult = props => {
 
   return (
     <button  
-      className='searchResult' 
+      className="searchResult" 
       onMouseDown={() => {
         props.addToShortlist({
           code: props.courseCode,
@@ -16,14 +16,14 @@ const SearchResult = props => {
         props.searchResultUnfocused()
       }}
       onKeyDown={(e) => {
-        if (e.key === ' ' || e.key === 'Enter') {
+        if (e.key === " " || e.key === "Enter") {
           props.addToShortlist({
             code: props.courseCode,
             name: props.courseName,
             id: props.courseID
           })
           props.searchResultUnfocused()
-        } else if (e.key === 'Escape') {
+        } else if (e.key === "Escape") {
           props.searchResultUnfocused()          
         }
       }}
@@ -31,14 +31,14 @@ const SearchResult = props => {
       onBlur={() => props.searchResultUnfocused()}
       
     >
-      <div className='course'>
-        <p className='courseCode'>
+      <div className="course">
+        <p className="courseCode">
             {props.courseCode}
         </p>
-        <p className='courseName'>
+        <p className="courseName">
           {props.courseName}
         </p>
-        <p className='courseTerm'>
+        <p className="courseTerm">
           {props.term}
         </p>
       </div>

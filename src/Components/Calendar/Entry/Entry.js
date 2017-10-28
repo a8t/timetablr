@@ -1,5 +1,5 @@
-import React from 'react';
-import './Entry.css';
+import React from "react";
+import "./Entry.css";
 
 const Entry = props => {
   return (

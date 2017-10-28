@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import './URLGenerator.css'
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import React, {Component} from "react";
+import "./URLGenerator.css"
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 class URLGenerator extends Component {
 

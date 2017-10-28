@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import './ShortlistEntry.css'
-import MSButton from './MSButton/MSButton'
-import { CSSTransitionGroup } from 'react-transition-group'
+import React, {Component} from "react";
+import "./ShortlistEntry.css"
+import MSButton from "./MSButton/MSButton"
+import { CSSTransitionGroup } from "react-transition-group"
 
 class ShortlistEntry extends Component {
   constructor(props){
@@ -54,7 +54,7 @@ class ShortlistEntry extends Component {
         onClick={() => this.toggleCourseInformation()} 
         className="shortlistEntry" key={this.props.code + this.props.term}
         onKeyDown={(e) => {
-          if (e.key === 'Escape') {
+          if (e.key === "Escape") {
             this.toggleCourseInformation()
           }
         }}
@@ -88,7 +88,7 @@ class ShortlistEntry extends Component {
           transitionEnterTimeout={500}
           transitionLeaveTimeout={300}>
           {this.state.displayInfo 
-              ? <div className='showCourseInformation' key="desc">
+              ? <div className="showCourseInformation" key="desc">
                   <p className="shortlistEntryDesc">
                     {this.props.description}
                   </p>
