@@ -31,14 +31,7 @@ class Navbar extends Component {
     return (
       <div className="navbar" >
         <nav className="navBarLinks">
-          <button
-            onClick={(e) => {
-              e.target.blur()
-              this.toggleLogin()
-            }}
-            className="login"
-            href="#modal">Login / Sign Up
-          </button>
+          
           <CSSTransitionGroup
             transitionName="loginTransition"
             transitionEnterTimeout={800}
@@ -80,3 +73,12 @@ class Navbar extends Component {
 }
 
 export default Navbar
+
+// <button
+// onClick = {(e) => {
+//   e.target.blur()
+//   this.toggleLogin()
+// }}
+// className = "login"
+// href = "#modal" > Login / Sign Up
+//           </button >

@@ -14,7 +14,7 @@
 
 /*STYLE FALL AND WINTER CALENDARS*/
 .eachCal {
-    margin: 5px;
+    margin: 5px 0;
     font-family: 'Fira Sans', sans-serif;
     padding: 0 2px;
     width: auto;
