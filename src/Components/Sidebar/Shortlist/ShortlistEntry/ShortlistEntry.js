@@ -36,6 +36,7 @@ class ShortlistEntry extends Component {
         term={this.props.term}
         code={this.props.code}
         meetingSectionData={this.props.meetingSectionData}
+        setEntryHovered={this.props.setEntryHovered}
       />
 
     const msLectures  = msSorted.filter(each => each.code[0]==="L")

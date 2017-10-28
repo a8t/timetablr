@@ -17,6 +17,7 @@ const Shortlist = props => {
       removeMeetingSectionData={props.removeMeetingSectionData}
       removeFromShortlist={props.removeFromShortlist}
       meetingSectionData={props.meetingSectionData}
+      setEntryHovered={props.setEntryHovered}
     />
   )
 

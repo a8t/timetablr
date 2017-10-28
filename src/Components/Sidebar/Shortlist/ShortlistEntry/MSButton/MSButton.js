@@ -21,18 +21,31 @@ const MSButton = props => {
       className="meetingSection"
       style={{ background: color}}
       onClick={(e) => {
+        
         e.stopPropagation()
         e.preventDefault()
         if (addedClicked) {
           props.removeMeetingSectionData(props.eachMSD, "clicked")
         } else {
+          props.removeMeetingSectionData(props.eachMSD, "hovered")          
           props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code, }, "clicked")
         }
       }}
-      onMouseOver={(e) => { 
-        props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered" )}}
-      onMouseLeave={(e) => { 
-        props.removeMeetingSectionData(props.eachMSD, "hovered" )}}
+      onMouseEnter={(e) => { 
+        if(addedClicked){
+          props.setEntryHovered(props.eachMSD.id)
+        } else {
+          
+          props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered" )}}
+        }
+      onMouseLeave={(e) => {
+        if (addedClicked) {
+          
+          props.setEntryHovered("")
+        } else {
+          
+          props.removeMeetingSectionData(props.eachMSD, "hovered" )}}
+        }
     >
       {props.eachMSD.code}
     </button>

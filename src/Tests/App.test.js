@@ -8,7 +8,7 @@ import { configure } from 'enzyme';
 configure({ adapter: new Adapter() });
 
 const setup = () => {
-  const wrapper = shallow(<App />)
+  const wrapper = shallow(<App match={{url: "hi"}}/>)
   const appInstance = wrapper.instance()
   const sampleData = [
     { 
@@ -104,7 +104,7 @@ const setup = () => {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  shallow(<App match={{ url: "hi" }}/>)
 });
 
 describe('addMeetingSection method', () => {
@@ -115,7 +115,7 @@ describe('addMeetingSection method', () => {
     expect(appInstance.state["meetingSectionData"]).toEqual([sampleData[0]])
   })
 
-  it('doesnt allow adding more than two of each', () => {
+  it('doesnt allow adding more than one of each', () => {
     const { wrapper, appInstance, sampleData } = setup()
     appInstance.addMeetingSectionData(sampleData[0], "clicked")
     appInstance.addMeetingSectionData(sampleData[0], "clicked")    
@@ -123,9 +123,8 @@ describe('addMeetingSection method', () => {
     appInstance.addMeetingSectionData(sampleData[0], "clicked")    
     expect(appInstance.state["meetingSectionData"]).toEqual(
       [
-        { ...sampleData[1], clicked: 'clicked'},
-        {...sampleData[0], clicked: 'clicked'},
-        { ...sampleData[0], clicked: 'clicked'}
+        { ...sampleData[1], addMethod: 'clicked'},
+        { ...sampleData[0], addMethod: 'clicked'}
       ]
     )
   })
@@ -142,15 +141,15 @@ describe('removeMeetingSectionData method', () => {
     
     appInstance.removeMeetingSectionData(sampleData[1], 'clicked')
     expect(appInstance.state["meetingSectionData"]).toEqual([
-      {...sampleData[2], clicked: 'clicked'}, 
-      {...sampleData[3], clicked: 'clicked'}, 
-      {...sampleData[0], clicked: 'clicked'}
+      {...sampleData[2], addMethod: 'clicked'}, 
+      {...sampleData[3], addMethod: 'clicked'}, 
+      {...sampleData[0], addMethod: 'clicked'}
     ])
 
     appInstance.removeMeetingSectionData(sampleData[2], 'clicked')
     expect(appInstance.state["meetingSectionData"]).toEqual([
-      {...sampleData[3], clicked: 'clicked'}, 
-      {...sampleData[0], clicked: 'clicked'}
+      {...sampleData[3], addMethod: 'clicked'}, 
+      {...sampleData[0], addMethod: 'clicked'}
     ])
     
   })
@@ -164,9 +163,9 @@ describe('removeMeetingSectionData method', () => {
     appInstance.removeMeetingSectionData(sampleData[2], 'hovered')
 
     expect(appInstance.state["meetingSectionData"]).toEqual([
-      {...sampleData[2], clicked: 'clicked'}, 
-      {...sampleData[1], clicked: 'clicked'}, 
-      {...sampleData[0], clicked: 'clicked'}
+      {...sampleData[2], addMethod: 'clicked'}, 
+      {...sampleData[1], addMethod: 'clicked'}, 
+      {...sampleData[0], addMethod: 'clicked'}
     ])
     
   })

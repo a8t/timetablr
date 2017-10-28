@@ -45,7 +45,6 @@ class App extends Component {
 
   componentWillMount(){
     if (this.props.match.url.slice(1)) {
-      console.log(this.props.match.url.slice(1));
       window.addEventListener("beforeunload", e => {
         e.returnValue = "Make sure you save!";
         return "Make sure you save!"
@@ -121,7 +120,7 @@ class App extends Component {
         i.id === meetingDataToRemove.id &&  i.addMethod === addMethod
       )
       
-      return { meetingSectionData: [
+      return index >= 0 && { meetingSectionData: [
         ...prevState.meetingSectionData.slice(0, index),
         ...prevState.meetingSectionData.slice(index+1)
       ]}
@@ -172,31 +171,35 @@ class App extends Component {
   }
 
   render() {
+
+    
     const addedCoursesCount = this.state.meetingSectionData.filter(data => data.addMethod === 'clicked').length
 
     const sectionDataToEntry = entryJSON => {
+      
       return entryJSON.course_times.map(eachTime => {
 
-        let background
+        let background, zIndex
 
         if (this.state.entryHovered === entryJSON.id) {
           background = "#53CBA4"
+          zIndex = 4
         } else if (entryJSON.addMethod === "hovered") {
           background = "lightgreen"
+          zIndex = 4          
         } else {
           background = "#0ba7b7"
+          zIndex = 3
         }
 
-        console.log(background);
-        
-
         const styleObj = {
-          opacity:      entryJSON.addMethod === "clicked" ? 1 : 0.5,
+          zIndex:       zIndex,
           background:   background,
           gridRowStart: 'time' + timeToMilitaryTime(eachTime.start),
           gridRowEnd:   'time' + timeToMilitaryTime(eachTime.end),
           gridColumn:   eachTime.day.toLowerCase() + "/ span 2"
         }       
+        
         
         
         
@@ -217,7 +220,13 @@ class App extends Component {
       }
     )
   }
+
+    
   
+    // this.state.meetingSectionData.forEach(entryJSON => { console.log(entryJSON.code, entryJSON.addMethod, new Date());} )
+    console.log("$$$$$$$$$$$$$$$$$$$$$");
+    
+    
     const fallCourses   = this.state.meetingSectionData.filter(eachSectionData => eachSectionData.term === "2017 Fall")
     const fallEntries   = fallCourses.reverse().map(eachSectionData => sectionDataToEntry(eachSectionData))
     
@@ -234,6 +243,7 @@ class App extends Component {
           removeFromShortlist={this.removeFromShortlist}
           shortlist={this.state.shortlist}
           meetingSectionData = {this.state.meetingSectionData}
+          setEntryHovered={this.setEntryHovered}
         />
         <Calendar
           fallEntries={fallEntries}
