@@ -8,11 +8,12 @@
   text-align: left;
   font-weight: bold;
   position: relative;
-  height: 100px;
+  min-height: 100px;
   -webkit-transition: height 1s linear;
   -moz-transition: height 1s linear;
   transition: height 1s linear;
   overflow: hidden;
+  
 }
 
 /*STYLE SHORTLIST ENTRY ELEMENTS*/
@@ -89,18 +90,22 @@ button.remove:hover {
   border: 2px solid blue;
 }
 
-.fade-enter, .fade-enter.shortlistEntryName {
+.fade-enter {
   transition: all 300ms ease-in;
   -webkit-transition: all 300ms ease-in ;
   -moz-transition: all 300ms ease-in ;
   opacity:0.01;
   height: 0px;
+  min-height: 0px;
+  
 }
 
 
 .fade-enter.fade-enter-active, .fade-enter.fade-enter-active .shortlistEntryName {
   opacity:1;
   height: 100px;
+  min-height: 100px;
+  
 }
 
 
@@ -135,9 +140,9 @@ button.remove:hover {
 }
 
 .fade-leave.fade-leave-active, .fade-leave.fade-leave-active *  {
-    -webkit-transition: all 190ms ease-in;
+    -webkit-transition: all 250ms ease-in;
   -moz-transition: all 190ms ease-in;
-  transition: all 190ms ease-in;
+  transition: all 250ms ease-in;
   opacity: 0.01;
   min-height: 0px;
   height: 0;

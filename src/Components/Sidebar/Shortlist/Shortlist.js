@@ -27,7 +27,7 @@ const Shortlist = props => {
         <CSSTransitionGroup
           transitionName="fade"
           transitionEnterTimeout={300}
-          transitionLeaveTimeout={200}>
+          transitionLeaveTimeout={260}>
           {shortlistResults}
         </CSSTransitionGroup>
       </div>
