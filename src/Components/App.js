@@ -79,12 +79,14 @@ class App extends Component {
       this.state.meetingSectionData.reduce((n, val) => n + (val.id === newMeetingData.id && val.addMethod === addMethod), 0) >= 1
     ) return
     
-    this.setState({
-      meetingSectionData: [
-        { ...newMeetingData, addMethod: addMethod }, 
-        ...this.state.meetingSectionData, 
-      ]
-    })
+    this.setState(prevState => {
+      return {
+        meetingSectionData: [
+          { ...newMeetingData, addMethod: addMethod }, 
+          ...prevState.meetingSectionData, 
+        ]
+      }}
+    )
   }
 
   removeMeetingSectionData(meetingDataToRemove, addMethod) {
