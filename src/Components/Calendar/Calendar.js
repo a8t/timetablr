@@ -45,7 +45,7 @@ const Calendar = props => {
           <div className="timeslot"               style={{gridRow: "time22   / span 2"}}>10pm</div>
           <div className="timeslot halfHour last" style={{gridRow: "time2230 / span 1"}}></div>
         </div>
-< div className = "eachCal" >
+        <div className = "eachCal" >
           {props.winterEntries}
           <div className="weekday term"           style={{gridColumn: "start     / span 1"}}>W '18</div>
           <div className="weekday line"           style={{gridColumn: "monday    / span 2"}}>MO</div>

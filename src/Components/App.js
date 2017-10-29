@@ -17,74 +17,44 @@ class App extends Component {
       shortlist: [],
       entryHovered: ""
     }
-    this.currentCoursesAdded = {
-      "2017 Fall": {
-        monday: [],
-        tuesday: [],
-        wednesday: [],
-        thursday: [],
-        friday: []
-      },
-      "2018 Winter": {
-        monday: [],
-        tuesday: [],
-        wednesday: [],
-        thursday: [],
-        friday: []
-      }
-    }
+
     this.addMeetingSectionData = this.addMeetingSectionData.bind(this)
     this.removeMeetingSectionData = this.removeMeetingSectionData.bind(this)
     this.addToShortlist = this.addToShortlist.bind(this)
     this.removeFromShortlist = this.removeFromShortlist.bind(this)
-    this.addToCurrentCoursesAdded = this.addToCurrentCoursesAdded.bind(this)
-    this.isConflicting = this.isConflicting.bind(this)
     this.setEntryHovered = this.setEntryHovered.bind(this)
   }
 
-  componentWillMount(){
+  componentDidMount(){
+    const saveState = e => {
+      e.preventDefault()
+      try {
+        const serializedState = JSON.stringify({ ...this.state, entryHovered: "" })
+        localStorage.setItem("state", serializedState)
+        e.returnValue = "Make sure you save!";
+        return "Make sure you save!"
+      } catch (err) {
+        return undefined
+      }
+    }
+
     if (this.props.match.url.slice(1)) {
       fetch(`https://timetablrca.firebaseio.com/URLs/${this.props.match.url.slice(1)}.json`)
         .then(response => response.json())
-        .then(jsonResponse => {
-          this.setState(JSON.parse(jsonResponse)); console.log(jsonResponse);
-        })
-      console.log(this.props.match.url.slice(1));
+        .then(jsonResponse => this.setState(JSON.parse(jsonResponse)))
       
-      
-      window.addEventListener("beforeunload", e => {
-        e.returnValue = "Make sure you save!";
-        return "Make sure you save!"
-      })
-    } else {
+    } else if (loadState()) this.setState(loadState())
 
-      if (loadState()) this.setState(loadState())
-
-      const saveState = (e) => {
-        e.preventDefault()
-        try {
-          const serializedState = JSON.stringify({...this.state, entryHovered: ""})
-          localStorage.setItem("state", serializedState)
-          e.returnValue = "Make sure you save!";
-          return "Make sure you save!"
-        } catch (err) {
-          return undefined
-        }
-      }
-      window.addEventListener("beforeunload", saveState)
-    }
+    window.addEventListener("beforeunload", saveState)
   }
 
-  
 
-  addToShortlist(newEntry) {
-    fetch(`https://tbd-scheduler-v1.herokuapp.com/courses/get_data?course_id=${newEntry.id}`)
-      .then(response => response.json())
-      .then(jsonResponse => {
-        this.setState({
-          shortlist: [jsonResponse, ...this.state.shortlist]
-        })
-      })
+  async addToShortlist(newEntry) {
+    const response = await fetch(`https://tbd-scheduler-v1.herokuapp.com/courses/get_data?course_id=${newEntry.id}`)
+    const jsonResponse = await response.json()
+    this.setState({
+      shortlist: [jsonResponse, ...this.state.shortlist]
+    })
   }
 
   removeFromShortlist(entryData) {
@@ -105,69 +75,25 @@ class App extends Component {
 
 
   addMeetingSectionData(newMeetingData, addMethod) {
-    if (
-      this.state.meetingSectionData.reduce((n, val) => n + (val.id === newMeetingData.id && val.addMethod === addMethod), 0) >= 1
-    ) return
-
-    
-    this.setState(prevState => {
-      return {
-        meetingSectionData: [
-          { ...newMeetingData, addMethod: addMethod }, 
-          ...prevState.meetingSectionData, 
-        ]
-      }}
-    )
+    this.setState({
+      meetingSectionData: [
+        { ...newMeetingData, addMethod: addMethod }, 
+        ...this.state.meetingSectionData, 
+      ]
+    })
   }
 
   removeMeetingSectionData(meetingDataToRemove, addMethod) {
     this.setState((prevState) => {
       
       const index = prevState.meetingSectionData.findIndex(i =>
-        i.id === meetingDataToRemove.id &&  i.addMethod === addMethod
+        i.id === meetingDataToRemove.id && i.addMethod === addMethod
       )
       
       return index >= 0 && { meetingSectionData: [
         ...prevState.meetingSectionData.slice(0, index),
         ...prevState.meetingSectionData.slice(index+1)
       ]}
-    })
-  }
-
-  addToCurrentCoursesAdded(meetingDayTimeTerm) {
-    meetingDayTimeTerm.forEach(eachDayTimeTermObj => {
-      const { day, start, end, term } = eachDayTimeTermObj
-      this.currentCoursesAdded[term][day].push({
-        start: start,
-        end: end
-      })
-    })
-  }
-
-  meetingSectionDataToDayAndTime (newMeetingData) {
-    return newMeetingData.course_times.map(eachTime => {
-      return {
-        day: eachTime.day.toLowerCase(),
-        start: eachTime.start,
-        end: eachTime.end,
-        term: newMeetingData.term
-      }
-    })
-  }
-  isConflicting(meetingDayTimeTerm) {
-    meetingDayTimeTerm.forEach(eachDayTimeTermObj => {
-      const { day, start, end, term } = eachDayTimeTermObj
-
-      this.currentCoursesAdded[term][day].forEach(eachAlreadyAdded => {
-        if (
-          (start >= eachAlreadyAdded.start && start <= eachAlreadyAdded.end) ||
-          (end >= eachAlreadyAdded.start && end <= eachAlreadyAdded.end) ||
-          (eachAlreadyAdded.start >= start && eachAlreadyAdded.start <= end) ||
-          (eachAlreadyAdded.end >= start && eachAlreadyAdded.end <= end)
-        ) { return true };
-      })
-
-      return false
     })
   }
 
@@ -178,7 +104,6 @@ class App extends Component {
   }
 
   render() {
-
     
     const addedCoursesCount = this.state.meetingSectionData.filter(data => data.addMethod === "clicked").length
 
@@ -207,13 +132,9 @@ class App extends Component {
           gridColumn:   eachTime.day.toLowerCase() + "/ span 2"
         }       
         
-        
-        
-        
         return (
           <Entry
             setEntryHovered={this.setEntryHovered}
-            clicked={entryJSON.addMethod === "clicked"}
             code={entryJSON.code}
             id={entryJSON.id}
             style={styleObj}
@@ -252,7 +173,7 @@ class App extends Component {
           fallEntries={fallEntries}
           winterEntries={winterEntries}
         />
-      <Counter count={addedCoursesCount}/>
+        <Counter count={addedCoursesCount}/>
       </div>
     );
   }

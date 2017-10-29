@@ -35,12 +35,12 @@ class Search extends Component {
 
   }
 
-  fetchCourseData(course) {
-    fetch(`https://tbd-scheduler-v1.herokuapp.com/courses/search?course=${course}`)
-    .then(response => response.json())
-    .then(jsonResponse =>
-      {this.setState({searchResults: jsonResponse.slice(0, 10)})}
-        )
+  async fetchCourseData(course) {
+    const response = await fetch(`https://tbd-scheduler-v1.herokuapp.com/courses/search?course=${course}`)
+    const jsonResponse = await response.json()
+    this.setState({ 
+      searchResults: jsonResponse.slice(0, 10) 
+    })
   }
 
   hideSearchResults() {
@@ -66,9 +66,11 @@ class Search extends Component {
   }
 
   render () {
-    
+    // sigh.
+    const filteredResults = this.state.searchResults.filter(eachResult => 
+      !this.props.shortlist.map(each => each.code + each.term).includes(eachResult.code + eachResult.term))
 
-    const searchResults = this.state.searchResults.filter(eachResult => !this.props.shortlist.map(each => each.code + each.term).includes(eachResult.code+eachResult.term)).map(eachResult => 
+    const searchResults = filteredResults.map(eachResult => 
       <SearchResult 
         key={eachResult.id} 
         courseID={eachResult.id} 
@@ -80,7 +82,6 @@ class Search extends Component {
         term={eachResult.term}
       />
     )
-
 
     return(
       <div id="search">

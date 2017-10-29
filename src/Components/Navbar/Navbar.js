@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./Navbar.css";
 import Login from "./Login/Login"
-import URLGenerator from "./URLGenerator/URLGenerator"
+import URLGenerator, { Button } from "./URLGenerator/URLGenerator"
 import { CSSTransitionGroup } from "react-transition-group"
 
 class Navbar extends Component {
@@ -16,9 +16,10 @@ class Navbar extends Component {
   }
 
   toggleComfy() {
-    this.setState({
-      comfy: !this.state.comfy
-    })
+    const setTo = this.state.comfy ? "55px" : "100px"
+    document.getElementById("calendars").style.setProperty("--colWidth", setTo)
+
+    this.setState({comfy: !this.state.comfy})
   }
 
   toggleLogin() {
@@ -31,42 +32,16 @@ class Navbar extends Component {
     return (
       <div className="navbar" >
         <nav className="navBarLinks">
-          
-          <CSSTransitionGroup
-            transitionName="loginTransition"
-            transitionEnterTimeout={800}
-            transitionLeaveTimeout={800}>
-            {this.state.displayLogin
-              ? <Login toggleLogin={this.toggleLogin} key="loginarea" />
-              : <span key="span" />
-            }
-          </CSSTransitionGroup>
           <URLGenerator data={this.props.data}/>
         </nav>
       
-        
-        
         <div id="printview">
-          <button 
-            className="printbutton" 
-            onClick={e => {
-              window.print()
-              e.target.blur()
-          }}>
-            Print Calendar
-          </button>
+          <Button className="printbutton" onClick={() => window.print()}>Print Calendar</Button>
 
-          <button className="cozycomfy" onClick={e => {
-            const setTo = this.state.comfy ? "55px" : "100px" 
-            document.getElementById("calendars").style.setProperty("--colWidth", setTo)
-            this.toggleComfy()
-            e.target.blur()
-          }}>
+          <Button className="cozycomfy" onClick={this.toggleComfy}>
             View: {this.state.comfy ? "Comfy" : "Compact"}
-          </button>
+          </Button>
         </div>
-        
-
       </div>
     )
   }
@@ -82,3 +57,14 @@ export default Navbar
 // className = "login"
 // href = "#modal" > Login / Sign Up
 //           </button >
+
+          
+          // <CSSTransitionGroup
+          //   transitionName="loginTransition"
+          //   transitionEnterTimeout={800}
+          //   transitionLeaveTimeout={800}>
+          //   {this.state.displayLogin
+          //     ? <Login toggleLogin={this.toggleLogin} key="loginarea" />
+          //     : <span key="span" />
+          //   }
+          // </CSSTransitionGroup>

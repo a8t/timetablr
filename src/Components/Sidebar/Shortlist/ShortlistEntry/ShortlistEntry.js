@@ -19,13 +19,7 @@ class ShortlistEntry extends Component {
 
   render (){
 
-    const msSorted = this.props.ms_data.sort((a, b) => {
-      if (a.code < b.code) {
-        return -1
-      } else {
-        return 1
-      }
-    })
+    const msSorted = this.props.ms_data.sort((a, b) => a.code < b.code ? -1 : 1)
 
     const msDataToButton = msData =>
       <MSButton

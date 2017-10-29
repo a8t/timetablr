@@ -1,5 +1,5 @@
 import React from "react";
-import "./MSButton.css"
+import styles from "./MSButton.css"
 
 const MSButton = props => {
 
@@ -15,15 +15,12 @@ const MSButton = props => {
     color = "white"
   }
 
-
   return (
     <button
       className="meetingSection"
       style={{ background: color}}
       onClick={(e) => {
-        
         e.stopPropagation()
-        e.preventDefault()
         if (addedClicked) {
           props.removeMeetingSectionData(props.eachMSD, "clicked")
         } else {
@@ -35,15 +32,12 @@ const MSButton = props => {
         if(addedClicked){
           props.setEntryHovered(props.eachMSD.id)
         } else {
-          
           props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered" )}}
         }
       onMouseLeave={(e) => {
         if (addedClicked) {
-          
           props.setEntryHovered("")
         } else {
-          
           props.removeMeetingSectionData(props.eachMSD, "hovered" )}}
         }
     >

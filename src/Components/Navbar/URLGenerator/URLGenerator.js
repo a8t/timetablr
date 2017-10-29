@@ -3,6 +3,11 @@ import "./URLGenerator.css"
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import fire from "../../../fire"
 
+export const Button = props => 
+  <button className={props.className} onClick={e => {props.onClick(); e.target.blur()}}>{props.children}</button>
+
+Button.defaultProps = {onClick: null, text: null, className: null}
+
 class URLGenerator extends Component {
 
   constructor(props) {
@@ -12,61 +17,45 @@ class URLGenerator extends Component {
       copied: false,
       url: ""
     }
-    this.toggleGenerateCopy = this.toggleGenerateCopy.bind(this)
+    this.generateURL = this.generateURL.bind(this)
     this.toggleCopied = this.toggleCopied.bind(this)
   }
 
-  toggleGenerateCopy(){
-    const newURL = `${Math.random().toString(36).substr(2, 10)}`
-    
-
+  generateURL() {
     const newTimetableRef = fire.database().ref('URLs').push(this.props.data)
     const timetableID = newTimetableRef.key
 
-    this.setState(prevstate => {
-      return {
-        generated: true,
-        url: timetableID
-      }
+    this.setState({
+      generated: true,
+      url: timetableID
     })
   }
 
-  toggleCopied(){
+  toggleCopied() {
     this.setState({
       copied: !this.state.copied
     })
   }
-
   
   render() {
+    // sorry about this
     return (
       <div id="URLGenerator">
         {!this.state.generated
-            ? <button onClick={e => {
-                this.toggleGenerateCopy()
-                e.target.blur()
-              }}>Get URL</button>
-            : <CopyToClipboard text={`timetablr.ca/${this.state.url}`}
-                onCopy={() => this.toggleCopied()}>
-                {!this.state.copied 
-                  ? <button onClick={e => {
-                      e.target.blur()
-                    }}>Copy to clipboard?</button>
-                  : <button onClick={e => {
-                      this.toggleGenerateCopy()
-                      this.toggleCopied()
-                      e.target.blur()
-                    }}>Copied! Get new URL?</button>
-                }
-              </CopyToClipboard>
+          ? <Button onClick={this.generateURL}>Get URL</Button>
+          : <CopyToClipboard text={`timetablr.ca/${this.state.url}`} onCopy={() => this.toggleCopied()}>
+              {!this.state.copied 
+                ? <Button>Copy to clipboard</Button>
+                : <Button onClick={() => { this.generateURL(); this.toggleCopied() }}>Copied! Get new URL?</Button>
+              }
+            </CopyToClipboard>
         }
 
         {this.state.generated
-            ? <div id="url">
-                <a id="urltext" href={`http://timetablr.ca/${this.state.url}`}>{`timetablr.ca/${this.state.url}`}</a>
-              </div>
-            : <div id="url">
-              </div>
+          ? <div id="url">
+              <a id="urltext" href={`http://timetablr.ca/${this.state.url}`}>{`timetablr.ca/${this.state.url}`}</a>
+            </div>
+          : <div id="url"></div>
         }
       </div>
     )
