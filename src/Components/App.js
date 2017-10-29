@@ -75,6 +75,10 @@ class App extends Component {
 
 
   addMeetingSectionData(newMeetingData, addMethod) {
+    if (
+      this.state.meetingSectionData.reduce((n, val) => n + (val.id === newMeetingData.id && val.addMethod === addMethod), 0) >= 1
+    ) return
+    
     this.setState({
       meetingSectionData: [
         { ...newMeetingData, addMethod: addMethod }, 
@@ -108,7 +112,6 @@ class App extends Component {
     const addedCoursesCount = this.state.meetingSectionData.filter(data => data.addMethod === "clicked").length
 
     const sectionDataToEntry = entryJSON => {
-      
       return entryJSON.course_times.map(eachTime => {
 
         let background, zIndex
