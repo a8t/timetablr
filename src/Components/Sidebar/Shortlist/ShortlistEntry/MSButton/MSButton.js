@@ -18,7 +18,6 @@ const MSButton = props => {
   if (props.entryHovered == props.eachMSD.id) {
     border = "2px solid blue"
   }
-  console.log(props.entryHovered, props.eachMSD.id );
 
   return (
     <button
