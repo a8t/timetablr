@@ -136,12 +136,13 @@ class App extends Component {
           gridColumn:   eachTime.day.toLowerCase() + "/ span 2"
         }       
         
+        
         return (
           <Entry
             setEntryHovered={this.setEntryHovered}
             code={entryJSON.code}
             id={entryJSON.id}
-            key={entryJSON.code + entryJSON.courseCode}
+            keyEl={entryJSON.id + entryJSON.courseCode + entryJSON.addMethod}
             style={styleObj}
             courseCode={entryJSON.courseCode}
             timeStart={eachTime.start / 3600 % 12}

@@ -4,6 +4,7 @@ import "./Entry.css";
 const Entry = props => {
   return (
     <div 
+      key={props.keyEl}
       style={props.style}
       className="entry"
       onMouseEnter={() => props.setEntryHovered(props.id)}
