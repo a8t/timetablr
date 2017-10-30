@@ -6,25 +6,32 @@ const MSButton = props => {
   const added = props.meetingSectionData.find(eachAdded => eachAdded.id === props.eachMSD.id)
   const addedClicked = props.meetingSectionData.find(eachAdded => eachAdded.id === props.eachMSD.id && eachAdded.addMethod === "clicked")
 
-  let color
+  let color, border
   if (addedClicked) {
-    color = "#9be04c"
+    color = "lightgreen"
   } else if (added) {
     color = "lightcyan"
   } else {
     color = "white"
   }
 
+  if (props.entryHovered == props.eachMSD.id) {
+    border = "2px solid blue"
+  }
+  console.log(props.entryHovered, props.eachMSD.id );
+
   return (
     <button
       className="meetingSection"
-      style={{ background: color}}
+      style={{ background: color, border: border}}
       onClick={(e) => {
         e.stopPropagation()
         if (addedClicked) {
           props.removeMeetingSectionData(props.eachMSD, "clicked")
+          props.setEntryHovered("")
         } else {
-          props.removeMeetingSectionData(props.eachMSD, "hovered")          
+          props.removeMeetingSectionData(props.eachMSD, "hovered")    
+          props.setEntryHovered(props.eachMSD.id)
           props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code, }, "clicked")
         }
       }}

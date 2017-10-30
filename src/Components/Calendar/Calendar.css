@@ -129,3 +129,28 @@
     padding-left: 5px;
     color: #df744a;
 }
+
+/* Transitions for calendar entries */
+
+.courseEntryFade-enter {
+    opacity: 0;
+    max-height:0px;
+}
+
+.courseEntryFade-enter.courseEntryFade-enter-active {
+    transition: max-height 300ms ease-in, opacity 100ms ease-in;
+    max-height: 300px;
+    opacity: 1
+}
+
+.courseEntryFade-leave {
+    opacity:1;
+    max-height: 300px;
+}
+
+.courseEntryFade-leave.courseEntryFade-leave-active{
+    transition: all 150ms ease-in;
+    opacity: 0;
+    max-height: 0px;
+    
+}

@@ -12,7 +12,19 @@
   -webkit-transition: height 1s linear;
   -moz-transition: height 1s linear;
   transition: height 1s linear;
-  
+  cursor: default;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0,188,212,1);
+-moz-box-shadow: 0px 0px 0px 0px rgba(0,188,212,1);
+box-shadow: 0px 0px 0px 0px rgba(0,188,212,1);
+}
+
+.shortlistEntry:hover, .shortlistEntry:focus-within {
+  -webkit-transition: box-shadow 250ms ease;
+  -moz-transition: box-shadow 250ms ease;
+  transition: box-shadow 250ms ease;
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0,188,212,1);
+-moz-box-shadow: 0px 0px 15px 0px rgba(0,188,212,1);
+box-shadow: 0px 0px 15px 0px rgba(0,188,212,1);
 }
 
 /*STYLE SHORTLIST ENTRY ELEMENTS*/
@@ -56,7 +68,6 @@ button.remove, .expandArrow {
   position: absolute;
   right: 2px;
   box-sizing: content-box;
-  cursor: pointer;
   transition: all 250ms linear;
   transform-origin: center;
   -moz-transform-origin: center;
@@ -84,11 +95,14 @@ button.remove:hover {
   font-size: 20px;
 }
 
+
 .expandArrow:hover, .expandArrow:focus  {
   color: blue;
   background-color: lightblue;
   border: 2px solid blue;
 }
+
+/* transition for adding and removing */
 
 .fade-enter, .fade-enter .shortlistEntryName {
   transition: all 300ms ease;
@@ -111,8 +125,8 @@ button.remove:hover {
 
 .fade-enter button {
   transition: all 50ms ease-out;
-  -webkit-transition: all 50ms ease-out ;
   -moz-transition: all 50ms ease-out ;
+  -webkit-transition: all 50ms ease-out ;
   height: 0px;
   opacity: 0.01
 }
@@ -140,20 +154,25 @@ button.remove:hover {
 }
 
 .fade-leave.fade-leave-active, .fade-leave.fade-leave-active *  {
-    -webkit-transition: all 250ms ease-in;
-  -moz-transition: all 190ms ease-in;
-  transition: all 250ms ease-in;
+  transition:         all 250ms ease-in;
+  -moz-transition:    all 190ms ease-in;
+  -webkit-transition: all 250ms ease-in;
   opacity: 0.01;
   min-height: 0px;
   height: 0;
 }
+
+  /* transitions for expanding */
+
 
 .courseInfoFade-enter {
   max-height:0px;
 }
 
 .courseInfoFade-enter.courseInfoFade-enter-active {
-  transition: max-height 500ms ease-in;
+  transition:         max-height 500ms ease-in;
+  -moz-transition:    max-height 500ms ease-in;
+  -webkit-transition: max-height 500ms ease-in;
   max-height: 1000px;
 }
 
@@ -164,7 +183,9 @@ button.remove:hover {
 }
 
 .courseInfoFade-leave.courseInfoFade-leave-active p, .courseInfoFade-leave.courseInfoFade-leave-active button {
-  transition: all 300ms ease-in;
+  transition:         all 300ms ease-in;
+  -moz-transition:    all 300ms ease-in;
+  -webkit-transition: all 300ms ease-in;
   opacity: 0;
   font-size: 0;
   height: 0;

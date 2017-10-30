@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import Calendar from "./Calendar/Calendar";
+import Calendars from "./Calendar/Calendars";
 import Sidebar from "./Sidebar/Sidebar";
 import Navbar from "./Navbar/Navbar";
 import Counter from "./Counter/Counter"
@@ -91,7 +91,6 @@ class App extends Component {
 
   removeMeetingSectionData(meetingDataToRemove, addMethod) {
     this.setState((prevState) => {
-      
       const index = prevState.meetingSectionData.findIndex(i =>
         i.id === meetingDataToRemove.id && i.addMethod === addMethod
       )
@@ -142,11 +141,11 @@ class App extends Component {
             setEntryHovered={this.setEntryHovered}
             code={entryJSON.code}
             id={entryJSON.id}
+            key={entryJSON.code + entryJSON.courseCode}
             style={styleObj}
             courseCode={entryJSON.courseCode}
             timeStart={eachTime.start / 3600 % 12}
             timeEnd={eachTime.end / 3600 % 12}
-            key={entryJSON.courseCode + eachTime.day + eachTime.start} 
             removeMeetingSectionData={this.removeMeetingSectionData}
           />
         )
@@ -172,9 +171,10 @@ class App extends Component {
           removeFromShortlist={this.removeFromShortlist}
           shortlist={this.state.shortlist}
           meetingSectionData = {this.state.meetingSectionData}
+          entryHovered={this.state.entryHovered}
           setEntryHovered={this.setEntryHovered}
         />
-        <Calendar
+        <Calendars
           fallEntries={fallEntries}
           winterEntries={winterEntries}
         />

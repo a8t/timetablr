@@ -3,7 +3,7 @@ import "./Entry.css";
 
 const Entry = props => {
   return (
-    <div
+    <div 
       style={props.style}
       className="entry"
       onMouseEnter={() => props.setEntryHovered(props.id)}
@@ -11,7 +11,10 @@ const Entry = props => {
     >
       <button
         className="removeEntry"
-        onClick={() => props.removeMeetingSectionData({ id: props.id }, "clicked")}
+        onClick={e => {
+          props.removeMeetingSectionData({ id: props.id }, "clicked")
+          props.setEntryHovered("")
+        }}
       >x</button>
       <p className="entryText courseCode">{props.courseCode}</p>
       <p className="entryText">{props.code}</p>

@@ -18,6 +18,7 @@ const Sidebar = props => {
           buttonClicked={props.buttonClicked}
           meetingSectionData={props.meetingSectionData}
           setEntryHovered={props.setEntryHovered}
+          entryHovered={props.entryHovered}
         />
     </div>
   );
