@@ -4,9 +4,7 @@ import Calendars from "./Calendar/Calendars";
 import Sidebar from "./Sidebar/Sidebar";
 import Navbar from "./Navbar/Navbar";
 import Counter from "./Counter/Counter"
-import Entry from "./Calendar/Entry/Entry"
 import { loadState } from "./LocalState";
-const timeToMilitaryTime = secondsTime => Number.isInteger(secondsTime / 3600) ? secondsTime / 3600 : Math.floor(secondsTime / 3600) + "30"
 
 
 class App extends Component {
@@ -37,7 +35,7 @@ class App extends Component {
         return undefined
       }
     }
-
+    
     if (this.props.match.url.slice(1)) {
       fetch(`https://timetablrca.firebaseio.com/URLs/${this.props.match.url.slice(1)}.json`)
         .then(response => response.json())
@@ -111,55 +109,8 @@ class App extends Component {
   render() {
     
     const addedCoursesCount = this.state.meetingSectionData.filter(data => data.addMethod === "clicked").length
-
-    const sectionDataToEntry = entryJSON => {
-      return entryJSON.course_times.map(eachTime => {
-
-        let background, zIndex
-
-        if (this.state.entryHovered === entryJSON.id) {
-          background = "#53CBA4"
-          zIndex = 4
-        } else if (entryJSON.addMethod === "hovered") {
-          background = "lightgreen"
-          zIndex = 4          
-        } else {
-          background = "#0ba7b7"
-          zIndex = 3
-        }
-
-        const styleObj = {
-          zIndex:       zIndex,
-          background:   background,
-          gridRowStart: "time" + timeToMilitaryTime(eachTime.start),
-          gridRowEnd:   "time" + timeToMilitaryTime(eachTime.end),
-          gridColumn:   eachTime.day.toLowerCase() + "/ span 2"
-        }       
-        
-        
-        return (
-          <Entry
-            setEntryHovered={this.setEntryHovered}
-            code={entryJSON.code}
-            id={entryJSON.id}
-            keyEl={entryJSON.id + entryJSON.courseCode + entryJSON.addMethod}
-            style={styleObj}
-            courseCode={entryJSON.courseCode}
-            timeStart={eachTime.start / 3600 % 12}
-            timeEnd={eachTime.end / 3600 % 12}
-            removeMeetingSectionData={this.removeMeetingSectionData}
-          />
-        )
-      }
-    )
-  }
     
-    const fallCourses   = this.state.meetingSectionData.filter(eachSectionData => eachSectionData.term === "2017 Fall")
-    const fallEntries   = fallCourses.reverse().map(eachSectionData => sectionDataToEntry(eachSectionData))
-    
-    const winterCourses = this.state.meetingSectionData.filter(eachSectionData => eachSectionData.term === "2018 Winter")
-    const winterEntries = winterCourses.reverse().map(eachSectionData => sectionDataToEntry(eachSectionData))
-    
+
     return (
       <div className="App">
         <Navbar 
@@ -176,8 +127,10 @@ class App extends Component {
           setEntryHovered={this.setEntryHovered}
         />
         <Calendars
-          fallEntries={fallEntries}
-          winterEntries={winterEntries}
+          entryHovered={this.state.entryHovered}
+          setEntryHovered={this.setEntryHovered}
+          removeMeetingSectionData={this.removeMeetingSectionData}
+          meetingSectionData={this.state.meetingSectionData}
         />
         <Counter count={addedCoursesCount}/>
       </div>
