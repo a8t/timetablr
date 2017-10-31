@@ -31,7 +31,7 @@ class Navbar extends Component {
           break
         case 1:
           document.getElementById("App").style.setProperty("--colWidth", "55px")
-          document.getElementById("App").style.setProperty("--titleSize", "80%")
+          document.getElementById("App").style.setProperty("--titleSize", "100%")
           document.getElementById("App").style.setProperty("--sidebarWidth", "300px")
           document.getElementById("App").style.setProperty("--shortListFontSize", "14px")
           
