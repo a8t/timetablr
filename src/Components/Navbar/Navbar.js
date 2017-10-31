@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import "./Navbar.css";
-import Login from "./Login/Login"
 import URLGenerator, { Button } from "./URLGenerator/URLGenerator"
-import { CSSTransitionGroup } from "react-transition-group"
+// import Login from "./Login/Login"
+// import { CSSTransitionGroup } from "react-transition-group"
 
 class Navbar extends Component {
   constructor(props) {

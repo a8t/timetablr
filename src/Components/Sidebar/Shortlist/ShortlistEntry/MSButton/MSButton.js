@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./MSButton.css"
+import "./MSButton.css"
 
 const MSButton = props => {
 
@@ -15,7 +15,7 @@ const MSButton = props => {
     color = "white"
   }
 
-  if (props.entryHovered == props.eachMSD.id) {
+  if (props.entryHovered === props.eachMSD.id) {
     border = "2px solid blue"
   }
 
