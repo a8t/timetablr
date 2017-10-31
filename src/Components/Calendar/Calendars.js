@@ -3,6 +3,8 @@ import "./Calendar.css";
 import TermCalendar from './TermCalendar'
 import Entry from "./Entry/Entry"
 
+import Transition from 'react-motion-ui-pack'
+
 import { timeToMilitaryTime } from "../LocalState";
 
 
@@ -32,17 +34,27 @@ const Calendars = props => {
 
 
       return (
-        <Entry
-          setEntryHovered={props.setEntryHovered}
-          code={entryJSON.code}
-          id={entryJSON.id}
-          keyEl={entryJSON.id + entryJSON.courseCode + entryJSON.addMethod}
-          style={styleObj}
-          courseCode={entryJSON.courseCode}
-          timeStart={eachTime.start / 3600 % 12}
-          timeEnd={eachTime.end / 3600 % 12}
-          removeMeetingSectionData={props.removeMeetingSectionData}
-        />
+        <Transition
+          component={false} // don't use a wrapping component
+          enter={{
+            opacity: 1,
+          }}
+          leave={{
+            opacity: 0,
+          }}
+        >
+          <Entry
+            setEntryHovered={props.setEntryHovered}
+            code={entryJSON.code}
+            id={entryJSON.id}
+            keyEl={entryJSON.id + entryJSON.courseCode + entryJSON.addMethod}
+            style={styleObj}
+            courseCode={entryJSON.courseCode}
+            timeStart={eachTime.start / 3600 % 12}
+            timeEnd={eachTime.end / 3600 % 12}
+            removeMeetingSectionData={props.removeMeetingSectionData}
+          />
+        </Transition>
       )
     })
   }
