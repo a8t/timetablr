@@ -7,8 +7,7 @@
     justify-content: space-around;
     align-items: center;
     padding-top: 10px;
-    --colWidth: 55px;
-    --rowheight: 25px;
+
 
 }
 
@@ -80,7 +79,7 @@
     grid-row: time / end;
     text-align:center;
     color: #111;
-    font-size: 18px;
+    font-size: var(--titleSize);
     font-weight: normal;
     padding-top: 5px;
 }
@@ -92,6 +91,7 @@
 
 /*STYLE TIMES TEXT*/
 .timeslot {
+    font-size: var(--titleSize);
     color: #111;
     grid-column: start / end;
     padding-left: 4px;

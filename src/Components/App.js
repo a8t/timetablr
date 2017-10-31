@@ -119,7 +119,7 @@ class App extends Component {
     
 
     return (
-      <div className="App">
+      <div id="App">
         <Navbar 
           data={JSON.stringify({ ...this.state, entryHovered: "" })}
         />

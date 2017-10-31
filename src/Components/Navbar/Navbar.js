@@ -9,17 +9,44 @@ class Navbar extends Component {
     super(props)
     this.state = {
       displayLogin: false,
-      comfy: false
+      comfy: 1
     }
+    this.comfy = ["Compact", "Cozy", "Comfy"]
     this.toggleLogin = this.toggleLogin.bind(this)
     this.toggleComfy = this.toggleComfy.bind(this)
   }
 
   toggleComfy() {
-    const setTo = this.state.comfy ? "55px" : "100px"
-    document.getElementById("calendars").style.setProperty("--colWidth", setTo)
+    this.setState( prevState => {
+      const newIndex = (prevState.comfy + 1) % 3
 
-    this.setState({comfy: !this.state.comfy})
+      let setTo 
+
+      switch (newIndex) {
+        case 0:
+          document.getElementById("App").style.setProperty("--colWidth", "36px")
+          document.getElementById("App").style.setProperty("--titleSize", "80%")
+          document.getElementById("App").style.setProperty("--sidebarWidth", "200px")
+          document.getElementById("App").style.setProperty("--shortListFontSize", "12px")
+          break
+        case 1:
+          document.getElementById("App").style.setProperty("--colWidth", "55px")
+          document.getElementById("App").style.setProperty("--titleSize", "80%")
+          document.getElementById("App").style.setProperty("--sidebarWidth", "300px")
+          document.getElementById("App").style.setProperty("--shortListFontSize", "14px")
+          
+          break
+        case 2:
+          document.getElementById("App").style.setProperty("--colWidth", "100px")
+          document.getElementById("App").style.setProperty("--titleSize", "100%")
+          document.getElementById("App").style.setProperty("--sidebarWidth", "300px")
+          document.getElementById("App").style.setProperty("--shortListFontSize", "14px")
+          
+          break;
+      }
+
+      return { comfy: newIndex }
+    })
   }
 
   toggleLogin() {
@@ -39,7 +66,7 @@ class Navbar extends Component {
           <Button className="printbutton" onClick={() => window.print()}>Print Calendar</Button>
 
           <Button className="cozycomfy" onClick={this.toggleComfy}>
-            View: {this.state.comfy ? "Comfy" : "Compact"}
+            View: {this.comfy[this.state.comfy]}
           </Button>
         </div>
       </div>

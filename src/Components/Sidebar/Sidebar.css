@@ -11,4 +11,5 @@
   overflow: auto;
   z-index: 5;
   box-sizing: content-box;
+  width: var(--sidebarWidth);
 }

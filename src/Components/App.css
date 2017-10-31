@@ -33,18 +33,27 @@ body {
 }
 
 
-.App {
+#App {
+  --colWidth: 55px;
+  --rowheight: 25px;
+  --titleSize: 100%;
+  --sidebarWidth: 300px;
+  --shortListFontSize: 14px;
+
+
   position: relative;
   background-color: white;
   text-align: center;
   height: auto;
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: var(--sidebarWidth) 1fr;
   grid-template-rows: 35px 1fr;
   grid-column-gap: 10px;
   grid-template-areas:
     "navbar  navbar"
     "sidebar calendars";
+
+
 
 }
 

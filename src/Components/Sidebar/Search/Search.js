@@ -21,13 +21,13 @@ class Search extends Component {
     const a = event.target.value
 
     this.setState({
-      searchTerm: a.substr(0, 50)
+      searchTerm: a.substr(0, 50).replace(/\s/g, '')
     })
 
-    if (a && a.length >= 1) {
+    if (a && a.replace(/\s/g, '').length >= 1) {
       clearTimeout(this.timer)
       this.timer = setTimeout(() => {
-        this.fetchCourseData(a)
+        this.fetchCourseData(a.replace(/\s/g, ''))
       }, 100);
     } else {
       this.setState({searchResults: []})
@@ -83,6 +83,10 @@ class Search extends Component {
       />
     )
 
+    let styleObj = {}
+    if (filteredResults.length < 1) { styleObj.display = "none" };
+    
+
     return(
       <div id="search">
         <input className="searchBar"
@@ -99,7 +103,7 @@ class Search extends Component {
             }
           }}
           placeholder="Search course"/>
-        <div className="searchResults" ref="searchResults">
+        <div className="searchResults" style={styleObj} ref="searchResults">
             {searchResults}
         </div>
       </div>

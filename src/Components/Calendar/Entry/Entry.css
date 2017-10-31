@@ -22,7 +22,7 @@
 }
 
 .courseCode {
-  font-size: 100%;
+  font-size: var(--titleSize);
   font-weight: normal;
 }
 
