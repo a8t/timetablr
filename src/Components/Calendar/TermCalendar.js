@@ -2,9 +2,9 @@ import React from "react";
 
 const TermCalendar = props => {
   return (
-      <div className="eachCal">
+    <div className="eachCal" key={props.term}>
         {props.children}
-        <div className="weekday term"           style={{gridColumn: "start     / span 1"}}>F '17</div>
+        <div className="weekday term"           style={{gridColumn: "start     / span 1"}}>{props.term}</div>
         <div className="weekday line"           style={{gridColumn: "monday    / span 2"}}>MO</div>
         <div className="weekday line"           style={{gridColumn: "tuesday   / span 2"}}>TU</div>
         <div className="weekday line"           style={{gridColumn: "wednesday / span 2"}}>WE</div>
