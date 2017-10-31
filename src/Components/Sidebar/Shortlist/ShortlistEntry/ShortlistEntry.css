@@ -183,7 +183,7 @@ button.remove:hover {
 }
 
 .courseInfoFade-leave p {
-  font-size: 14px;
+  font-size: var(--shortListFontSize);
   height: 100%;
   opacity: 1
 }
