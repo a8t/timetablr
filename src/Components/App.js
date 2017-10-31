@@ -23,7 +23,7 @@ class App extends Component {
     this.setEntryHovered = this.setEntryHovered.bind(this)
   }
 
-  componentDidMount(){
+  async componentDidMount(){
     const saveState = e => {
       e.preventDefault()
       try {
@@ -37,10 +37,13 @@ class App extends Component {
     }
     
     if (this.props.match.url.slice(1)) {
-      fetch(`https://timetablrca.firebaseio.com/URLs/${this.props.match.url.slice(1)}.json`)
-        .then(response => response.json())
-        .then(jsonResponse => this.setState(JSON.parse(jsonResponse)))
-      
+      try {
+        const response = await fetch(`https://timetablrca.firebaseio.com/URLs/${this.props.match.url.slice(1)}.json`)
+        const jsonResponse = await response.json()
+        this.setState(JSON.parse(jsonResponse)) 
+      } catch (error) {
+        console.log(error);
+      }
     } else if (loadState()) this.setState(loadState())
 
     window.addEventListener("beforeunload", saveState)
@@ -48,11 +51,15 @@ class App extends Component {
 
 
   async addToShortlist(newEntry) {
-    const response = await fetch(`https://tbd-scheduler-v1.herokuapp.com/courses/get_data?course_id=${newEntry.id}`)
-    const jsonResponse = await response.json()
-    this.setState({
-      shortlist: [jsonResponse, ...this.state.shortlist]
-    })
+    try {
+      const response = await fetch(`https://tbd-scheduler-v1.herokuapp.com/courses/get_data?course_id=${newEntry.id}`)
+      const jsonResponse = await response.json()
+      this.setState({
+        shortlist: [jsonResponse, ...this.state.shortlist]
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   removeFromShortlist(entryData) {
