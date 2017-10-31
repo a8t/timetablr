@@ -38,14 +38,30 @@ const MSButton = props => {
         if(addedClicked){
           props.setEntryHovered(props.eachMSD.id)
         } else {
-          props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered" )}}
+          props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered" )
         }
+      }}
       onMouseLeave={(e) => {
         if (addedClicked) {
           props.setEntryHovered("")
         } else {
-          props.removeMeetingSectionData(props.eachMSD, "hovered" )}}
+          props.removeMeetingSectionData(props.eachMSD, "hovered" )
         }
+      }}
+      onFocus={e => {
+        if (addedClicked) {
+          props.setEntryHovered(props.eachMSD.id)
+        } else {
+          props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered")
+        }
+      }}
+      onBlur={e => {
+        if (addedClicked) {
+          props.setEntryHovered("")
+        } else {
+          props.removeMeetingSectionData(props.eachMSD, "hovered" )
+        }
+      }}
     >
       {props.eachMSD.code}
     </button>
