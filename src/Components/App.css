@@ -23,7 +23,9 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
+    background-image: url("../img.jpg");
+  
 }
 
 * {
@@ -40,6 +42,10 @@ body {
   --sidebarWidth: 300px;
   --shortListFontSize: 14px;
 
+
+  background-color: rgba(0, 0, 0, 0);
+    background-image: url("../img.jpg");
+  
 
   position: relative;
   background-color: white;
@@ -62,40 +68,50 @@ body {
 
 /***PRINT CALENDAR***/
 @media print {
-  @page {
-    size: landscape;
+  body {
+    background-image: none !important;
+  }
+  
+  * {
+    box-shadow: none !important;
+    background-image: none !important;
+    position: relative 
   }
   .App {
+    background-image: none !important;
+    
     grid-template-areas:
-      "calendars calendars"
+      "calendars"  !important;
+      grid-template-columns: 1fr !important;
   }
   .navbar {
-    display: none;
+    display: none !important;
   }
   #sidebar {
-    display: none;
+    display: none !important;
+    background-image: none !important;
+    
   }
   #calendars {
-    width: 100%;
-    position: absolute;
-    top: 10px;
+    width: 100% !important;
+    position: absolute !important;
+    top: 10px !important;
   }
   #calendars > div {
-    width: 45%;
-    --colWidth: 40px;
-    --rowheight: 18px;
-    
+    width: 50% !important;
+    --colWidth: 35px !important;
+    --rowheight: 18px !important;
   }
   .eachCal > div {
     font-size: 12px !important;    
   }
   button {
-    display: none;
+    display: none !important;
   }
 
   .entryText.courseCode {
-    font-weight: normal;
-    font-size: 10pt;
+    font-weight: normal !important;
+    font-size: 10pt !important;
   }
 
   .entryText.meetingSection {

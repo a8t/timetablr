@@ -32,16 +32,11 @@ const Calendars = props => {
         styleObj.zIndex = 4
       }
 
-
       return (
         <Transition
           component={false} // don't use a wrapping component
-          enter={{
-            opacity: 1,
-          }}
-          leave={{
-            opacity: 0,
-          }}
+          enter={{ opacity: 1 }}
+          leave={{ opacity: 0 }}
         >
           <Entry
             setEntryHovered={props.setEntryHovered}
@@ -66,16 +61,16 @@ const Calendars = props => {
   const winterEntries = winterCourses.reverse().map(eachSectionData => sectionDataToEntry(eachSectionData))
 
   return (
-      <div id="calendars">
-        <TermCalendar term="F '17">
-          {fallEntries}
-        </TermCalendar>
+    <div id="calendars">
+      <TermCalendar term="F '17">
+        {fallEntries}
+      </TermCalendar>
 
-        <TermCalendar term="W '18">
-          {winterEntries}
-        </TermCalendar>
-      </div>
-    )
+      <TermCalendar term="W '18">
+        {winterEntries}
+      </TermCalendar>
+    </div>
+  )
 }
     
 export default Calendars

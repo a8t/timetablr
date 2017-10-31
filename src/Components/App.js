@@ -38,7 +38,8 @@ class App extends Component {
     
     if (this.props.match.url.slice(1)) {
       try {
-        const response = await fetch(`https://timetablrca.firebaseio.com/URLs/${this.props.match.url.slice(1)}.json`)
+        const url = `https://timetablrca.firebaseio.com/URLs/${this.props.match.url.slice(1)}.json`
+        const response = await fetch(url)
         const jsonResponse = await response.json()
         this.setState(JSON.parse(jsonResponse)) 
       } catch (error) {
@@ -49,14 +50,16 @@ class App extends Component {
     window.addEventListener("beforeunload", saveState)
   }
 
-
   async addToShortlist(newEntry) {
     try {
-      const response = await fetch(`https://tbd-scheduler-v1.herokuapp.com/courses/get_data?course_id=${newEntry.id}`)
+      const url = `https://tbd-scheduler-v1.herokuapp.com/courses/get_data?course_id=${newEntry.id}`
+      const response = await fetch(url)
       const jsonResponse = await response.json()
+
       this.setState({
         shortlist: [jsonResponse, ...this.state.shortlist]
       })
+
     } catch (error) {
       console.log(error);
     }
@@ -65,44 +68,45 @@ class App extends Component {
   removeFromShortlist(entryData) {
     this.setState((prevState) => {
 
-      const entryShortlistIndex = prevState.shortlist.findIndex(i => i.code === entryData.code && i.term === entryData.term)
+      const entryIndex = prevState.shortlist.findIndex(i => i.code === entryData.code && i.term === entryData.term)
       const msData = prevState.meetingSectionData.filter(each => each.courseCode !== entryData.code)
 
       return {
         shortlist: [
-          ...prevState.shortlist.slice(0, entryShortlistIndex),
-          ...prevState.shortlist.slice(entryShortlistIndex + 1)
+          ...prevState.shortlist.slice(0, entryIndex),
+          ...prevState.shortlist.slice(entryIndex + 1)
         ],
         meetingSectionData: msData
       }
     })
   }
 
-
-  addMeetingSectionData(newMeetingData, addMethod) {
-    if (
-      this.state.meetingSectionData.reduce((n, val) => n + (val.id === newMeetingData.id && val.addMethod === addMethod), 0) >= 1
-    ) return
-    
+  addMeetingSectionData(newMSD, addMethod) {
     this.setState(prevState => {
+      const prevMSD = prevState.meetingSectionData
+
+      const alreadyAddedCount = prevMSD.reduce((n, val) => n + (val.id === newMSD.id && val.addMethod === addMethod), 0)
+
+      if (alreadyAddedCount >= 1) return
+
       return {
         meetingSectionData: [
-          { ...newMeetingData, addMethod: addMethod }, 
-          ...prevState.meetingSectionData, 
+          { ...newMSD, addMethod: addMethod }, 
+          ...prevMSD, 
         ]
       }}
     )
   }
 
-  removeMeetingSectionData(meetingDataToRemove, addMethod) {
+  removeMeetingSectionData(removeData, addMethod) {
     this.setState((prevState) => {
-      const index = prevState.meetingSectionData.findIndex(i =>
-        i.id === meetingDataToRemove.id && i.addMethod === addMethod
-      )
+      const prevMSD = prevState.meetingSectionData
+
+      const index = prevMSD.findIndex( i => i.id === removeData.id && i.addMethod === addMethod )
       
       return index >= 0 && { meetingSectionData: [
-        ...prevState.meetingSectionData.slice(0, index),
-        ...prevState.meetingSectionData.slice(index+1)
+        ...prevMSD.slice(0, index),
+        ...prevMSD.slice(index+1)
       ]}
     })
   }
@@ -117,7 +121,6 @@ class App extends Component {
     
     const addedCoursesCount = this.state.meetingSectionData.filter(data => data.addMethod === "clicked").length
     
-
     return (
       <div id="App">
         <Navbar 

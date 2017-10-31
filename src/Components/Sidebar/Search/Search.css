@@ -1,10 +1,12 @@
 /*STYLE ENTIRE SEARCH COMPONENT*/
 #search {
-  background-color: white;
+  background-color: none;
   color: #333;
   font-weight: bold;
-  border-top: solid #df744a 40px;
-  box-shadow: 0px 4px 10px 1px rgba(118,122,128,.2 );
+  margin-top: 40px;
+  padding: 10px 0;
+  border-radius: 3px;
+  
 }
 
 /*STYLE DIV CONTAINING SEARCH RESULTS*/

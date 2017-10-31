@@ -3,65 +3,52 @@ import "./MSButton.css"
 
 const MSButton = props => {
 
-  const added = props.meetingSectionData.find(eachAdded => eachAdded.id === props.eachMSD.id)
-  const addedClicked = props.meetingSectionData.find(eachAdded => eachAdded.id === props.eachMSD.id && eachAdded.addMethod === "clicked")
+  const {eachMSD, term, code, meetingSectionData, addMeetingSectionData, removeMeetingSectionData, entryHovered, setEntryHovered} = props
 
-  let color, border
-  if (addedClicked) {
-    color = "lightgreen"
-  } else if (added) {
-    color = "lightcyan"
-  } else {
-    color = "white"
+  const clicked = meetingSectionData.find(each => each.id === eachMSD.id && each.addMethod === "clicked")
+
+  const styleObj = {
+    backgroundColor: clicked ? "lightgreen" : null,
+    border: entryHovered === eachMSD.id ? "2px solid blue" : null
   }
 
-  if (props.entryHovered === props.eachMSD.id) {
-    border = "2px solid blue"
+  const handleEnter = () => {
+    if (clicked) {
+      setEntryHovered(eachMSD.id)
+    } else {
+      addMeetingSectionData({ ...eachMSD, term: term, courseCode: code }, "hovered")
+    }
+  }
+
+  const handleLeave = () => {
+    if (clicked) {
+      setEntryHovered("")
+    } else {
+      removeMeetingSectionData(eachMSD, "hovered")
+    }
+  }
+
+  const handleClick = e => {
+    e.stopPropagation()
+    if (clicked) {
+      removeMeetingSectionData(eachMSD, "clicked")
+      setEntryHovered("")
+    } else {
+      removeMeetingSectionData(eachMSD, "hovered")
+      setEntryHovered(eachMSD.id)
+      addMeetingSectionData({ ...eachMSD, term: term, courseCode: code }, "clicked")
+    }
   }
 
   return (
     <button
       className="meetingSection"
-      style={{ background: color, border: border}}
-      onClick={(e) => {
-        e.stopPropagation()
-        if (addedClicked) {
-          props.removeMeetingSectionData(props.eachMSD, "clicked")
-          props.setEntryHovered("")
-        } else {
-          props.removeMeetingSectionData(props.eachMSD, "hovered")    
-          props.setEntryHovered(props.eachMSD.id)
-          props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code, }, "clicked")
-        }
-      }}
-      onMouseEnter={(e) => { 
-        if(addedClicked){
-          props.setEntryHovered(props.eachMSD.id)
-        } else {
-          props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered" )
-        }
-      }}
-      onMouseLeave={(e) => {
-        if (addedClicked) {
-          props.setEntryHovered("")
-        } else {
-          props.removeMeetingSectionData(props.eachMSD, "hovered" )
-        }
-      }}
-      onFocus={e => {
-        if (addedClicked) {
-          props.setEntryHovered(props.eachMSD.id)
-        } else {
-          props.addMeetingSectionData({ ...props.eachMSD, term: props.term, courseCode: props.code }, "hovered")
-        }
-      }}
-      onBlur={e => {
-        if (addedClicked) {
-          props.setEntryHovered("")
-        } else {
-          props.removeMeetingSectionData(props.eachMSD, "hovered" )
-        }
-      }}
+      style={styleObj}
+      onClick={ e => handleClick(e)}
+      onMouseEnter={ () => handleEnter() }
+      onMouseLeave={ () => handleLeave() }
+      onFocus={ () => handleEnter() }
+      onBlur={ () => handleLeave() }
     >
       {props.eachMSD.code}
     </button>
