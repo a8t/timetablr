@@ -70,37 +70,37 @@ class ShortlistEntry extends Component {
             </svg>
         </button>
         <button className="expandArrow">
-          {this.state.displayInfo ? "🙈" : "🐵"}
+          { this.state.displayInfo ? "🙈" : "🐵" }
         </button>
         <p className="shortlistEntryCode">
-          {this.props.code}
+          { this.props.code }
         </p>
         <p className="shortlistEntryName">
-          {this.props.name}
+          { this.props.name }
         </p>
         <CSSTransitionGroup
           transitionName="courseInfoFade"
           transitionEnterTimeout={500}
           transitionLeaveTimeout={300}>
-          {this.state.displayInfo 
+          { this.state.displayInfo 
               ? <div className="showCourseInformation" key="desc">
                   <p className="shortlistEntryDesc">
                     {this.props.description}
                   </p>
                   <p>
-                    {lectureButtons[0] ? "Lectures" : ""}
-                    {lectureButtons[0] ? <br /> : ""}
-                    {lectureButtons}
+                    { lectureButtons[0] && "Lectures" }
+                    { lectureButtons[0] && <br /> }
+                    { lectureButtons}
                   </p>
                   <p>
-                    {labButtons[0] ? "Labs" : ""}
-                    {labButtons[0] ? <br /> : ""}
-                    {labButtons}
+                    { labButtons[0] && "Labs" }
+                    { labButtons[0] && <br /> }
+                    { labButtons }
                   </p>
                   <p>
-                    {tutorialButtons[0] ? "Tutorials" : ""}
-                    {tutorialButtons[0] ? <br /> : ""}
-                    {tutorialButtons}
+                    { tutorialButtons[0] && "Tutorials" }
+                    { tutorialButtons[0] && <br /> }
+                    { tutorialButtons }
                   </p>
               </div>
             : <span key="span"/>
