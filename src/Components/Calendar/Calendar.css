@@ -5,8 +5,8 @@
     display: flex;
     flex-flow: wrap;
     justify-content: space-around;
-    align-items: center;
-    padding-top: 10px;
+    align-self: center;
+    padding-top: 30px;
     background-color: rgba(0, 0, 0, 0);
 
 }
