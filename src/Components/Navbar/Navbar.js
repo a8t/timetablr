@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "./Navbar.css";
 import URLGenerator, { Button } from "./URLGenerator/URLGenerator"
+
 // import Login from "./Login/Login"
 // import { CSSTransitionGroup } from "react-transition-group"
 
@@ -59,9 +60,11 @@ class Navbar extends Component {
     return (
       <div className="navbar" >
         <nav className="navBarLinks">
-          <URLGenerator data={this.props.data}/>
+        <URLGenerator data={this.props.data}/>
         </nav>
-      
+        
+        <div id="logo">timetablr</div>
+        
         <div id="printview">
           <Button className="printbutton" onClick={() => window.print()}>Print Calendar</Button>
 
