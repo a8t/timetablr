@@ -79,6 +79,8 @@ nav {
   padding-top: 4px;
   font-size: 36px;
      -webkit-text-stroke-width: 1px;
-   -webkit-text-stroke-color: #008ba3;
+   -webkit-text-stroke-color: #666;
   margin-right: 20px;
+  cursor: default;
+  
 }

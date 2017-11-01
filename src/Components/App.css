@@ -46,11 +46,11 @@ body {
   background-color: rgba(0, 0, 0, 0);
     background-image: url("../monkeys.jpg");
   
-
+  box-sizing: border-box;
   position: relative;
   background-color: white;
   text-align: center;
-  height: auto;
+  height: 100%;
   display: grid;
   grid-template-columns: var(--sidebarWidth) 1fr;
   grid-template-rows: 35px 1fr;

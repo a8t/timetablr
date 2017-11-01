@@ -5,21 +5,19 @@
     display: flex;
     flex-flow: wrap;
     justify-content: space-around;
-    align-self: center;
-    padding-top: 30px;
+    align-items: center;
     background-color: rgba(0, 0, 0, 0);
-
+    box-sizing: border-box;
+    margin-top: 35px;
 }
 
 /*STYLE FALL AND WINTER CALENDARS*/
 .eachCal {
     background-color: rgb(253, 254, 253);
     
-    margin: 5px 0;
+    margin: 5px auto;
     font-family: 'Fira Sans', sans-serif;
-    padding: 0 2px;
-    width: auto;
-    height: auto;
+    padding: 3px 2px;
     border-radius: 2px;
     display: grid;
     position: relative;
