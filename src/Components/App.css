@@ -24,7 +24,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1;
-    background-image: url("../img.jpg");
+    background-image: url("../monkeys.jpg");
   
 }
 
@@ -37,14 +37,14 @@ body {
 
 #App {
   --colWidth: 55px;
-  --rowheight: 25px;
+  --rowheight: 2.5vh;
   --titleSize: 100%;
   --sidebarWidth: 300px;
   --shortListFontSize: 14px;
 
 
   background-color: rgba(0, 0, 0, 0);
-    background-image: url("../img.jpg");
+    background-image: url("../monkeys.jpg");
   
 
   position: relative;
