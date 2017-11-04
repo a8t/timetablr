@@ -20,14 +20,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "jest": "jest",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "enzyme-adapter-react-16": "^1.0.2",
-    "gh-pages": "^1.0.0",
     "react-test-renderer": "^16.0.0"
-  },
-  "homepage": "https://a8t.github.io/timetablr/"
+  }
 }
