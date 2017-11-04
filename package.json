@@ -25,6 +25,5 @@
   "devDependencies": {
     "enzyme-adapter-react-16": "^1.0.2",
     "react-test-renderer": "^16.0.0"
-  },
-  "homepage": "https://a8t.github.io/tbd-frontend/"
+  }
 }
