@@ -47,6 +47,52 @@ class App extends Component {
     } else if (loadState()) this.setState(loadState());
 
     window.addEventListener('beforeunload', saveState);
+
+    this.addToShortlist({ id: 311 });
+    this.addMeetingSectionData(
+      {
+        code: 'L0101',
+        courseCode: 'APS110H1F',
+        course_times: [
+          {
+            created_at: '2017-10-15T16:05:44.868Z',
+            day: 'FRIDAY',
+            duration: 3600,
+            end: 43200,
+            id: 737,
+            location: 'SF 1105',
+            meeting_section_id: 667,
+            start: 39600,
+            updated_at: '2017-10-15T16:05:44.868Z',
+          },
+          {
+            created_at: '2017-10-15T16:05:44.877Z',
+            day: 'WEDNESDAY',
+            duration: 3600,
+            end: 36000,
+            id: 738,
+            location: 'SF 1105',
+            meeting_section_id: 667,
+            start: 32400,
+            updated_at: '2017-10-15T16:05:44.877Z',
+          },
+          {
+            created_at: '2017-10-15T16:05:44.882Z',
+            day: 'MONDAY',
+            duration: 3600,
+            end: 36000,
+            id: 739,
+            location: 'SF 1105',
+            meeting_section_id: 667,
+            start: 32400,
+            updated_at: '2017-10-15T16:05:44.882Z',
+          },
+        ],
+        id: 667,
+        term: '2017 Fall',
+      },
+      'clicked'
+    );
   }
 
   async addToShortlist(newEntry) {
@@ -73,7 +119,6 @@ class App extends Component {
       const msData = prevState.meetingSectionData.filter(
         each => each.courseCode !== entryData.code
       );
-
       return {
         shortlist: [
           ...prevState.shortlist.slice(0, entryIndex),

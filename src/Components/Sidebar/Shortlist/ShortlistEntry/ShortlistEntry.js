@@ -16,7 +16,7 @@ class ShortlistEntry extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayInfo: false,
+      displayInfo: true,
     };
   }
 
