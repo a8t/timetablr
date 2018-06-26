@@ -1,138 +1,141 @@
-import React, { Component } from "react";
-import "./App.css";
-import Calendars from "./Calendar/Calendars";
-import Sidebar from "./Sidebar/Sidebar";
-import Navbar from "./Navbar/Navbar";
-import Counter from "./Counter/Counter"
-import { loadState } from "./LocalState";
-
+import React, { Component } from 'react';
+import './App.css';
+import Calendars from './Calendar/Calendars';
+import Sidebar from './Sidebar/Sidebar';
+import Navbar from './Navbar/Navbar';
+import Counter from './Counter/Counter';
+import { loadState } from './LocalState';
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       meetingSectionData: [],
       shortlist: [],
-      entryHovered: ""
-    }
+      entryHovered: '',
+    };
 
-    this.addMeetingSectionData = this.addMeetingSectionData.bind(this)
-    this.removeMeetingSectionData = this.removeMeetingSectionData.bind(this)
-    this.addToShortlist = this.addToShortlist.bind(this)
-    this.removeFromShortlist = this.removeFromShortlist.bind(this)
-    this.setEntryHovered = this.setEntryHovered.bind(this)
+    this.addMeetingSectionData = this.addMeetingSectionData.bind(this);
+    this.removeMeetingSectionData = this.removeMeetingSectionData.bind(this);
+    this.addToShortlist = this.addToShortlist.bind(this);
+    this.removeFromShortlist = this.removeFromShortlist.bind(this);
+    this.setEntryHovered = this.setEntryHovered.bind(this);
   }
 
-  async componentDidMount(){
+  async componentDidMount() {
     const saveState = e => {
-      e.preventDefault()
+      e.preventDefault();
       try {
-        const serializedState = JSON.stringify({ ...this.state, entryHovered: "" })
-        localStorage.setItem("state", serializedState)
-        e.returnValue = "Make sure you save!";
-        return "Make sure you save!"
+        const serializedState = JSON.stringify({ ...this.state, entryHovered: '' });
+        localStorage.setItem('state', serializedState);
+        e.returnValue = 'Make sure you save!';
+        return 'Make sure you save!';
       } catch (err) {
-        return undefined
+        return undefined;
       }
-    }
-    
+    };
+
     if (this.props.match.url.slice(1)) {
       try {
-        const url = `https://timetablrca.firebaseio.com/URLs/${this.props.match.url.slice(1)}.json`
-        const response = await fetch(url)
-        const jsonResponse = await response.json()
-        this.setState(JSON.parse(jsonResponse)) 
+        const url = `https://timetablrca.firebaseio.com/URLs/${this.props.match.url.slice(1)}.json`;
+        const response = await fetch(url);
+        const jsonResponse = await response.json();
+        this.setState(JSON.parse(jsonResponse));
       } catch (error) {
         console.log(error);
       }
-    } else if (loadState()) this.setState(loadState())
+    } else if (loadState()) this.setState(loadState());
 
-    window.addEventListener("beforeunload", saveState)
+    window.addEventListener('beforeunload', saveState);
   }
 
   async addToShortlist(newEntry) {
     try {
-      const url = `https://tbd-scheduler-v1.herokuapp.com/courses/get_data?course_id=${newEntry.id}`
-      const response = await fetch(url)
-      const jsonResponse = await response.json()
+      const url = `https://tbd-scheduler-v1.herokuapp.com/courses/get_data?course_id=${
+        newEntry.id
+      }`;
+      const response = await fetch(url);
+      const jsonResponse = await response.json();
 
       this.setState({
-        shortlist: [jsonResponse, ...this.state.shortlist]
-      })
-
+        shortlist: [jsonResponse, ...this.state.shortlist],
+      });
     } catch (error) {
       console.log(error);
     }
   }
 
   removeFromShortlist(entryData) {
-    this.setState((prevState) => {
-
-      const entryIndex = prevState.shortlist.findIndex(i => i.code === entryData.code && i.term === entryData.term)
-      const msData = prevState.meetingSectionData.filter(each => each.courseCode !== entryData.code)
+    this.setState(prevState => {
+      const entryIndex = prevState.shortlist.findIndex(
+        i => i.code === entryData.code && i.term === entryData.term
+      );
+      const msData = prevState.meetingSectionData.filter(
+        each => each.courseCode !== entryData.code
+      );
 
       return {
         shortlist: [
           ...prevState.shortlist.slice(0, entryIndex),
-          ...prevState.shortlist.slice(entryIndex + 1)
+          ...prevState.shortlist.slice(entryIndex + 1),
         ],
-        meetingSectionData: msData
-      }
-    })
+        meetingSectionData: msData,
+      };
+    });
   }
 
   addMeetingSectionData(newMSD, addMethod) {
     this.setState(prevState => {
-      const prevMSD = prevState.meetingSectionData
+      const prevMSD = prevState.meetingSectionData;
 
-      const alreadyAddedCount = prevMSD.reduce((n, val) => n + (val.id === newMSD.id && val.addMethod === addMethod), 0)
+      const alreadyAddedCount = prevMSD.reduce(
+        (n, val) => n + (val.id === newMSD.id && val.addMethod === addMethod),
+        0
+      );
 
-      if (alreadyAddedCount >= 1) return
+      if (alreadyAddedCount >= 1) return;
 
       return {
-        meetingSectionData: [
-          { ...newMSD, addMethod: addMethod }, 
-          ...prevMSD, 
-        ]
-      }}
-    )
+        meetingSectionData: [{ ...newMSD, addMethod: addMethod }, ...prevMSD],
+      };
+    });
   }
 
   removeMeetingSectionData(removeData, addMethod) {
-    this.setState((prevState) => {
-      const prevMSD = prevState.meetingSectionData
+    this.setState(prevState => {
+      const prevMSD = prevState.meetingSectionData;
 
-      const index = prevMSD.findIndex( i => i.id === removeData.id && i.addMethod === addMethod )
-      
-      return index >= 0 && { meetingSectionData: [
-        ...prevMSD.slice(0, index),
-        ...prevMSD.slice(index+1)
-      ]}
-    })
+      const index = prevMSD.findIndex(i => i.id === removeData.id && i.addMethod === addMethod);
+
+      return (
+        index >= 0 && {
+          meetingSectionData: [...prevMSD.slice(0, index), ...prevMSD.slice(index + 1)],
+        }
+      );
+    });
   }
 
   setEntryHovered(id) {
     this.setState({
-      entryHovered: id
-    })
+      entryHovered: id,
+    });
   }
 
   render() {
-    
-    const addedCoursesCount = this.state.meetingSectionData.filter(data => data.addMethod === "clicked").length
-    
+    const addedCoursesCount = this.state.meetingSectionData.filter(
+      data => data.addMethod === 'clicked'
+    ).length;
+
     return (
       <div id="App">
-        <Navbar 
-          data={JSON.stringify({ ...this.state, entryHovered: "" })}
-        />
+        <Navbar data={JSON.stringify({ ...this.state, entryHovered: '' })} />
         <Sidebar
           addMeetingSectionData={this.addMeetingSectionData}
           removeMeetingSectionData={this.removeMeetingSectionData}
           addToShortlist={this.addToShortlist}
           removeFromShortlist={this.removeFromShortlist}
           shortlist={this.state.shortlist}
-          meetingSectionData = {this.state.meetingSectionData}
+          meetingSectionData={this.state.meetingSectionData}
           entryHovered={this.state.entryHovered}
           setEntryHovered={this.setEntryHovered}
         />
@@ -142,7 +145,7 @@ class App extends Component {
           removeMeetingSectionData={this.removeMeetingSectionData}
           meetingSectionData={this.state.meetingSectionData}
         />
-        <Counter count={addedCoursesCount}/>
+        <Counter count={addedCoursesCount} />
       </div>
     );
   }
